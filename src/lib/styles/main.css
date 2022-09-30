@@ -1,33 +1,11 @@
-@import '$lib/styles/partials/colors.css';
-@import '$lib/styles/partials/fonts.css';
-@import '$lib/styles/partials/mediaqueries.css';
-@import '$lib/styles/partials/spacing.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Basic dark mode */
 body {
-	background: var(--gray-100);
-	color: var(--gray-900);
-
-	@media (--dark) {
-		& {
-			background: var(--black);
-			color: var(--gray-300);
-		}
-	}
+	@apply bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100;
 }
 
-.bg-blue {
-	background-color: blue;
-}
-
-.heading-01 {
-	font-size: var(--font-4xl);
-	font-weight: var(--font-bold);
-	line-height: var(--leading-02);
-
-	@media (--sm) {
-		& {
-			font-size: var(--font-6xl);
-		}
-	}
+body.dark {
+	@apply bg-blue-700;
 }

@@ -1,71 +1,48 @@
 <script lang="ts">
-	import Container from './Container.svelte';
+	import { fade, fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
+	import AndyLogo from '@components/svg/AndyLogo.svelte';
+	import Hamburger from '@components/svg/Hamburger.svelte';
+	import Container from '@components/global/Container.svelte';
 
 	let isNavActive = false;
 </script>
 
-<nav class="nav">
-	<Container>
-		<div class="nav-container">
-			<ul class="links-container" class:active={isNavActive}>
-				<li>
-					<a href="/" sveltekit:prefetch>Home</a>
-				</li>
-				<li>
-					<a href="/posts" sveltekit:prefetch>Posts</a>
-				</li>
-				<li>
-					<a href="/about" sveltekit:prefetch>About</a>
-				</li>
-			</ul>
-			<button class="nav-trigger" on:click={() => (isNavActive = !isNavActive)}>O</button>
+<nav class="w-screen">
+	<Container class="flex justify-between items-center w-full">
+		<div class="relative w-10 p-1">
+			<AndyLogo />
 		</div>
+		<ul class="flex gap-3">
+			<li>
+				<a href="/" sveltekit:prefetch>Home</a>
+			</li>
+			<li>
+				<a href="/posts" sveltekit:prefetch>Posts</a>
+			</li>
+			<li>
+				<a href="/about" sveltekit:prefetch>About</a>
+			</li>
+		</ul>
+		<button
+			class="flex justify-center items-center w-10 h-10 bg-gray-800 rounded-lg"
+			on:click={() => (isNavActive = !isNavActive)}
+		>
+			<Hamburger />
+		</button>
 	</Container>
 </nav>
-
-<style lang="postcss" scoped>
-	nav.nav {
-		position: fixed;
-		display: flex;
-		width: 100vw;
-		/* background-color: blue; */
-	}
-
-	div.nav-container {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		/* background-color: coral; */
-	}
-
-	ul.links-container {
-		visibility: hidden;
-		position: absolute;
-		top: 0;
-		left: 0;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: var(--space-003);
-		width: 100vw;
-		height: 100vh;
-		background-color: rgba(var(--black-rgb), 0.8);
-		backdrop-filter: blur(10px);
-		opacity: 0;
-		transition: opacity 0.375s cubic-bezier(0.33, 1, 0.68, 1),
-			visibility 0.375s cubic-bezier(0.33, 1, 0.68, 1);
-
-		&.active {
-			visibility: visible;
-			opacity: 1;
-		}
-	}
-
-	button.nav-trigger {
-		position: relative;
-		padding: var(--space-002);
-		background: var(--gray-900);
-	}
-</style>
+<div class="h-40">
+	{#if isNavActive}
+		<div
+			transition:fade={{ duration: 400, easing: cubicOut }}
+			class="flex flex-col gap-3 justify-center items-center w-full h-full bg-gray-700"
+		>
+			{#each { length: 3 } as _, i}
+				<div class="overflow-hidden">
+					<p in:fly={{ y: 40, delay: 200 + i * 100, duration: 400, easing: cubicOut }}>Testing</p>
+				</div>
+			{/each}
+		</div>
+	{/if}
+</div>
