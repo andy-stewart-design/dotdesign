@@ -1,0 +1,20 @@
+:where(html) {
+	--space-px: 1px;
+	--space-001: 0.25rem;
+	--space-002: 0.5rem;
+	--space-003: 0.75rem;
+	--space-004: 1rem;
+	--space-005: 1.25rem;
+	--space-006: 1.5rem;
+	--space-007: 1.75rem;
+	--space-008: 2rem;
+	--space-012: 3rem;
+	--space-016: 4rem;
+	--space-020: 5rem;
+	--space-030: 7.5rem;
+	--space-040: 10rem;
+	--space-060: 15rem;
+	--space-080: 20rem;
+	--space-100: 25rem;
+	--space-120: 30rem;
+}

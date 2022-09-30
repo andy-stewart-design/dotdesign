@@ -1,0 +1,42 @@
+:where(html) {
+	--font-sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+	--font-serif: ui-serif, serif;
+	--font-mono: Dank Mono, Operator Mono, Inconsolata, Fira Mono, ui-monospace, SF Mono, Monaco,
+		Droid Sans Mono, Source Code Pro, monospace;
+	--font-thin: 100;
+	--font-extralight: 200;
+	--font-light: 300;
+	--font-regular: 400;
+	--font-medium: 500;
+	--font-semibold: 600;
+	--font-bold: 700;
+	--font-extrabold: 800;
+	--font-black: 900;
+	--leading-01: 0.96;
+	--leading-02: 1.1;
+	--leading-03: 1.25;
+	--leading-04: 1.375;
+	--leading-05: 1.5;
+	--leading-06: 1.75;
+	--tracking-00: -0.05em;
+	--tracking-01: 0.025em;
+	--tracking-02: 0.05em;
+	--tracking-03: 0.075em;
+	--tracking-04: 0.15em;
+	--tracking-05: 0.5em;
+	--tracking-06: 0.75em;
+	--tracking-07: 1em;
+	--font-1xs: 0.75rem; /* 12px */
+	--font-sm: 0.875rem; /* 14px */
+	--font-base: 1rem; /* 16px */
+	--font-lg: 1.125rem; /* 18px */
+	--font-1xl: 1.25rem; /* 20px */
+	--font-2xl: 1.5rem; /* 24px */
+	--font-3xl: 1.875rem; /* 30px */
+	--font-4xl: 2.25rem; /* 36px */
+	--font-5xl: 3rem; /* 48px */
+	--font-6xl: 3.75rem; /* 60px */
+	--font-7xl: 4.5rem; /* 72px */
+	--font-8xl: 6rem; /* 96px */
+	--font-9xl: 8rem; /* 128px */
+}

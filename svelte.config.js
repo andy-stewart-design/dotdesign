@@ -8,7 +8,9 @@ const config = {
 	// for more information about preprocessors
 	extensions: ['.svelte', '.md', '.mdx'],
 	preprocess: [
-		preprocess(),
+		preprocess({
+			postcss: true
+		}),
 		mdsvex({
 			extensions: ['.md', '.mdx']
 		})

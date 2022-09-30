@@ -1,38 +1,33 @@
-:root {
-	--black: #111111;
-	--gray-900: #16181a;
-	--gray-800: #343a40;
-	--gray-700: #495057;
-	--gray-600: #868e96;
-	--gray-500: #adb5bd;
-	--gray-400: #ced4da;
-	--gray-300: #dee2e6;
-	--gray-200: #e9ecef;
-	--gray-100: #f1f3f5;
-	--gray-000: #f8f9fa;
-	--space-px: 1px;
-	--space-1: 0.25rem;
-	--space-2: 0.5rem;
-	--space-3: 0.75rem;
-	--space-4: 1rem;
-	--space-5: 1.25rem;
-	--space-6: 1.5rem;
-	--space-7: 1.75rem;
-	--space-8: 2rem;
-	--space-12: 3rem;
-	--space-16: 4rem;
-	--space-20: 5rem;
-	--space-30: 7.5rem;
-	--space-40: 10rem;
-	--space-60: 15rem;
-	--space-80: 20rem;
-	--space-100: 25rem;
-	--space-120: 30rem;
+@import '$lib/styles/partials/colors.css';
+@import '$lib/styles/partials/fonts.css';
+@import '$lib/styles/partials/mediaqueries.css';
+@import '$lib/styles/partials/spacing.css';
+
+/* Basic dark mode */
+body {
+	background: var(--gray-100);
+	color: var(--gray-900);
+
+	@media (--dark) {
+		& {
+			background: var(--black);
+			color: var(--gray-300);
+		}
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-	body {
-		background: var(--black);
-		color: var(--gray-300);
+.bg-blue {
+	background-color: blue;
+}
+
+.heading-01 {
+	font-size: var(--font-4xl);
+	font-weight: var(--font-bold);
+	line-height: var(--leading-02);
+
+	@media (--sm) {
+		& {
+			font-size: var(--font-6xl);
+		}
 	}
 }

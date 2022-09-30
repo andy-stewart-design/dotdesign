@@ -6,6 +6,6 @@
 </script>
 
 <Nav />
-<Container>
+<Container pt="lg">
 	<slot />
 </Container>
