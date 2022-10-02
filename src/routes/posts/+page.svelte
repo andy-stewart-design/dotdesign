@@ -22,12 +22,12 @@
 <ul>
 	{#each posts as post}
 		<li>
-			<h2>
-				<a href={`/posts/${post.slug}`}>
+			<a href={`/posts/${post.slug}`} data-sveltekit-prefetch>
+				<h2>
 					{post.frontmatter.title}
-				</a>
-			</h2>
-			Published {post.frontmatter.date}
+				</h2>
+				Published {post.frontmatter.date}
+			</a>
 		</li>
 	{/each}
 </ul>

@@ -5,6 +5,8 @@
 </script>
 
 <h1>{foo}</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
 
-<Counter />
+<!-- <Counter /> -->
+<div class="w-full h-screen" />
+<div class="w-full h-screen" />

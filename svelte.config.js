@@ -21,7 +21,8 @@ const config = {
 		alias: {
 			'@styles': './src/lib/styles',
 			'@components': './src/lib/components',
-			'@utils': './src/lib/utils'
+			'@utils': './src/lib/utils',
+			'@actions': './src/lib/actions'
 		}
 	}
 };

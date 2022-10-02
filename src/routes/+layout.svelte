@@ -1,7 +1,6 @@
 <script lang="ts">
-	// import '@styles/reset.css';
 	import '@styles/main.css';
-	import Nav from '@components/global/Nav.svelte';
+	import Nav from '@components/global/Nav';
 	import Container from '@components/global/Container.svelte';
 </script>
 
