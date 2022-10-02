@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { navigating, page } from '$app/stores';
 	import AndyLogo from '@components/svg/AndyLogo.svelte';
+	import NavOverlay from './NavOverlay.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 	import NavTrigger from './NavTrigger.svelte';
 	import Container from '@components/global/Container.svelte';
 	import { inView, type ObserverEventDetails } from '@actions/inview';
 	import type { NavLinks } from '$lib/types/nav';
-	import NavOverlay from './NavOverlay.svelte';
 
 	let innerWidth: number;
 	const links: NavLinks[] = [
@@ -37,7 +38,7 @@
 	<Container class="flex justify-between items-center w-full">
 		<a
 			href="/"
-			class="relative w-10 p-0.5 hover:cursor-crosshair"
+			class="relative w-10 p-0.5"
 			class:pointer-events-none={isNavActive || $page.url.pathname === '/'}
 			aria-disabled={isNavActive}
 		>
@@ -58,7 +59,8 @@
 				</li>
 			{/each}
 		</ul>
-		<div class="w-10">
+		<div class="flex gap-x-4">
+			<ThemeToggle />
 			<div
 				class="relative md:fixed md:top-4 md:right-8 md:-translate-y-16 md:transition-transform md:duration-500 md:ease-out"
 				class:is-scrollin-sm={innerWidth < 768 && ioDetails.intersectionRatio < 0.95}
@@ -70,6 +72,10 @@
 					disabled={innerWidth >= 768 && !!ioDetails.intersectionRatio}
 				/>
 			</div>
+			<div
+				class="w-11 hidden"
+				class:spacer-active={innerWidth < 768 && ioDetails.intersectionRatio < 0.95}
+			/>
 		</div>
 	</Container>
 </nav>
@@ -82,6 +88,10 @@
 
 	.is-scrollin-md {
 		@apply translate-y-0;
+	}
+
+	.spacer-active {
+		@apply block;
 	}
 
 	@keyframes slide-in {

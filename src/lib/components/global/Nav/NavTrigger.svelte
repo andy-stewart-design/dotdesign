@@ -5,7 +5,7 @@
 </script>
 
 <button
-	class={`flex justify-center items-center w-10 h-10 bg-gray-800 rounded-full ${$$props.class}`}
+	class={`flex justify-center items-center w-11 h-11 bg-gray-900/70 border border-gray-100/10 rounded-full ${$$props.class}`}
 	on:click={callback}
 	{disabled}
 >

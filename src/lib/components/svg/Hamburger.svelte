@@ -6,7 +6,7 @@
 	preserveAspectRatio="xMidYMid meet"
 	viewBox="0 0 20 20"
 >
-	<path class="" fill="currentColor" d="M19,4H1V2h18V4z M19,16H1v2h18V16z M19,9H1v2h18V9z" />
+	<path fill="currentColor" d="M19,4H1V2h18V4z M19,16H1v2h18V16z M19,9H1v2h18V9z" />
 	<!-- <path
 		class=""
 		fill="currentColor"
