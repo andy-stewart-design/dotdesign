@@ -1,6 +1,7 @@
 // @ts-nocheck
 export const fetchMarkdownPosts = async () => {
 	const allPostFiles = import.meta.glob('/src/content/posts/*.mdx');
+
 	const iterablePostFiles = Object.entries(allPostFiles);
 
 	const allPosts = await Promise.all(

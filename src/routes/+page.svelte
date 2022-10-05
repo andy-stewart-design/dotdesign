@@ -1,12 +1,16 @@
 <script lang="ts">
 	import Counter from '@components/Counter.svelte';
+	import ExperimentalButton from '@components/global/buttons/ExperimentalButton.svelte';
+	import Container from '@components/global/Container.svelte';
 
 	const foo = 'Hello World This is a Long Headline';
 </script>
 
-<h1>{foo}</h1>
-<!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
+<Container pt="md">
+	<h1>{foo}</h1>
+	<ExperimentalButton>Test</ExperimentalButton>
+	<Counter />
+</Container>
 
-<!-- <Counter /> -->
 <div class="w-full h-screen" />
 <div class="w-full h-screen" />

@@ -4,10 +4,6 @@
 	export let disabled = false;
 </script>
 
-<button
-	class={`flex justify-center items-center w-11 h-11 bg-gray-900/70 border border-gray-100/10 rounded-full ${$$props.class}`}
-	on:click={callback}
-	{disabled}
->
+<button class={`p-3 ${$$props.class}`} on:click={callback} {disabled}>
 	<Hamburger />
 </button>

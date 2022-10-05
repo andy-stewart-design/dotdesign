@@ -2,7 +2,6 @@
 	import Container from '@components/global/Container.svelte';
 </script>
 
-<Container pt="md">
-	<h1>About Me</h1>
-	<a href="/about/uses" data-sveltekit-prefetch>uses</a>
+<Container>
+	<slot />
 </Container>

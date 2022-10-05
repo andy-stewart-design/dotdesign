@@ -2,8 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	html {
+		-webkit-tap-highlight-color: transparent;
+	}
+}
+
 body {
-	@apply bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100;
+	background-color: rgb(244, 244, 245);
+	text: #16181a;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #16181a;
+		color: rgb(244, 244, 245);
+	}
 }
 
 [data-theme='light'] body {

@@ -19,10 +19,11 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			'@styles': './src/lib/styles',
+			'@actions': './src/lib/actions',
 			'@components': './src/lib/components',
-			'@utils': './src/lib/utils',
-			'@actions': './src/lib/actions'
+			'@styles': './src/lib/styles',
+			'@types': './src/lib/types',
+			'@utils': './src/lib/utils'
 		}
 	}
 };
