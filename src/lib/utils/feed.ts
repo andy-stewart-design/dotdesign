@@ -1,9 +1,11 @@
+type Filetype = 'jpg' | 'png' | 'webp' | 'mp4';
+
 export const getFeedImages = async () => {
 	const allFeedData = import.meta.glob('/static/feed/*');
 	const iterableFeedFiles = Object.keys(allFeedData);
-	const filteredImageFiles = filterByFileType(iterableFeedFiles);
+	const filteredFeedFiles = filterByFileType(iterableFeedFiles);
 
-	const mediaData = filteredImageFiles.map((filename) => {
+	const mediaData = filteredFeedFiles.map((filename) => {
 		const slug = filename.replace('/static', '');
 		const filetype = slug.split('.').pop();
 		const projectInfo = slug.replace('/feed/', '').replace(/\..*$/, '').split('_');
@@ -31,7 +33,7 @@ export const getFeedImages = async () => {
 
 const filterByFileType = (files: string[]) => {
 	return files.filter((file) => {
-		const fileType = file.toLocaleLowerCase();
+		const fileType = file.toLocaleLowerCase() as Filetype;
 		const doesMatch =
 			fileType.includes('jpg'.toLocaleLowerCase()) ||
 			fileType.includes('webp'.toLocaleLowerCase()) ||

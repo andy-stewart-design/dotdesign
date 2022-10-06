@@ -5,6 +5,9 @@
 	import { focusTrap } from '@actions/focusTrap';
 	import IconButton from '@components/global/buttons/IconButton.svelte';
 	import type { FeedImageData } from '$lib/types/feed';
+	import Image from '@components/global/Image.svelte';
+	import Video from '@components/Video.svelte';
+	import { transition_in } from 'svelte/internal';
 
 	export let images: FeedImageData[];
 	export let isOverlayActive: boolean;
@@ -19,12 +22,6 @@
 		if (activeImage <= 0) activeImage = images.length - 1;
 		else activeImage -= 1;
 	};
-
-	// const closeOverlay = () => {
-	// 	isOverlayActive = false;
-	// 	activeButton?.focus();
-	// 	document.body.style.overflow = '';
-	// };
 </script>
 
 {#if isOverlayActive}
@@ -46,19 +43,44 @@
 			<IconButton icon="close" on:click={closeOverlay} alt="Close menu" />
 		</Container>
 		<Container class="relative grow">
-			<div class="relative w-full h-full">
-				<img
-					src={images[activeImage].slug}
-					class="absolute top-0 left-0 w-full h-full object-contain z-10"
-					loading="eager"
-					alt={images[activeImage].alt}
-					in:scale={{ start: 1.2, duration: 600, delay: 300, easing: cubicOut }}
-					out:scale={{ start: 1.2, duration: 300, easing: quadIn }}
-				/>
+			<div
+				class="relative w-full h-full"
+				in:scale={{ start: 1.2, duration: 600, delay: 300, easing: cubicOut }}
+				out:scale={{ start: 1.2, duration: 300, easing: quadIn }}
+			>
+				{#key activeImage}
+					{#if images[activeImage].filetype !== 'mp4'}
+						<div
+							class="absolute top-0 left-0 w-full h-full object-contain z-10"
+							transition:fade={{ duration: 400, easing: cubicOut }}
+						>
+							<Image
+								src={images[activeImage].slug}
+								class="absolute top-0 left-0 w-full h-full object-contain z-10"
+								width=""
+								height=""
+								alt={images[activeImage].alt}
+							/>
+						</div>
+					{:else}
+						<div
+							class="absolute top-0 left-0 w-full h-full object-contain z-10"
+							transition:fade={{ duration: 400, easing: cubicOut }}
+						>
+							<Video
+								class="absolute top-0 left-0 w-full h-full object-contain z-10"
+								src={images[activeImage].slug}
+								width="1080"
+								height="1080"
+							/>
+						</div>
+					{/if}
+				{/key}
 			</div>
 		</Container>
 		<Container class="flex justify-center gap-x-4" pb="md">
 			<p>{images[activeImage].client}</p>
+			<p>{images[activeImage].project}</p>
 			<p>{images[activeImage].year}</p>
 		</Container>
 	</div>
