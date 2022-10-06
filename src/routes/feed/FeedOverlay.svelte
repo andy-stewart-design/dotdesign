@@ -49,11 +49,11 @@
 				out:scale={{ start: 1.2, duration: 300, easing: quadIn }}
 			>
 				{#key activeImage}
-					{#if images[activeImage].filetype !== 'mp4'}
-						<div
-							class="absolute top-0 left-0 w-full h-full object-contain z-10"
-							transition:fade={{ duration: 400, easing: cubicOut }}
-						>
+					<div
+						class="absolute top-0 left-0 w-full h-full object-contain z-10"
+						transition:fade|local={{ duration: 300, easing: cubicOut }}
+					>
+						{#if images[activeImage].filetype !== 'mp4'}
 							<Image
 								src={images[activeImage].slug}
 								class="absolute top-0 left-0 w-full h-full object-contain z-10"
@@ -61,20 +61,15 @@
 								height=""
 								alt={images[activeImage].alt}
 							/>
-						</div>
-					{:else}
-						<div
-							class="absolute top-0 left-0 w-full h-full object-contain z-10"
-							transition:fade={{ duration: 400, easing: cubicOut }}
-						>
+						{:else}
 							<Video
 								class="absolute top-0 left-0 w-full h-full object-contain z-10"
 								src={images[activeImage].slug}
 								width="1080"
 								height="1080"
 							/>
-						</div>
-					{/if}
+						{/if}
+					</div>
 				{/key}
 			</div>
 		</Container>

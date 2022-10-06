@@ -12,7 +12,7 @@ export const getFeedImages = async () => {
 		const metaArray = projectInfo.map((info, index) => {
 			const metaTags = ['project', 'client', 'date'];
 			let projectInfoFormatted: string;
-			if (index <= 1) projectInfoFormatted = info.replace('-', ' ').replace("'", '’');
+			if (index <= 1) projectInfoFormatted = info.replaceAll('-', ' ').replaceAll("'", '’');
 			else projectInfoFormatted = info;
 			return [metaTags[index], projectInfoFormatted];
 		});
