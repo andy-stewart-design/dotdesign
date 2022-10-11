@@ -12,7 +12,13 @@ const config = {
 			postcss: true
 		}),
 		mdsvex({
-			extensions: ['.md', '.mdx']
+			extensions: ['.md', '.mdx'],
+			smartypants: {
+				quotes: true,
+				ellipses: true,
+				backticks: true,
+				dashes: 'oldschool'
+			}
 		})
 	],
 
@@ -22,7 +28,7 @@ const config = {
 			'@actions': './src/lib/actions',
 			'@components': './src/lib/components',
 			'@styles': './src/lib/styles',
-			'@types': './src/lib/types',
+			types: './src/lib/types',
 			'@utils': './src/lib/utils'
 		}
 	}

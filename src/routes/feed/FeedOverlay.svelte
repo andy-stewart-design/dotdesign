@@ -53,7 +53,7 @@
 						class="absolute top-0 left-0 w-full h-full object-contain z-10"
 						transition:fade|local={{ duration: 300, easing: cubicOut }}
 					>
-						{#if images[activeImage].filetype !== 'mp4'}
+						{#if images[activeImage].filetype === 'image'}
 							<Image
 								src={images[activeImage].slug}
 								class="absolute top-0 left-0 w-full h-full object-contain z-10"

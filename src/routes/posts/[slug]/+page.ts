@@ -1,25 +1,11 @@
 import type { Page } from '@sveltejs/kit';
-import type { SvelteComponent } from 'svelte';
+import type { Post, RawPostData } from 'types/posts';
 
-interface Frontmatter {
-	title: string;
-	date: string;
-}
-
-interface Post {
-	metadata: Frontmatter;
-	default: typeof SvelteComponent;
-}
-
-export async function load({ params }: Page) {
-	const post: Post = await import(`../../../content/posts/${params.slug}.mdx`);
-
-	const { title, date } = post.metadata;
-	const content = post.default;
+export const load = async ({ params }: Page): Promise<Post> => {
+	const rawPostData: RawPostData = await import(`../../../content/posts/${params.slug}/index.mdx`);
 
 	return {
-		content,
-		title,
-		date
+		frontmatter: rawPostData.metadata,
+		content: rawPostData.default
 	};
-}
+};

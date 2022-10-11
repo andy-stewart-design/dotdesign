@@ -7,23 +7,19 @@ export const getFeedImages = async () => {
 
 	const mediaData = filteredFeedFiles.map((filename) => {
 		const slug = filename.replace('/static', '');
-		const filetype = slug.split('.').pop();
+		const extension = slug.split('.').pop();
+		const filetype = checkFileType(extension!);
 		const projectInfo = slug.replace('/feed/', '').replace(/\..*$/, '').split('_');
-		const metaArray = projectInfo.map((info, index) => {
-			const metaTags = ['project', 'client', 'date'];
-			let projectInfoFormatted: string;
-			if (index <= 1) projectInfoFormatted = info.replaceAll('-', ' ').replaceAll("'", '’');
-			else projectInfoFormatted = info;
-			return [metaTags[index], projectInfoFormatted];
-		});
-		const metadata = Object.fromEntries(metaArray);
-		const article = checkProjectType(metadata.project) ? 'An' : 'A';
-		const alt = `${article} ${metadata.project} for ${metadata.client}`;
-		const year = metadata.date.split('-').shift();
 
-		return { slug, filetype, ...metadata, year, alt };
+		const project = projectInfo[0].replaceAll('-', ' ').replaceAll("'", '’');
+		const client = projectInfo[1].replaceAll('-', ' ').replaceAll("'", '’');
+		const date = projectInfo[2];
+		const year = date.split('-').shift();
+		const article = checkProjectType(project) ? 'An' : 'A';
+		const alt = `${article} ${project} for ${client}`;
+
+		return { project, client, year, slug, date, alt, filetype, extension };
 	});
-
 	const mediaDataSorted = mediaData.sort(function (a, b) {
 		return Date.parse(b.date) - Date.parse(a.date);
 	});
@@ -51,4 +47,14 @@ const checkProjectType = (projectType: string) => {
 		projectType === 'Icon Set'
 	)
 		return true;
+};
+
+const checkFileType = (fileType: string) => {
+	const isImage =
+		fileType.toLocaleLowerCase().includes('jpg'.toLocaleLowerCase()) ||
+		fileType.toLocaleLowerCase().includes('webp'.toLocaleLowerCase()) ||
+		fileType.toLocaleLowerCase().includes('avif'.toLocaleLowerCase()) ||
+		fileType.toLocaleLowerCase().includes('png'.toLocaleLowerCase());
+	if (isImage) return 'image';
+	else return 'video';
 };

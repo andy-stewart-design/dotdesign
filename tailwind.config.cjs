@@ -66,7 +66,7 @@ const config = {
 	plugins: [
 		plugin(({ addVariant }) => {
 			addVariant('g-dark', ':global(.dark) &');
-			addVariant('can-hover', '@media (hover: hover) {&:hover}');
+			addVariant('can-hover', '@media (hover: hover) {body &:hover}');
 		})
 	]
 };

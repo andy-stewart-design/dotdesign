@@ -46,7 +46,7 @@
 			<AndyLogo />
 		</a>
 		<NavOverlay {navContainer} {links} {isNavActive} {triggerNav} page={$page.url.pathname} />
-		<ul class="hidden md:flex gap-4">
+		<ul class="hidden md:flex gap-8">
 			{#each links as link}
 				<li>
 					<a

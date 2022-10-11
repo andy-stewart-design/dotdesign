@@ -1,17 +1,15 @@
 <script lang="ts">
-	import type { SvelteComponent } from 'svelte';
+	import type { Post } from 'types/posts';
 
-	interface Data {
-		title: string;
-		date: string;
-		content: typeof SvelteComponent;
-	}
-
-	export let data: Data;
+	export let data: Post;
+	const { frontmatter, content } = data;
 </script>
 
-<article>
-	<h1>{data.title}</h1>
-	<p>Published: {data.date}</p>
-	<svelte:component this={data.content} />
-</article>
+<h1>{frontmatter.title}</h1>
+<p>Published: {frontmatter.date}</p>
+<svelte:component this={content} />
+<ul>
+	{#each frontmatter.tags as tag}
+		<li>{tag}</li>
+	{/each}
+</ul>

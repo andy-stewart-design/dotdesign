@@ -8,7 +8,6 @@
 	let ref: HTMLVideoElement;
 
 	const onLoad = () => {
-		console.log('video ready');
 		ref.style.opacity = '1';
 		ref.removeEventListener('canplay', onLoad);
 	};

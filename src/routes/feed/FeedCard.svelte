@@ -11,7 +11,7 @@
 	class="bg-gray-200 dark:bg-black rounded-lg overflow-hidden select-none focus:outline-none focus-visible:outline-blue-500"
 	name={image.slug}
 >
-	{#if image.filetype !== 'mp4'}
+	{#if image.filetype === 'image'}
 		<Image
 			src={image.slug}
 			class="aspect-square"
