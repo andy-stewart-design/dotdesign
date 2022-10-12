@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '@styles/prose.css';
-	import '@styles/prism.css';
+	// import '@styles/prism.css';
+	import '@styles/prettycode.css';
 	import Container from '@components/global/Container.svelte';
 </script>
 

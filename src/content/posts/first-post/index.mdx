@@ -17,22 +17,23 @@ Most people view code as, at best, abstract, utilitarian, and coldly technical�
 
 Code is, at the end of the day, though, just language—one that we happen to use to communicate with computers, not all that different than the languages we use to talk to one another. One of the defining features of good languages is that they are malleable—we can use English to write both songs and dissertations, love letters and hateful screeds. Similarly, javascript and other coding languages are not exclusively well-suited for building apps. They can also be tools for storytelling and self-expression. They can, in a word, be generative.
 
-```tsx
-const Animation = () => {
-	import { useState } from 'react';
-	import useAnimationFrame from 'lib/useAnimationFrame';
+```svelte {5-7, 10-11} title="foo.svelte"
+<script lang="ts">
+	import Counter from '$lib/Counter.svelte';
+	let foo = true;
+</script>
 
-	const [count, setCount] = useState<number>(0);
-	const update = () => setCount(count + 0.05);
+<section>
+	<h1>
+		to your {foo} SvelteKit app
+	</h1>
 
-	useAnimationFrame(update, isAnimating);
+	<h2>
+		try editing <strong>svelte</strong>
+	</h2>
 
-	return (
-		<div>
-			<h1>{Math.floor(count)}</h1>
-		</div>
-	);
-};
+	<Counter />
+</section>
 ```
 
 In her [essay on the subject](https://www.amygoodchild.com/blog/what-is-generative-art), artist Amy Goodchild identifies autonomy as the key element of generative artwork, and defines autonomy as "a process not under direct human control." Her definition is purposefully expansive and academic—both [Jackson Pollack](https://en.wikipedia.org/wiki/Jackson_Pollock) and [Tyler Hobbes](https://tylerxhobbs.com/) are, in this conception, generative artists—so much so that I wonder if she's sacrificing clarity for comprehensiveness.

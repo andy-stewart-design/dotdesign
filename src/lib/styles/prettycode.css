@@ -1,0 +1,25 @@
+/* Numbered lines */
+div[data-rehype-pretty-code-fragment] {
+	@apply my-4 rounded-lg leading-6 overflow-hidden;
+}
+
+div[data-rehype-pretty-code-fragment] pre.shiki {
+	@apply pt-2 pb-3 text-sm leading-normal overflow-x-auto;
+}
+
+pre.shiki code {
+	@apply grid; /* make highlighted lines span the width of a horizontally-scrollable code block */
+	counter-reset: step;
+	counter-increment: step 0;
+}
+
+pre.shiki code .line::before {
+	@apply inline-block w-6 mr-6 text-gray-100/30 text-right tabular-nums;
+	content: counter(step);
+	counter-increment: step;
+}
+
+pre.shiki .highlight-line {
+	@apply inline-block bg-blue-800/40 border-l-4 border-blue-500;
+	width: calc(var(--max-width-full) + var(--spacing-4));
+}

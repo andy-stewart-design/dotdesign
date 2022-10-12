@@ -2,6 +2,7 @@
 
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
+import highlighter from './src/lib/utils/codeHighlighter.js';
 import { mdsvex } from 'mdsvex';
 
 const config = {
@@ -13,6 +14,9 @@ const config = {
 		}),
 		mdsvex({
 			extensions: ['.md', '.mdx'],
+			highlight: {
+				highlighter
+			},
 			smartypants: {
 				quotes: true,
 				ellipses: true,
