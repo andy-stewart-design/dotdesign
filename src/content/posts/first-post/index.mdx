@@ -17,7 +17,7 @@ Most people view code as, at best, abstract, utilitarian, and coldly technical�
 
 Code is, at the end of the day, though, just language—one that we happen to use to communicate with computers, not all that different than the languages we use to talk to one another. One of the defining features of good languages is that they are malleable—we can use English to write both songs and dissertations, love letters and hateful screeds. Similarly, javascript and other coding languages are not exclusively well-suited for building apps. They can also be tools for storytelling and self-expression. They can, in a word, be generative.
 
-```svelte {5-7, 10-11} title="foo.svelte"
+```svelte title="foo.svelte"
 <script lang="ts">
 	import Counter from '$lib/Counter.svelte';
 	let foo = true;
@@ -34,6 +34,37 @@ Code is, at the end of the day, though, just language—one that we happen to us
 
 	<Counter />
 </section>
+```
+
+```css
+div[data-rehype-pretty-code-fragment] {
+	@apply my-4 rounded-lg leading-6 bg-gray-900 overflow-hidden shadow-2xl;
+}
+
+div[data-rehype-pretty-code-fragment] [data-title] {
+	@apply font-normal text-xs text-gray-100/60 py-2 px-4 border-b border-gray-100/10;
+}
+
+div[data-rehype-pretty-code-fragment] pre.shiki {
+	@apply py-3 text-sm leading-normal overflow-x-auto;
+}
+
+pre.shiki code {
+	@apply grid; /* make highlighted lines span the width of a horizontally-scrollable code block */
+	counter-reset: step;
+	counter-increment: step 0;
+}
+
+pre.shiki code .line::before {
+	@apply inline-block w-6 mr-6 text-gray-100/30 text-right tabular-nums;
+	content: counter(step);
+	counter-increment: step;
+}
+
+pre.shiki .highlight-line {
+	@apply inline-block bg-blue-800/40;
+	width: calc(var(--max-width-full) + var(--spacing-4));
+}
 ```
 
 In her [essay on the subject](https://www.amygoodchild.com/blog/what-is-generative-art), artist Amy Goodchild identifies autonomy as the key element of generative artwork, and defines autonomy as "a process not under direct human control." Her definition is purposefully expansive and academic—both [Jackson Pollack](https://en.wikipedia.org/wiki/Jackson_Pollock) and [Tyler Hobbes](https://tylerxhobbs.com/) are, in this conception, generative artists—so much so that I wonder if she's sacrificing clarity for comprehensiveness.
@@ -56,7 +87,3 @@ To demonstrate the point, let's look at a simple, elegant example of generative 
 References
 [10 Print](https://10print.org/10_PRINT_121114.pdf) (Book)
 [The Coding Train](https://www.youtube.com/watch?v=bEyTZ5ZZxZs)
-
-```
-
-```

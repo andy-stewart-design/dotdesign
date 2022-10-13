@@ -30,8 +30,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
 	body {
-		background-color: #16181a;
-		color: rgb(244, 244, 245);
+		background-color: rgb(var(--black));
+		color: rgb(var(--gray-100));
 	}
 }
 
@@ -40,5 +40,5 @@ body {
 }
 
 [data-theme='dark'] body {
-	@apply bg-gray-900 text-gray-100;
+	@apply bg-black text-gray-100;
 }

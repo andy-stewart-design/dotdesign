@@ -1,14 +1,22 @@
 /* Numbered lines */
 div[data-rehype-pretty-code-fragment] {
-	@apply my-4 rounded-lg leading-6 overflow-hidden;
+	@apply col-popout my-4 rounded-lg leading-6 bg-gray-800 dark:bg-gray-900 border border-gray-100/5 overflow-hidden;
+}
+
+div[data-rehype-pretty-code-fragment] [data-title] {
+	@apply relative font-normal text-xs text-gray-100/60 py-2 pl-12 border-b border-gray-100/5;
+}
+
+div[data-rehype-pretty-code-fragment] [data-title]:before {
+	@apply absolute top-3 left-4 w-2 h-2 bg-blue-600 rounded-full content-[""];
 }
 
 div[data-rehype-pretty-code-fragment] pre.shiki {
-	@apply pt-2 pb-3 text-sm leading-normal overflow-x-auto;
+	@apply py-4 text-sm leading-relaxed overflow-x-auto;
 }
 
 pre.shiki code {
-	@apply grid; /* make highlighted lines span the width of a horizontally-scrollable code block */
+	@apply grid;
 	counter-reset: step;
 	counter-increment: step 0;
 }
@@ -20,6 +28,6 @@ pre.shiki code .line::before {
 }
 
 pre.shiki .highlight-line {
-	@apply inline-block bg-blue-800/40 border-l-4 border-blue-500;
+	@apply inline-block bg-blue-800/40;
 	width: calc(var(--max-width-full) + var(--spacing-4));
 }

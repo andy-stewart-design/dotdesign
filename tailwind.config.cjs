@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 // const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
@@ -26,12 +27,24 @@ const config = {
 				},
 				'neon-yellow': 'rgb(var(--neon-yellow) / <alpha-value>)'
 			},
-			gridTemplateColumns: {
+			gridColumn: {
+				popout: 'popout',
+				feature: 'feature',
+				full: 'full'
+			},
+			gridTemplateColumns: (theme) => ({
 				'fit-sm': 'repeat(auto-fit, minmax(15rem, 1fr))',
 				fit: 'repeat(auto-fit, minmax(18rem, 1fr))',
 				'fit-lg': 'repeat(auto-fit, minmax(21rem, 1fr))',
-				'fit-xl': 'repeat(auto-fit, minmax(24rem, 1fr))'
-			},
+				'fit-xl': 'repeat(auto-fit, minmax(24rem, 1fr))',
+				article: `[full-start] minmax(${theme('spacing[4]')}, 1fr)
+							 [feature-start] minmax(0, ${theme('spacing[24]')})
+							 [popout-start] minmax(0, ${theme('spacing[12]')})
+							 [content-start] min(70ch, 100% - ${theme('spacing[4]')} * 2) [content-end]
+							 minmax(0, ${theme('spacing[12]')}) [popout-end]
+							 minmax(0, ${theme('spacing[24]')}) [feature-end]
+							 minmax(${theme('spacing[4]')}, 1fr) [full-end];`
+			}),
 			opacity: {
 				15: '.15'
 			},
