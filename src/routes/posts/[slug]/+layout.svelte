@@ -1,13 +1,14 @@
 <script lang="ts">
 	import '@styles/prose.css';
-	// import '@styles/prism.css';
 	import '@styles/prettycode.css';
 	import Container from '@components/global/Container.svelte';
 </script>
 
-<article class="content prose">
-	<slot />
-</article>
+<Container pxNone py="lg">
+	<article class="content prose">
+		<slot />
+	</article>
+</Container>
 
 <style global>
 	.content {

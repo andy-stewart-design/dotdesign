@@ -31,3 +31,8 @@ pre.shiki .highlight-line {
 	@apply inline-block bg-blue-800/40;
 	width: calc(var(--max-width-full) + var(--spacing-4));
 }
+
+span.line,
+span.line span {
+	tab-size: 1.25rem;
+}

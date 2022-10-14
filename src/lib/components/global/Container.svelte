@@ -9,6 +9,7 @@
 	export let py: PaddingValue | null = 'sm';
 	export let pt: PaddingValue | null = null;
 	export let pb: PaddingValue | null = null;
+	export let pxNone: boolean = false;
 
 	let isPaddingEqual = true;
 	if (pt || pb) isPaddingEqual = false;
@@ -20,7 +21,8 @@
 </script>
 
 <div
-	class={`px-2 md:px-8 ${$$props.class}`}
+	class={`${$$props.class}`}
+	class:pad-x={!pxNone}
 	class:py-0={isPaddingEqual && py === 'none'}
 	class:py-2={isPaddingEqual && py === 'xs'}
 	class:py-4={isPaddingEqual && py === 'sm'}
@@ -42,3 +44,9 @@
 >
 	<slot />
 </div>
+
+<style>
+	.pad-x {
+		@apply px-2 md:px-8;
+	}
+</style>

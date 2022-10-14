@@ -10,6 +10,10 @@ const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
+		fontFamily: {
+			sans: ['Andy Sans', ...defaultTheme.fontFamily.sans],
+			mono: ['Andy mono', ...defaultTheme.fontFamily.mono]
+		},
 		extend: {
 			colors: {
 				black: 'rgb(var(--black) / <alpha-value>)',
