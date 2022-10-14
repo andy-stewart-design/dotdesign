@@ -8,7 +8,7 @@ div[data-rehype-pretty-code-fragment] [data-title] {
 }
 
 div[data-rehype-pretty-code-fragment] [data-title]:before {
-	@apply absolute top-3 left-4 w-2 h-2 bg-blue-600 rounded-full content-[""];
+	@apply absolute top-2 left-4 font-normal text-xs text-gray-100/30 content-["→"];
 }
 
 div[data-rehype-pretty-code-fragment] pre.shiki {
