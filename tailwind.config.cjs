@@ -8,7 +8,6 @@ const colors = require('tailwindcss/colors');
 const config = {
 	darkMode: 'class',
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-
 	theme: {
 		fontFamily: {
 			sans: ['Andy Sans', ...defaultTheme.fontFamily.sans],

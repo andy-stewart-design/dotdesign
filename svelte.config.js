@@ -33,7 +33,8 @@ const config = {
 			'@components': './src/lib/components',
 			'@styles': './src/lib/styles',
 			types: './src/lib/types',
-			'@utils': './src/lib/utils'
+			'@utils': './src/lib/utils',
+			'@posts': './src/content/posts'
 		}
 	}
 };

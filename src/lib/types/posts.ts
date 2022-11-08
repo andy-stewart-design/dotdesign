@@ -8,6 +8,11 @@ export interface Frontmatter {
 	tags: string[];
 }
 
+export interface PostMetadata {
+	frontmatter: Frontmatter;
+	slug: string;
+}
+
 export interface RawPostData {
 	metadata: Frontmatter;
 	default: typeof SvelteComponent;
@@ -16,9 +21,4 @@ export interface RawPostData {
 export interface Post {
 	frontmatter: Frontmatter;
 	content: typeof SvelteComponent;
-}
-
-export interface PostMetadata {
-	frontmatter: Frontmatter;
-	slug: string;
 }

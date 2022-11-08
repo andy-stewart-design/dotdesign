@@ -1,0 +1,97 @@
+---
+title: Decoding SVGs
+date: '2022-11-02'
+summary: An interactive guide to the seemingly unintelligible world of Scalable Vector Graphicss
+image: /img/posts/simple-beauty-generative-design/featured.png
+tags:
+  - Creative Coding
+---
+
+<script>
+	import Circle from './Circle.svelte'; import Line from './Line.svelte'; import BasicPath from
+	'./BasicPath.svelte'; import Callout from '@components/posts/Callout.svelte';
+</script>
+
+SVG code can get pretty gnarly. Especially for more complex drawings, what you often end up with is a thicket of letters and floating point numbers so thorny that it's liable to make your eyes bleed. If you've ever exported an SVG from Illustrator or Figma and looked at the generated code, you no doubt know what I'm talking about.
+
+It's worth saying that, if you work carefully and mind the pixel grid, you can create SVG code that doesn't look totally insane. The problem is that people are not—for lack of time, knowledge, or attention—that careful. For those of us who prefer to play fast and loose with our vectors, my goal is to cut through the noise and help you make sense of what's going on amidst the chaos.
+
+## Simple Shapes
+
+At it's most basic, a Scalable Vector Graphic (SVG) is a two-dimensional, coordinate-based system for drawing vector images. (Technically, SVGs can render raster elements like images, but we're going to disregard that for now.) SVGs are in a sense the flip side of the coin of HTML Canvas, which is fundamentally a coordinate-based system for drawing raster images—and like canvas, the origin point (0,0) is the top left corner of the document. At its most basic, drawing a shape within an SVG is as simple as specifying the coordinates for the position and size of our shape relative to the its origin point.
+
+To start, we first need to set the width and height of our canvas. The size of an SVGs drawing context is determined by a string of 4 numbers called the `viewBox`. The first two numbers define the starting coordinates of the canvas. (These numbers don't technically have to both be 0, but to be honest, I can't think of a reason why they wouldn't be.) The second two numbers define the width and height of our canvas. So, a 20 x 20 pixel SVG would look like this:
+
+```html
+<svg viewBox="0 0 20 20"></svg>
+```
+
+<Callout>
+	Unless you provide explicit height and width attributes or constrain its size with CSS, an SVG
+	will automatically fill the horizontal space available to it—even if that means overflowing it's
+	parent container vertically. Because in this instance we want the SVG to fill its parent, we're
+	going to omit them.
+</Callout>
+
+Now that we've defined the size of our canvas, let's start drawing. Circles are one of the simpler SVG shapes to manually manipulate, requiring just three values: x- and y-coordinates, which control the position of the circle, and a radius, which controls the size of the circle. These values are set using the `cx`, `cy`, and `r` attributes, respectively.
+
+It's worth noting that in the following example, I have artificially constrained the numbers for the sake of clarity to a single decimal place value. In reality, these numbers can be almost infinitely precise, which is one reason why SVG code can look so unwieldy.
+
+<Circle />
+
+## Connecting the Dots
+
+To take things a step further, let's look at how we draw SVG lines. To be honest, this won't look substantially different than drawing a circle, but my hope is that this example will be a bridge from the world of simple geometric shapes to the more complex and interesting world of SVG paths, which we'll get to next.
+
+Like our circle example above, the position of the `<line />` element is determined by—you guessed it—a set of coordinates! Or to be more precise, two sets of coordinates. This time around, we need to provide two sets of x and y coordinate—one to define the line's starting point, and one for its ending point.
+
+One potential foot gun: you do need to define a stroke color for the line, either through the `stroke` attribute in your HTML or the `stroke` CSS property. Otherwise, your line will not be visible.
+
+<Line />
+
+Before diving into more complex SVG elements, let's recap what we've learned so far. First, we looked at how to set up the size of our SVG using the `viewBox` attribute. Next, we learned that by setting the size our SVG, we also established a coordinate system that we can use to position shapes inside of our SVG. Finally, we looked at leveraging the coordinate system to draw simple lines and geometric shapes. The code we've written so far should look something like this:
+
+```html title="shapes.svg"
+<!-- circle -->
+<svg viewBox="0 0 20 20">
+	<circle cx="10" cy="10" r="2" fill="currentColor" />
+</svg>
+
+<!-- line -->
+<svg viewBox="0 0 20 20">
+	<line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" />
+</svg>
+```
+
+<Callout>
+	If you're planning to serve the SVG using an image tag rather than inlining the code directly in
+	the HTML, you also need to include an "xmlns" (XML Namespace) attribute on the root SVG element.
+	Most likely, you'll want to use "http://www.w3.org/2000/svg".
+</Callout>
+
+## Complex Paths
+
+The preceding 800 words have a been long-winded setup for what I really want to talk about: parametric curves, a.k.a Bézier curves, a.k.a. the secret sauce behind those elegant, mathematically-precise vector lines. Drawing geometric shapes and straight lines is all well and good—but what does it look like when you want to draw something more sophisticated? Are you ready to go nuts? Come on, let's go nuts.
+
+Complex vector shapes will most often be rendered using the SVG `<path />` element. Unlike the `<line />` element we used earlier, a path can contain as many points as your heart desires. The price of admission, however, is that the syntax is considerably more obtuse and esoteric. This is the crux of why SVG code can be so hard to parse. Let's dive in.
+
+In a path, points are defined in the `d` attribute using a string of letters—or "line commands," which define the type of point—and numbers—which define the coordinates of that point. The first step towards interpreting the inner workings of a path is remembering that:
+
+1. Each time a line command (i.e., a letter) is used, a new point is being plotted along the path.
+2. The numbers following a line command should be separated by single spaces. They always come in pairs (for the x- and y-axes), and define coordinates related to that point.
+
+So, for example, an instance where `d="X ## ## X ## ## X ## ##"`, where `X` represents a line command and `##` represents a coordinate, would draw a path with 3 points.
+
+Beyond the change in syntax, the biggest conceptual hurdle to overcome when working with `paths` instead of `lines` is that, with lines, coordinate values are absolute, whereas with paths, they're relative. In practice, that means that whenever you write a coordinate for a line, those values are always defined with respect to the origin point. With a path, however, the values of each subsequent point are relative to the point that came before it.
+
+The rest of this post will break down the handful of line commands that you're most likely to see in the wild.
+
+## Basic Line Commands
+
+I find it helpful to partition the line commands into two groups: Basic line commands, and Bézier line commands. The Basic commands are conceptually much simpler, so we'll tackle them first.
+
+Paths always start with the `Move To` line command—represented, logically, by the letter `M`—and end with a `Close Path` line command—represented, somewhat less intuitively, by a the letter `Z`.
+
+<BasicPath />
+
+## Bézier Line Commands

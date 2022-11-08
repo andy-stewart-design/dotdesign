@@ -5,7 +5,7 @@
 }
 
 .prose :where(h2):not(:where([class~='not-prose'] *)) {
-	@apply text-3xl font-bold  lg:text-4xl;
+	@apply text-2xl font-bold  lg:text-4xl;
 }
 
 .prose :where(h6):not(:where([class~='not-prose'] *)) {
@@ -19,6 +19,10 @@
 .prose :where(p a):not(:where([class~='not-prose'] *)),
 .prose :where(li a):not(:where([class~='not-prose'] *)) {
 	@apply underline decoration-gray-100/30 underline-offset-[3px];
+}
+
+.prose :where(p code):not(:where([class~='not-prose'] *)) {
+	@apply font-mono text-[15px] bg-gray-800 dark:bg-gray-800/60 border border-gray-100/5 py-0.5 px-1 pb-1 rounded;
 }
 
 .prose :where(ul):not(:where([class~='not-prose'] *)) {

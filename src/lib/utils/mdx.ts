@@ -4,7 +4,7 @@ export const fetchMarkdownMetadata = async () => {
 	const allPostFiles = import.meta.glob('/src/content/posts/**/index.mdx');
 	const iterablePostFiles = Object.entries(allPostFiles);
 
-	const allPosts: PostMetadata[] = await Promise.all(
+	const allPostsMetadata: PostMetadata[] = await Promise.all(
 		iterablePostFiles.map(async ([path, resolver]) => {
 			const { metadata } = (await resolver()) as RawPostData;
 			const postPath = path.replace('/src/content/posts/', '').replace('/index.mdx', '');
@@ -16,5 +16,5 @@ export const fetchMarkdownMetadata = async () => {
 		})
 	);
 
-	return allPosts;
+	return allPostsMetadata;
 };
