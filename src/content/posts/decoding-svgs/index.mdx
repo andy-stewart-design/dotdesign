@@ -9,7 +9,8 @@ tags:
 
 <script>
 	import Circle from './Circle.svelte'; import Line from './Line.svelte'; import BasicPath from
-	'./BasicPath.svelte'; import Callout from '@components/posts/Callout.svelte';
+	'./BasicPath.svelte'; import Callout from '@components/posts/Callout.svelte'; import BezierPath
+	from './BezierPath.svelte';
 </script>
 
 SVG code can get pretty gnarly. Especially for more complex drawings, what you often end up with is a thicket of letters and floating point numbers so thorny that it's liable to make your eyes bleed. If you've ever exported an SVG from Illustrator or Figma and looked at the generated code, you no doubt know what I'm talking about.
@@ -73,25 +74,37 @@ Before diving into more complex SVG elements, let's recap what we've learned so 
 
 The preceding 800 words have a been long-winded setup for what I really want to talk about: parametric curves, a.k.a Bézier curves, a.k.a. the secret sauce behind those elegant, mathematically-precise vector lines. Drawing geometric shapes and straight lines is all well and good—but what does it look like when you want to draw something more sophisticated? Are you ready to go nuts? Come on, let's go nuts.
 
-Complex vector shapes will most often be rendered using the SVG `<path />` element. Unlike the `<line />` element we used earlier, a path can contain as many points as your heart desires. The price of admission, however, is that the syntax is considerably more obtuse and esoteric. This is the crux of why SVG code can be so hard to parse. Let's dive in.
+Complex vector shapes will most often be rendered using the SVG `<path />` element. Unlike the `<line />` element we used earlier, a path can contain as many points as your heart desires. The price of admission—and the crux of why SVG code can be so hard to parse—is that the syntax is considerably more obtuse and esoteric.
 
 In a path, points are defined in the `d` attribute using a string of letters—or "line commands," which define the type of point—and numbers—which define the coordinates of that point. The first step towards interpreting the inner workings of a path is remembering that:
 
-1. Each time a line command (i.e., a letter) is used, a new point is being plotted along the path.
-2. The numbers following a line command should be separated by single spaces. They always come in pairs (for the x- and y-axes), and define coordinates related to that point.
+1. each time a line command is used, a new point is being plotted along the path.
+2. the numbers following a line command should be separated by single spaces. They always come in pairs (for the x- and y-axes), and define coordinates related to that point.
 
-So, for example, an instance where `d="X ## ## X ## ## X ## ##"`, where `X` represents a line command and `##` represents a coordinate, would draw a path with 3 points.
+So, for example, an instance where `d="X ## ## X ## ## X ## ##"`, where `X` represents a line command and `##` represents a coordinate, would result in an SVG path with 3 points.
 
-Beyond the change in syntax, the biggest conceptual hurdle to overcome when working with `paths` instead of `lines` is that, with lines, coordinate values are absolute, whereas with paths, they're relative. In practice, that means that whenever you write a coordinate for a line, those values are always defined with respect to the origin point. With a path, however, the values of each subsequent point are relative to the point that came before it.
+Keep in mind, though, that line commands—unlike the `lines` we looked at earlier—come in two varieties: absolute, represented by an uppercase letter, and relative, represented by a lower case letter. When using absolute syntax, coordinate values will be relative to the origin point (usually 0, 0), whereas with relative syntax, the values of each subsequent point are relative to the one that came before it.
 
-The rest of this post will break down the handful of line commands that you're most likely to see in the wild.
+----------- Image of absolute v relative coordinates -----------
 
-## Basic Line Commands
+The rest of this post will break down the handful of line commands that you're most likely to see in the wild. I find it helpful to partition the line commands into two groups: basic line commands, and Bézier line commands. The basic commands are conceptually much simpler, so we'll tackle them first.
 
-I find it helpful to partition the line commands into two groups: Basic line commands, and Bézier line commands. The Basic commands are conceptually much simpler, so we'll tackle them first.
+### Basic Line Commands
 
-Paths always start with the `Move To` line command—represented, logically, by the letter `M`—and end with a `Close Path` line command—represented, somewhat less intuitively, by a the letter `Z`.
+All of the basic line commands will be followed by two numbers—no more, no less—which define the x- and y- coordinates for that point. Let's start out with an example to ground this discussion in something tangible. Pay attention to the changes that occur when you add and remove points from the shape, as well as when you toggle between using relative and absolute points.
 
 <BasicPath />
 
-## Bézier Line Commands
+The first line command that you're likely to notice is the `move to` line command—represented by the letter `M` or `m`—which tells the browser to move to a specific point without connecting it to the point that came before it. You'll most often see this command at the beginning of paths to establish the starting point for a shape, but it's worth noting that you can use more than one `move to` command if you want to have multiple, visually-disconnected lines in a single `path`.
+
+The most heavily-utilized command in the previous example is, by far, the `line to` command—represented by the letter `L` or `l`—which allows you to connect two points together with a straight line. You could, for example, implement the line we drew previously with a `line` element by using a `path` with a `line to` command—the difference being that using paths will be more flexible because you can add as many points as you want with additional `line to` commands.
+
+Two additional line commands worth knowing about are the `horizontal line` and `vertical line` commands. They are essentially syntactic sugar on top of the `line to` command that allow you to specify a single coordinate if you intend to draw a horizontal or vertical line. I avoided using them in the previous example for the sake of consistency and ease of implementation, but I could have simplified the final code slightly by doing so.
+
+Lastly, if you intend to to make a solid shape (rather than a disconnected line), the simplest solution is to end with a `Close Path` line command—represented, somewhat less intuitively, by a the letter `Z`. In contrast to my statement that introduced this section, you do not need to specify coordinates for this command. It simply connects the most recently defined point to the beginning of the path.
+
+### Bézier Line Commands
+
+Our last stop on this Magic School Bus ride into the under-understood world of SVGs is the most complex, dynamic, and interesting one yet. If you've worked in programs like Illustrator, Figma, or Affinity Designer, you're probably familiar with—or at least aware of—the concept of Bézier curves. Suffice it to say that they are the foundation upon which all vector graphics programs are built, which create smooth, continuous curves using mathematical formulae. Let's start, again, with a tangible example.
+
+<BezierPath />

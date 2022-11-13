@@ -5,7 +5,7 @@
 
 	let cx = 10;
 	let cy = 10;
-	let r = 2;
+	let r = 3;
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
@@ -34,14 +34,22 @@
 						<line x1={i + 1} y1="0" x2={i + 1} y2="20" class="stroke-gray-100 stroke-[0.05]" />
 					{/each}
 				</g>
-				<circle {cx} {cy} {r} class="fill-blue-600" />
+				<line x1={cx} y1="0" x2={cx} y2="20" class="stroke-yellow-300 stroke-[0.1]" />
+				<line x1="0" y1={cy} x2="20" y2={cy} class="stroke-red-500 stroke-[0.1]" />
+				<circle {cx} {cy} {r} class="fill-black stroke-gray-300 stroke-[0.1]" />
+				<circle {cx} {cy} r="0.325" class="fill-teal-400" />
+				<circle cx={cx + r} {cy} r="0.325" class="fill-teal-400 stroke-black stroke-[0.1]" />
+				<line x1={cx} y1={cy} x2={cx + r} y2={cy} class="stroke-teal-400 stroke-[0.1]" />
 			</svg>
 		</div>
 		<div
 			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-6"
 		>
 			<div class="flex flex-col gap-2">
-				<label class="font-mono" for="position-x">X Position</label>
+				<div class="flex gap-x-2 items-center">
+					<div class="w-2 h-2 rounded-full bg-yellow-300" />
+					<label class="font-mono" for="position-x">X-Position</label>
+				</div>
 				<input
 					type="range"
 					id="position-x"
@@ -53,7 +61,10 @@
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
-				<label class="font-mono" for="position-y">Y Position</label>
+				<div class="flex gap-x-2 items-center">
+					<div class="w-2 h-2 rounded-full bg-red-500" />
+					<label class="font-mono" for="position-y">Y-Position</label>
+				</div>
 				<input
 					type="range"
 					id="position-y"
@@ -65,7 +76,10 @@
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
-				<label class="font-mono" for="radius">Radius</label>
+				<div class="flex gap-x-2 items-center">
+					<div class="w-2 h-2 rounded-full bg-teal-400" />
+					<label class="font-mono" for="radius">Radius</label>
+				</div>
 				<input type="range" id="radius" name="radius" bind:value={r} min="1" max="6" step="0.5" />
 			</div>
 		</div>
