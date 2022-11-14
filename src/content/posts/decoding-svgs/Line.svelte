@@ -13,10 +13,18 @@
 	<div class="bg-blue-800/20 border border-blue-500/50 p-4 rounded-lg">
 		<p class="font-mono text-center tabular-nums">
 			<span class="code-blue">&lt;</span>line
-			<span class="code-green">x1</span>="<span class="code-yellow">{formatNumber(x1, true)}</span>"
-			<span class="code-green">y1</span>="<span class="code-yellow">{formatNumber(y1, true)}</span>"
-			<span class="code-green">x2</span>="<span class="code-yellow">{formatNumber(x2, true)}</span>"
-			<span class="code-green">y2</span>="<span class="code-yellow">{formatNumber(y2, true)}</span>"
+			<span class="code-green">x1</span>="<span class="code-yellow">
+				{formatNumber(x1, true, true)}
+			</span>"
+			<span class="code-green">y1</span>="<span class="code-yellow">
+				{formatNumber(y1, true, true)}
+			</span>"
+			<span class="code-green">x2</span>="<span class="code-yellow">
+				{formatNumber(x2, true, true)}
+			</span>"
+			<span class="code-green">y2</span>="<span class="code-yellow">
+				{formatNumber(y2, true, true)}
+			</span>"
 			<span class="code-blue">/&gt;</span>
 		</p>
 	</div>

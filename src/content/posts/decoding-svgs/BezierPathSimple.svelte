@@ -13,7 +13,7 @@
 
 	function formatPath(x1: number, y1: number, x2: number, y2: number, mode: string) {
 		if (mode === 'absolute') {
-			return `M 2 2 C  
+			return `M 02.0 02.0 C  
    ${formatNumber(x1, true, true)} 
    ${formatNumber(y1, true, true)}, 
    ${formatNumber(x2, true, true)} 

@@ -12,9 +12,13 @@
 	<div class="bg-blue-800/20 border border-blue-500/50 p-4 rounded-lg">
 		<p class="font-mono text-center tabular-nums">
 			<span class="code-blue">&lt;</span>circle <span class="code-green">cx</span>
-			="<span class="code-yellow">{formatNumber(cx, true)}</span>"
-			<span class="code-green">cy</span>="<span class="code-yellow">{formatNumber(cy, true)}</span>"
-			<span class="code-green">r</span>="<span class="code-yellow">{formatNumber(r)}</span>"
+			="<span class="code-yellow">{formatNumber(cx, true, true)}</span>"
+			<span class="code-green">cy</span>="<span class="code-yellow"
+				>{formatNumber(cy, true, true)}</span
+			>"
+			<span class="code-green">r</span>="<span class="code-yellow">
+				{formatNumber(r, false, true)}
+			</span>"
 			<span class="code-blue">/&gt;</span>
 		</p>
 	</div>

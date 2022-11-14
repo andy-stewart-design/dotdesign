@@ -1,7 +1,6 @@
 export const formatNumber = (num: number, leadZero = false, decimal = false): string => {
 	const number = Number((Math.round(num * 100) / 100).toFixed(1));
 	const needsDecimal = number % 1 === 0;
-	console.log(number, needsDecimal);
 
 	if (leadZero && decimal) {
 		if (needsDecimal) {

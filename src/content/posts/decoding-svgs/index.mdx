@@ -9,8 +9,9 @@ tags:
 
 <script>
 	import Circle from './Circle.svelte'; import Line from './Line.svelte'; import BasicPath from
-	'./BasicPath.svelte'; import Callout from '@components/posts/Callout.svelte'; import BezierPath
-	from './BezierPath.svelte';
+	'./BasicPath.svelte'; import Callout from '@components/posts/Callout.svelte'; import
+	BezierPathSimple from './BezierPathSimple.svelte'; import BezierPathComplex from
+	'./BezierPathComplex.svelte';
 </script>
 
 SVG code can get pretty gnarly. Especially for more complex drawings, what you often end up with is a thicket of letters and floating point numbers so thorny that it's liable to make your eyes bleed. If you've ever exported an SVG from Illustrator or Figma and looked at the generated code, you no doubt know what I'm talking about.
@@ -107,4 +108,8 @@ Lastly, if you intend to to make a solid shape (rather than a disconnected line)
 
 Our last stop on this Magic School Bus ride into the under-understood world of SVGs is the most complex, dynamic, and interesting one yet. If you've worked in programs like Illustrator, Figma, or Affinity Designer, you're probably familiar with—or at least aware of—the concept of Bézier curves. Suffice it to say that they are the foundation upon which all vector graphics programs are built, which create smooth, continuous curves using mathematical formulae. Let's start, again, with a tangible example.
 
-<BezierPath />
+<BezierPathSimple />
+
+Our last stop on this Magic School Bus ride into the under-understood world of SVGs is the most complex, dynamic, and interesting one yet. If you've worked in programs like Illustrator, Figma, or Affinity Designer, you're probably familiar with—or at least aware of—the concept of Bézier curves. Suffice it to say that they are the foundation upon which all vector graphics programs are built, which create smooth, continuous curves using mathematical formulae. Let's start, again, with a tangible example.
+
+<BezierPathComplex />
