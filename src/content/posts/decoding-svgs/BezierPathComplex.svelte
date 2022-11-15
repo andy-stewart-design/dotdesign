@@ -70,9 +70,9 @@
 					{/each}
 				</g>
 				<path {d} class="fill-transparent stroke-gray-300 stroke-[0.1]" />
-				<circle cx={startX} cy={startY} r="0.5" class="fill-gray-300 stroke-[0.1] stroke-black" />
-				<circle cx={endX} cy={endY} r="0.5" class="fill-gray-300 stroke-[0.1] stroke-black" />
-				<circle cx={midX} cy={midY} r="0.5" class="fill-yellow-300 stroke-[0.1] stroke-black" />
+				<circle cx={startX} cy={startY} r="0.55" class="fill-gray-300 stroke-[0.1] stroke-black" />
+				<circle cx={endX} cy={endY} r="0.55" class="fill-gray-300 stroke-[0.1] stroke-black" />
+				<circle cx={midX} cy={midY} r="0.55" class="fill-yellow-300 stroke-[0.1] stroke-black" />
 				<circle cx={hlx} cy={hly} r="0.3" class="fill-yellow-300 stroke-[0.1] stroke-black" />
 				<line x1={hlx} y1={hly} x2={midX} y2={midY} class="stroke-yellow-300 stroke-[0.1]" />
 				<circle
@@ -80,6 +80,7 @@
 					cy={mirrorY}
 					r="0.3"
 					class="fill-yellow-300 stroke-[0.1] stroke-black"
+					class:fill-red-500={pathMode === 'independent'}
 				/>
 				<line
 					x1={mirrorX}
@@ -87,7 +88,18 @@
 					x2={midX}
 					y2={midY}
 					class="stroke-yellow-300 stroke-[0.1]"
+					class:stroke-red-500={pathMode === 'independent'}
 				/>
+				<g class="opacity-0" class:opacity-100={pathMode === 'independent'}>
+					<path
+						d="M 10 4.5 C 9.75 4.5, 9.5 4.68, 9.5 5 S 9.75 5.5, 10 5.5 Z"
+						class="fill-yellow-300"
+					/>
+					<path
+						d="M 10 4.5 C 10.25 4.5, 10.5 4.68, 10.5 5 S 10.25 5.5, 10 5.5 Z"
+						class="fill-red-500"
+					/>
+				</g>
 			</svg>
 		</div>
 		<div
@@ -110,8 +122,8 @@
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="start-x">Start X</label>
+					<div class="w-2 h-2 rounded-full bg-yellow-300" />
+					<label class="font-mono" for="start-x">Left Handle, X-Axis</label>
 				</div>
 				<input
 					type="range"
@@ -125,8 +137,8 @@
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="start-y">Start Y</label>
+					<div class="w-2 h-2 rounded-full bg-yellow-300" />
+					<label class="font-mono" for="start-y">Left Handle, Y-Axis</label>
 				</div>
 				<input
 					type="range"
@@ -140,8 +152,13 @@
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="end-x">End X</label>
+					<div
+						class="w-2 h-2 rounded-full bg-gray-500"
+						class:!bg-red-500={pathMode === 'independent'}
+					/>
+					<label class="font-mono" class:text-gray-500={pathMode === 'mirrored'} for="end-x"
+						>Right Handle, X-Axis</label
+					>
 				</div>
 				<input
 					type="range"
@@ -156,8 +173,13 @@
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="end-y">End Y</label>
+					<div
+						class="w-2 h-2 rounded-full bg-gray-500"
+						class:!bg-red-500={pathMode === 'independent'}
+					/>
+					<label class="font-mono" class:text-gray-500={pathMode === 'mirrored'} for="end-y"
+						>Right Handle, Y-Axis</label
+					>
 				</div>
 				<input
 					type="range"
