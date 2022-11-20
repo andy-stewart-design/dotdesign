@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Switch, SwitchLabel } from 'neutral-ui';
 	import { formatNumber } from './utils';
 
 	const size = 20;
@@ -18,22 +19,23 @@
 	const endY = startY;
 	const endBezX = size - offX;
 	const endBezY = endY;
-	let pathMode = 'mirrored';
+	let mirrored = true;
+	// let pathMode = 'mirrored';
 
 	$: hlx = initX - offX;
 	$: hly = initY + offY;
 	let hrx = 14;
 	let hry = 5;
-	$: mirrorX = pathMode === 'mirrored' ? initX + offX : hrx;
-	$: mirrorY = pathMode === 'mirrored' ? initY - offY : hry;
+	$: mirrorX = mirrored ? initX + offX : hrx;
+	$: mirrorY = mirrored ? initY - offY : hry;
 
-	function formatPath(hlx: number, hly: number, hrx: number, hry: number, mode: string) {
+	function formatPath(hlx: number, hly: number, hrx: number, hry: number, mode: boolean) {
 		const pathStart = `M ${startX} ${startY} C  
          ${formatNumber(startBezX, true, true)} ${formatNumber(startBezY, true, true)}, 
          ${formatNumber(hlx, true, true)} ${formatNumber(hly, true, true)}, 
          ${formatNumber(midX, true, true)}, ${formatNumber(midY, true, true)}`;
 		let pathEnd: string;
-		if (mode === 'mirrored') {
+		if (mode) {
 			pathEnd = `S ${formatNumber(endBezX, true, true)}, ${formatNumber(endBezY, true, true)},
          ${formatNumber(endX, true, true)}, ${formatNumber(endY, true, true)}`;
 		} else {
@@ -44,7 +46,7 @@
 		return `${pathStart} ${pathEnd}`;
 	}
 
-	$: d = formatPath(hlx, hly, hrx, hry, pathMode);
+	$: d = formatPath(hlx, hly, hrx, hry, mirrored);
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
@@ -80,7 +82,7 @@
 					cy={mirrorY}
 					r="0.3"
 					class="fill-yellow-300 stroke-[0.1] stroke-black"
-					class:fill-red-500={pathMode === 'independent'}
+					class:fill-red-500={!mirrored}
 				/>
 				<line
 					x1={mirrorX}
@@ -88,9 +90,9 @@
 					x2={midX}
 					y2={midY}
 					class="stroke-yellow-300 stroke-[0.1]"
-					class:stroke-red-500={pathMode === 'independent'}
+					class:stroke-red-500={!mirrored}
 				/>
-				<g class="opacity-0" class:opacity-100={pathMode === 'independent'}>
+				<g class="opacity-0" class:opacity-100={!mirrored}>
 					<path
 						d="M 10 4.5 C 9.75 4.5, 9.5 4.68, 9.5 5 S 9.75 5.5, 10 5.5 Z"
 						class="fill-yellow-300"
@@ -105,25 +107,25 @@
 		<div
 			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-6"
 		>
-			<div class="flex flex-col gap-2">
-				<label class="font-mono text-sm" for="draw-mode">Drawing Mode</label>
-				<div id="draw-mode" class="flex">
-					<button
-						class="grow bg-blue-600 bg-opacity-20 border border-r-0 border-blue-500/50 py-1.5 px-2 rounded-l-md"
-						class:!bg-opacity-100={pathMode === 'mirrored'}
-						on:click={() => (pathMode = 'mirrored')}>Mirrored</button
-					>
-					<button
-						class="grow bg-blue-600 bg-opacity-20 border border-blue-500/50 py-1.5 px-2 rounded-r-md"
-						class:!bg-opacity-100={pathMode === 'independent'}
-						on:click={() => (pathMode = 'independent')}>Independent</button
-					>
-				</div>
+			<div class="flex items-center gap-2">
+				<Switch
+					bind:value={mirrored}
+					class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
+				>
+					<div
+						class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
+						class:translate-x-full={mirrored}
+						aria-hidden="true"
+					/>
+					<SwitchLabel slot="label">
+						<span class="select-none">Mirror Handles</span>
+					</SwitchLabel>
+				</Switch>
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
 					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="start-x">Left Handle, X-Axis</label>
+					<label class="font-mono" for="start-x">Left X</label>
 				</div>
 				<input
 					type="range"
@@ -138,7 +140,7 @@
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
 					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="start-y">Left Handle, Y-Axis</label>
+					<label class="font-mono" for="start-y">Left Y</label>
 				</div>
 				<input
 					type="range"
@@ -152,13 +154,8 @@
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
-					<div
-						class="w-2 h-2 rounded-full bg-gray-500"
-						class:!bg-red-500={pathMode === 'independent'}
-					/>
-					<label class="font-mono" class:text-gray-500={pathMode === 'mirrored'} for="end-x"
-						>Right Handle, X-Axis</label
-					>
+					<div class="w-2 h-2 rounded-full bg-gray-500" class:!bg-red-500={!mirrored} />
+					<label class="font-mono" class:text-gray-500={mirrored} for="end-x">Right X</label>
 				</div>
 				<input
 					type="range"
@@ -168,18 +165,13 @@
 					min={midpoint}
 					max={size}
 					step="0.5"
-					disabled={pathMode === 'mirrored'}
+					disabled={mirrored}
 				/>
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
-					<div
-						class="w-2 h-2 rounded-full bg-gray-500"
-						class:!bg-red-500={pathMode === 'independent'}
-					/>
-					<label class="font-mono" class:text-gray-500={pathMode === 'mirrored'} for="end-y"
-						>Right Handle, Y-Axis</label
-					>
+					<div class="w-2 h-2 rounded-full bg-gray-500" class:!bg-red-500={!mirrored} />
+					<label class="font-mono" class:text-gray-500={mirrored} for="end-y">Right Y</label>
 				</div>
 				<input
 					type="range"
@@ -189,7 +181,7 @@
 					min={0}
 					max={midpoint}
 					step="0.5"
-					disabled={pathMode === 'mirrored'}
+					disabled={mirrored}
 				/>
 			</div>
 		</div>

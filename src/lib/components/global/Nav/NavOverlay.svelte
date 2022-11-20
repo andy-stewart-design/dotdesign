@@ -13,7 +13,8 @@
 
 {#if isNavActive}
 	<div
-		transition:fade={{ duration: 500, easing: quintOut }}
+		in:fade={{ duration: 500, easing: quintOut }}
+		out:fade={{ duration: 800, easing: quintOut }}
 		class="fixed top-0 left-0 flex flex-col gap-4 justify-center items-center w-screen h-screen bg-white/60 dark:bg-black/60 backdrop-blur"
 		use:focusTrap={{ targetNode: navContainer, escapeCallback: triggerNav }}
 	>

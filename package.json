@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"neutral-ui": "^0.1.1",
 		"shiki-themes": "^0.2.7"
 	}
 }

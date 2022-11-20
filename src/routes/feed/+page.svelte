@@ -19,7 +19,7 @@
 	};
 	const closeOverlay = () => {
 		isOverlayActive = false;
-		activeButton?.focus();
+		// activeButton?.focus();
 		document.body.style.overflow = '';
 	};
 </script>
