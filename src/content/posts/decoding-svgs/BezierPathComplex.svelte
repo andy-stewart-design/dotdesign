@@ -56,9 +56,9 @@
 		</p>
 	</div>
 	<div class="flex flex-col sm:flex-row gap-2">
-		<div class="independent grow border border-gray-100/10 rounded-lg">
+		<div class="relative grow border border-gray-100/10 rounded-lg">
 			<div
-				class="mirrored bottom-2 left-2 font-mono text-sm text-gray-100/70 bg-gray-900/50 border border-gray-100/10 py-1 px-2 rounded-sm backdrop-blur-sm"
+				class="absolute bottom-2 left-2 font-mono text-sm text-gray-100/70 bg-gray-900/50 border border-gray-100/10 py-1 px-2 rounded-sm backdrop-blur-sm"
 			>
 				viewBox: 0 0 20 20
 			</div>
@@ -104,85 +104,87 @@
 				</g>
 			</svg>
 		</div>
-		<div
-			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-6"
-		>
-			<div class="flex items-center gap-2">
-				<Switch
-					bind:value={mirrored}
-					class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
-				>
-					<div
-						class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
-						class:translate-x-full={mirrored}
-						aria-hidden="true"
+		<div class="flex flex-col sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg">
+			<div class="flex gap-6 py-3 px-4 border-b border-gray-100/10">
+				<div class="flex items-center gap-2">
+					<Switch
+						bind:value={mirrored}
+						class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
+					>
+						<div
+							class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
+							class:translate-x-full={mirrored}
+							aria-hidden="true"
+						/>
+						<SwitchLabel slot="end">
+							<span class="select-none">Mirror Handles</span>
+						</SwitchLabel>
+					</Switch>
+				</div>
+			</div>
+			<div class="grow flex flex-col gap-6 justify-center p-4 pb-6">
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-yellow-300" />
+						<label class="font-mono" for="start-x">Left X</label>
+					</div>
+					<input
+						type="range"
+						id="start-x"
+						name="start-x"
+						bind:value={offX}
+						min="0"
+						max={midpoint}
+						step="0.5"
 					/>
-					<SwitchLabel slot="label">
-						<span class="select-none">Mirror Handles</span>
-					</SwitchLabel>
-				</Switch>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="start-x">Left X</label>
 				</div>
-				<input
-					type="range"
-					id="start-x"
-					name="start-x"
-					bind:value={offX}
-					min="0"
-					max={midpoint}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="start-y">Left Y</label>
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-yellow-300" />
+						<label class="font-mono" for="start-y">Left Y</label>
+					</div>
+					<input
+						type="range"
+						id="start-y"
+						name="start-y"
+						bind:value={offY}
+						min={-initY}
+						max={initY}
+						step="0.5"
+					/>
 				</div>
-				<input
-					type="range"
-					id="start-y"
-					name="start-y"
-					bind:value={offY}
-					min={-initY}
-					max={initY}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-gray-500" class:!bg-red-500={!mirrored} />
-					<label class="font-mono" class:text-gray-500={mirrored} for="end-x">Right X</label>
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-gray-500" class:!bg-red-500={!mirrored} />
+						<label class="font-mono" class:text-gray-500={mirrored} for="end-x">Right X</label>
+					</div>
+					<input
+						type="range"
+						id="end-x"
+						name="end-x"
+						bind:value={hrx}
+						min={midpoint}
+						max={size}
+						step="0.5"
+						disabled={mirrored}
+					/>
 				</div>
-				<input
-					type="range"
-					id="end-x"
-					name="end-x"
-					bind:value={hrx}
-					min={midpoint}
-					max={size}
-					step="0.5"
-					disabled={mirrored}
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-gray-500" class:!bg-red-500={!mirrored} />
-					<label class="font-mono" class:text-gray-500={mirrored} for="end-y">Right Y</label>
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-gray-500" class:!bg-red-500={!mirrored} />
+						<label class="font-mono" class:text-gray-500={mirrored} for="end-y">Right Y</label>
+					</div>
+					<input
+						type="range"
+						id="end-y"
+						name="end-y"
+						bind:value={hry}
+						min={0}
+						max={midpoint}
+						step="0.5"
+						disabled={mirrored}
+					/>
 				</div>
-				<input
-					type="range"
-					id="end-y"
-					name="end-y"
-					bind:value={hry}
-					min={0}
-					max={midpoint}
-					step="0.5"
-					disabled={mirrored}
-				/>
 			</div>
 		</div>
 	</div>

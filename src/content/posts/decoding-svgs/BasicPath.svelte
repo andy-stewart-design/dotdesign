@@ -1,4 +1,14 @@
 <script lang="ts">
+	import {
+		NumberInput,
+		NumberLabel,
+		NumberDecrement,
+		NumberIncrement,
+		NumberDescription,
+		NumberError,
+		Switch,
+		SwitchLabel
+	} from 'neutral-ui';
 	type PointPositionType = 'relative' | 'absolute';
 	type PointsArray = string[][];
 	interface PointsData {
@@ -9,7 +19,8 @@
 	const minPoints = 3;
 	const maxPoints = 7;
 	let points = 5;
-	let pathMode: PointPositionType = 'absolute';
+	// let pathMode: PointPositionType = 'absolute';
+	let absolute = true;
 
 	const shapes: PointsData = {
 		absolute: [
@@ -28,15 +39,15 @@
 		]
 	};
 
-	function getActiveShape(shapes: PointsData, pathMode: PointPositionType): PointsArray {
-		if (pathMode === 'relative') return shapes.relative;
+	function getActiveShape(shapes: PointsData, pathMode: boolean): PointsArray {
+		if (!pathMode) return shapes.relative;
 		else return shapes.absolute;
 	}
 
-	function setPath(points: number, shapes: PointsData, pathMode: PointPositionType): string {
+	function setPath(points: number, shapes: PointsData, pathMode: boolean): string {
 		let lineCommand: string;
 		let activeShape;
-		if (pathMode === 'relative') {
+		if (!pathMode) {
 			lineCommand = 'l';
 			activeShape = shapes.relative[points - minPoints];
 		} else {
@@ -51,8 +62,8 @@
 		return path.join(' ');
 	}
 
-	$: activeShape = getActiveShape(shapes, pathMode);
-	$: d = setPath(points, shapes, pathMode);
+	$: activeShape = getActiveShape(shapes, absolute);
+	$: d = setPath(points, shapes, absolute);
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
@@ -92,74 +103,70 @@
 				{/each}
 			</svg>
 		</div>
-		<div
-			class="flex flex-col gap-6 justify-start sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-6"
-		>
-			<div class="flex flex-col gap-2">
-				<label class="font-mono text-sm" for="draw-mode">Drawing Mode</label>
-				<div id="draw-mode" class="flex">
-					<button
-						class="grow bg-blue-600 bg-opacity-20 border border-r-0 border-blue-500/50 py-1.5 px-2 rounded-l-md"
-						class:!bg-opacity-100={pathMode === 'absolute'}
-						on:click={() => (pathMode = 'absolute')}>Absolute</button
+		<div class="flex flex-col sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg">
+			<div class="flex gap-6 py-3 px-4 border-b border-gray-100/10">
+				<div class="flex items-center gap-2">
+					<Switch
+						bind:value={absolute}
+						class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
 					>
-					<button
-						class="grow bg-blue-600 bg-opacity-20 border border-blue-500/50 py-1.5 px-2 rounded-r-md"
-						class:!bg-opacity-100={pathMode === 'relative'}
-						on:click={() => (pathMode = 'relative')}>Relative</button
-					>
+						<div
+							class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
+							class:translate-x-full={absolute}
+							aria-hidden="true"
+						/>
+						<SwitchLabel slot="end">
+							<span class="text-sm select-none">{absolute ? 'Absolute' : 'Relative'}</span>
+						</SwitchLabel>
+					</Switch>
 				</div>
 			</div>
-			<div class="flex flex-col gap-2">
-				<label class="font-mono text-sm" for="start-x">Number of Points</label>
-				<!-- <input
-					type="range"
-					id="start-x"
-					name="start-x"
-					bind:value={points}
-					min={minPoints}
-					max="6"
-					step="1"
-				/> -->
-				<div id="start-x" class="flex">
-					<button
-						on:click={() => points > minPoints && points--}
-						class="bg-blue-600 bg-opacity-20 border border-blue-500/50 py-1.5 px-6 rounded-l-md"
-						>-</button
+			<div class="grow flex flex-col gap-6 justify-start p-4 pt-6">
+				<div class="flex flex-col gap-2">
+					<NumberInput
+						bind:value={points}
+						min={minPoints}
+						max={maxPoints}
+						bigStep={1}
+						class="bg-gray-800/50 border border-gray-100/10 py-2 px-3 rounded"
 					>
-					<div class="grow text-center bg-black border border-gray-100/10 py-1.5 px-2">
-						{points}
-					</div>
-					<button
-						on:click={() => points < maxPoints && points++}
-						class="bg-blue-600 bg-opacity-20 border border-blue-500/50 py-1.5 px-6 rounded-r-md"
-						>+</button
-					>
+						<NumberLabel class="text-sm" slot="label">Number of Points</NumberLabel>
+						<div class="absolute top-0 right-1 flex items-center h-full">
+							<NumberDecrement class="py-0.5 pt-px px-3 select-none border-r border-gray-100/10">
+								-
+							</NumberDecrement>
+							<NumberIncrement class="py-0.5 pt-px px-3 select-none">+</NumberIncrement>
+						</div>
+						<NumberDescription slot="description" class="text-xs opacity-60">
+							Select a number between 3 and 8
+						</NumberDescription>
+						<NumberError slot="error" class="text-xs text-red-500">You goofed!</NumberError>
+					</NumberInput>
 				</div>
-			</div>
-			<div class="grid gap-1">
-				{#each activeShape[points - minPoints] as point, index}
-					{@const pointArray = point.split(' ')}
-					<div
-						class="grid grid-cols-3 gap-x-2 tabular-nums slashed-zero pb-1 border-b border-gray-100/10"
-					>
-						<div class="flex gap-2 items-center">
-							<div
-								class="w-2 h-2 rounded-full"
-								style:background={`hsl(${index * (360 / points)}, 80%, 60%)`}
-							/>
-							0{index + 1}
+				<div class="grid gap-1">
+					{#each activeShape[points - minPoints] as point, index}
+						{@const pointArray = point.split(' ')}
+						<div
+							class="grid grid-cols-3 gap-x-2 tabular-nums slashed-zero pb-1 border-b border-gray-100/10"
+						>
+							<div class="flex gap-2 items-center">
+								<div
+									class="w-2 h-2 rounded-full"
+									style:background={`hsl(${index * (360 / points)}, 80%, 60%)`}
+								/>
+								0{index + 1}
+							</div>
+							<div>
+								<span class="opacity-50">x:</span>
+								{pointArray[0]}
+							</div>
+							<div>
+								<span class="opacity-50">y:</span>
+								{pointArray[1]}
+							</div>
 						</div>
-						<div>
-							<span class="opacity-50">x:</span>
-							{pointArray[0]}
-						</div>
-						<div>
-							<span class="opacity-50">y:</span>
-							{pointArray[1]}
-						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>

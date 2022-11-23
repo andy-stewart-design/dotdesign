@@ -110,7 +110,7 @@
 			</svg>
 		</div>
 		<div class="flex flex-col sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg">
-			<div class="flex gap-6 p-4 border-b border-gray-100/10">
+			<div class="flex gap-6 py-3 px-4 border-b border-gray-100/10">
 				<div class="flex items-center gap-2">
 					<Switch
 						bind:value={absolute}
@@ -121,7 +121,7 @@
 							class:translate-x-full={absolute}
 							aria-hidden="true"
 						/>
-						<SwitchLabel slot="label">
+						<SwitchLabel slot="end">
 							<span class="text-sm select-none">Absolute</span>
 						</SwitchLabel>
 					</Switch>
@@ -136,7 +136,7 @@
 							class:translate-x-full={showHandles}
 							aria-hidden="true"
 						/>
-						<SwitchLabel slot="label">
+						<SwitchLabel slot="end">
 							<span class="text-sm select-none">Handles</span>
 						</SwitchLabel>
 					</Switch>

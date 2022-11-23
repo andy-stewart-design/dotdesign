@@ -116,7 +116,7 @@
 					class:translate-x-full={relative}
 					aria-hidden="true"
 				/>
-				<SwitchLabel slot="label">
+				<SwitchLabel slot="end">
 					<span class="select-none opacity-50 transition-colors" class:opacity-100={relative}>
 						Relative Positioning
 					</span>

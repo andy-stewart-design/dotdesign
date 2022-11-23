@@ -61,7 +61,7 @@
 			</svg>
 		</div>
 		<div
-			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-6"
+			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-4"
 		>
 			<div class="flex flex-col gap-2">
 				<div class="flex gap-x-2 items-center">
