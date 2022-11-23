@@ -11,7 +11,7 @@ tags:
 	import Circle from './Circle.svelte'; import Line from './Line.svelte'; import BasicPath from
 	'./BasicPath.svelte'; import Callout from '@components/posts/Callout.svelte'; import
 	BezierPathSimple from './BezierPathSimple.svelte'; import BezierPathComplex from
-	'./BezierPathComplex.svelte';
+	'./BezierPathComplex.svelte'; import RelativeAbslute from './RelativeAbslute.svelte';
 </script>
 
 SVG code can get pretty gnarly. Especially for more complex drawings, what you often end up with is a thicket of letters and floating point numbers so thorny that it's liable to make your eyes bleed. If you've ever exported an SVG from Illustrator or Figma and looked at the generated code, you no doubt know what I'm talking about.
@@ -86,7 +86,7 @@ So, for example, an instance where `d="X ## ## X ## ## X ## ##"`, where `X` repr
 
 Keep in mind, though, that line commands—unlike the `lines` we looked at earlier—come in two varieties: absolute, represented by an uppercase letter, and relative, represented by a lower case letter. When using absolute syntax, coordinate values will be relative to the origin point (usually 0, 0), whereas with relative syntax, the values of each subsequent point are relative to the one that came before it.
 
------------ Image of absolute v relative coordinates -----------
+<RelativeAbslute />
 
 The rest of this post will break down the handful of line commands that you're most likely to see in the wild. I find it helpful to partition the line commands into two groups: basic line commands, and Bézier line commands. The basic commands are conceptually much simpler, so we'll tackle them first.
 
@@ -110,6 +110,21 @@ Our last stop on this Magic School Bus ride into the under-understood world of S
 
 <BezierPathSimple />
 
-Our last stop on this Magic School Bus ride into the under-understood world of SVGs is the most complex, dynamic, and interesting one yet. If you've worked in programs like Illustrator, Figma, or Affinity Designer, you're probably familiar with—or at least aware of—the concept of Bézier curves. Suffice it to say that they are the foundation upon which all vector graphics programs are built, which create smooth, continuous curves using mathematical formulae. Let's start, again, with a tangible example.
+Did you spot the difference between this and all of our previous examples? Not only are we introducing a new line command—what I like to refer to as the `curve to` command<sup>1</sup>, represented by the letter `C` or `c`—but also, that command requires more coordinates than my left hand has fingers (which is to say, six). We need all those numbers because, unlike the previous (straight) line commands we've discussed, Bézier commands need to specify both the next point in our path and the arc of the curve that is used to connect it to the previous point.
+
+Let's take a quick detour into vector math theory to understand why. When we talk about vectors in the context of design, we're not talking about [Canadian breakfast cereal](https://www.kelloggs.ca/en_CA/brands/vector-consumer-brand.html) or [California rock bands](<https://www.wikiwand.com/en/Vector_(band)>). We're talking about vectors in the Euclidean sense of the word—an entity which has both magnitude and direction. Stripping away the jargon, what we're talking about is the line between two points. Determining the magnitude (size/length) and direction of that line is as easy as comparing the difference between the positions of those two points<sup>2</sup>.
+
+----------- Image of vector examples -----------
+
+With the `curve to` command, we're effectively creating two vectors—one extending from the previous point in the path, and one extending from the next point in the path. By combining the magnitude and direction of those two vectors, we're able to derive a curve to connect the two points. (This is almost certainly an oversimplification of the math being calculated underneath the hood, but it's sufficient for our purposes.)
+
+The first two couplets of numbers following this command are our `control points`. Unlike previous coordinates we've spec'd, these do not add visible points to the path. They are, instead, "invisible points" that allow us to define the two vectors for our curve based on their positions relative to the previous and next points in our path—with the first coordinate set serving as the control for the previous point, and the second set serving as the control for the next point. In the example above, I have visualized the control points and vectors as handles—a concept that should be familiar if you've ever used a vector drawing app.
+
+The last line command that we need to talk about is, like the horizontal and vertical commands earlier, syntactic sugar. For lack of an offical name, I'm going to refer to it as the `Single-sided Bézier`, represented by the letter `S` or `s`. This command only requires two sets of coordinates—one to specify the next point in the path, and another to specify its control point. The thing that makes this command special, though, is that if it follows an `M` or another `S` command, then the first control point is assumed to be a reflection of the one used previously. This allows us to simplify the final code somewhat, but more importantly, it makes drawing smooth, fluid lines that much easier. In the example below, toggle the switch to see the effect of the Single-sided Bézier in action.
 
 <BezierPathComplex />
+
+Footnotes
+
+1. Technically, the `c` stands for `cubic`, but I'm intentionally obfuscating that fact to avoid introducing extraneous concepts.
+2. Check out [this Coding Train](https://www.youtube.com/watch?v=Rob0pbE7kks) video for more on vectors and vector math.

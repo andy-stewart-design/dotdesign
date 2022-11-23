@@ -35,7 +35,7 @@
 	use:inView={{ threshold: [0, 0.25, 1] }}
 	on:change={onChange}
 />
-<nav bind:this={navContainer} class="w-screen">
+<nav bind:this={navContainer} class="w-screen z-50">
 	<Container class="flex justify-between items-center w-full">
 		<a
 			href="/"
@@ -63,7 +63,7 @@
 		<div class="flex justify-start w-22 md:w-auto">
 			<ThemeToggle disabled={isNavActive} />
 			<div
-				class="relative flex bg-gray-100/0 dark:bg-black/0 outline outline-gray-100/0 dark:outline-gray-900/0 transition-all duration-300 ease-out-cubic md:fixed md:top-4 md:right-8 md:-translate-y-16 md:transition-all md:duration-200 md:ease-in-cubic"
+				class="relative flex bg-gray-100/0 dark:bg-black/0 outline outline-gray-100/0 dark:outline-gray-900/0 transition-all duration-300 ease-out-cubic md:fixed md:top-4 md:right-8 md:-translate-y-16 md:transition-all md:duration-200 md:ease-in-cubic z-50"
 				class:has-scrolled-sm={innerWidth < 768 && ioDetails.intersectionRatio < 0.95}
 				class:has-scrolled-container-md={innerWidth >= 768 && !ioDetails.intersectionRatio}
 			>

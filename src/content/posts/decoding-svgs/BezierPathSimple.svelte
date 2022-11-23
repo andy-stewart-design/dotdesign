@@ -1,18 +1,20 @@
 <script lang="ts">
+	import { Switch, SwitchLabel } from 'neutral-ui';
 	import { formatNumber } from './utils';
 
 	const size = 20;
 	const start = 2;
 	const end = 18;
-	let pathMode = 'absolute';
+	let absolute = true;
+	let showHandles = true;
 
 	let x1 = 10;
 	let y1 = 2;
 	let x2 = 10;
 	let y2 = 18;
 
-	function formatPath(x1: number, y1: number, x2: number, y2: number, mode: string) {
-		if (mode === 'absolute') {
+	function formatPath(x1: number, y1: number, x2: number, y2: number, mode: boolean) {
+		if (mode) {
 			return `M 02.0 02.0 C  
    ${formatNumber(x1, true, true)} 
    ${formatNumber(y1, true, true)}, 
@@ -29,7 +31,7 @@
 		}
 	}
 
-	$: d = formatPath(x1, y1, x2, y2, pathMode);
+	$: d = formatPath(x1, y1, x2, y2, absolute);
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
@@ -57,75 +59,150 @@
 					{/each}
 				</g>
 				<path {d} class="fill-transparent stroke-gray-300 stroke-[0.1]" />
+				<line
+					x1={start}
+					y1={start}
+					x2={x1}
+					y2={y1}
+					class="stroke-black stroke-[0.3]"
+					class:hidden={!showHandles}
+				/>
+				<line
+					x1={start}
+					y1={start}
+					x2={x1}
+					y2={y1}
+					class="stroke-red-500 stroke-[0.1]"
+					class:hidden={!showHandles}
+				/>
+				<circle
+					cx={x1}
+					cy={y1}
+					r="0.3"
+					class="fill-red-500 stroke-[0.1] stroke-black"
+					class:hidden={!showHandles}
+				/>
 				<circle cx={start} cy={start} r="0.5" class="fill-red-500 stroke-[0.1] stroke-black" />
-				<circle cx={x1} cy={y1} r="0.3" class="fill-red-500 stroke-[0.1] stroke-black" />
-				<line x1={start} y1={start} x2={x1} y2={y1} class="stroke-red-500 stroke-[0.1]" />
+				<line
+					x1={x2}
+					y1={y2}
+					x2={end}
+					y2={end}
+					class="stroke-black stroke-[0.3]"
+					class:hidden={!showHandles}
+				/>
+				<line
+					x1={x2}
+					y1={y2}
+					x2={end}
+					y2={end}
+					class="stroke-yellow-300 stroke-[0.1]"
+					class:hidden={!showHandles}
+				/>
 				<circle cx={end} cy={end} r="0.5" class="fill-yellow-300 stroke-[0.1] stroke-black" />
-				<circle cx={x2} cy={y2} r="0.3" class="fill-yellow-300 stroke-[0.1] stroke-black" />
-				<line x1={x2} y1={y2} x2={end} y2={end} class="stroke-yellow-300 stroke-[0.1]" />
+				<circle
+					cx={x2}
+					cy={y2}
+					r="0.3"
+					class="fill-yellow-300 stroke-[0.1] stroke-black"
+					class:hidden={!showHandles}
+				/>
 			</svg>
 		</div>
-		<div
-			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-6"
-		>
-			<div class="flex flex-col gap-2">
-				<label class="font-mono text-sm" for="draw-mode">Drawing Mode</label>
-				<div id="draw-mode" class="flex">
-					<button
-						class="grow bg-blue-600 bg-opacity-20 border border-r-0 border-blue-500/50 py-1.5 px-2 rounded-l-md"
-						class:!bg-opacity-100={pathMode === 'absolute'}
-						on:click={() => (pathMode = 'absolute')}>Absolute</button
+		<div class="flex flex-col sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg">
+			<div class="flex gap-6 p-4 border-b border-gray-100/10">
+				<div class="flex items-center gap-2">
+					<Switch
+						bind:value={absolute}
+						class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
 					>
-					<button
-						class="grow bg-blue-600 bg-opacity-20 border border-blue-500/50 py-1.5 px-2 rounded-r-md"
-						class:!bg-opacity-100={pathMode === 'relative'}
-						on:click={() => (pathMode = 'relative')}>Relative</button
+						<div
+							class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
+							class:translate-x-full={absolute}
+							aria-hidden="true"
+						/>
+						<SwitchLabel slot="label">
+							<span class="text-sm select-none">Absolute</span>
+						</SwitchLabel>
+					</Switch>
+				</div>
+				<div class="flex items-center gap-2">
+					<Switch
+						bind:value={showHandles}
+						class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
 					>
+						<div
+							class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
+							class:translate-x-full={showHandles}
+							aria-hidden="true"
+						/>
+						<SwitchLabel slot="label">
+							<span class="text-sm select-none">Handles</span>
+						</SwitchLabel>
+					</Switch>
 				</div>
 			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="start-x">Start X</label>
+			<div class="grow flex flex-col gap-6 justify-center p-4 pb-6">
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-red-500" />
+						<label class="font-mono" for="start-x">Start X</label>
+					</div>
+					<input
+						type="range"
+						id="start-x"
+						name="start-x"
+						bind:value={x1}
+						min="0"
+						max={size}
+						step="0.5"
+					/>
 				</div>
-				<input
-					type="range"
-					id="start-x"
-					name="start-x"
-					bind:value={x1}
-					min="0"
-					max={size}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="start-y">Start Y</label>
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-red-500" />
+						<label class="font-mono" for="start-y">Start Y</label>
+					</div>
+					<input
+						type="range"
+						id="start-y"
+						name="start-y"
+						bind:value={y1}
+						min="0"
+						max={size}
+						step="0.5"
+					/>
 				</div>
-				<input
-					type="range"
-					id="start-y"
-					name="start-y"
-					bind:value={y1}
-					min="0"
-					max={size}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="end-x">End X</label>
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-yellow-300" />
+						<label class="font-mono" for="end-x">End X</label>
+					</div>
+					<input
+						type="range"
+						id="end-x"
+						name="end-x"
+						bind:value={x2}
+						min="0"
+						max={size}
+						step="0.5"
+					/>
 				</div>
-				<input type="range" id="end-x" name="end-x" bind:value={x2} min="0" max={size} step="0.5" />
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="end-y">End Y</label>
+				<div class="flex flex-col gap-2">
+					<div class="flex gap-x-2 items-center">
+						<div class="w-2 h-2 rounded-full bg-yellow-300" />
+						<label class="font-mono" for="end-y">End Y</label>
+					</div>
+					<input
+						type="range"
+						id="end-y"
+						name="end-y"
+						bind:value={y2}
+						min="0"
+						max={size}
+						step="0.5"
+					/>
 				</div>
-				<input type="range" id="end-y" name="end-y" bind:value={y2} min="0" max={size} step="0.5" />
 			</div>
 		</div>
 	</div>

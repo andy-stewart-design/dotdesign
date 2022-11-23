@@ -44,7 +44,39 @@
 						<line x1={i + 1} y1="0" x2={i + 1} y2="20" class="stroke-gray-100 stroke-[0.05]" />
 					{/each}
 				</g>
-				<line {x1} {y1} {x2} {y2} stroke="blue" class="stroke-gray-300 stroke-[0.1]" />
+				<line
+					{x1}
+					y1="0"
+					x2={x1}
+					y2="20"
+					class="stroke-red-500 stroke-[0.05]"
+					stroke-dasharray="0.25"
+				/>
+				<line
+					x1="0"
+					{y1}
+					x2="20"
+					y2={y1}
+					class="stroke-red-500 stroke-[0.05]"
+					stroke-dasharray="0.25"
+				/>
+				<line
+					x1={x2}
+					y1="0"
+					{x2}
+					y2="20"
+					class="stroke-yellow-300 stroke-[0.05]"
+					stroke-dasharray="0.25"
+				/>
+				<line
+					x1="0"
+					y1={y2}
+					x2="20"
+					{y2}
+					class="stroke-yellow-300 stroke-[0.05]"
+					stroke-dasharray="0.25"
+				/>
+				<line {x1} {y1} {x2} {y2} class="stroke-gray-300 stroke-[0.1]" />
 				<circle cx={x1} cy={y1} r="0.5" class="fill-red-500 stroke-[0.1] stroke-black" />
 				<circle cx={x2} cy={y2} r="0.5" class="fill-yellow-300 stroke-[0.1] stroke-black" />
 			</svg>

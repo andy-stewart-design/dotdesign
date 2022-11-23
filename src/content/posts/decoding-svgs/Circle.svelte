@@ -38,8 +38,22 @@
 						<line x1={i + 1} y1="0" x2={i + 1} y2="20" class="stroke-gray-100 stroke-[0.05]" />
 					{/each}
 				</g>
-				<line x1={cx} y1="0" x2={cx} y2="20" class="stroke-yellow-300 stroke-[0.1]" />
-				<line x1="0" y1={cy} x2="20" y2={cy} class="stroke-red-500 stroke-[0.1]" />
+				<line
+					x1={cx}
+					y1="0"
+					x2={cx}
+					y2="20"
+					class="stroke-yellow-300 stroke-[0.05]"
+					stroke-dasharray="0.25"
+				/>
+				<line
+					x1="0"
+					y1={cy}
+					x2="20"
+					y2={cy}
+					class="stroke-red-500 stroke-[0.05]"
+					stroke-dasharray="0.25"
+				/>
 				<circle {cx} {cy} {r} class="fill-black stroke-gray-300 stroke-[0.1]" />
 				<circle {cx} {cy} r="0.325" class="fill-teal-400" />
 				<circle cx={cx + r} {cy} r="0.325" class="fill-teal-400 stroke-black stroke-[0.1]" />
