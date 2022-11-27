@@ -122,7 +122,7 @@
 							aria-hidden="true"
 						/>
 						<SwitchLabel slot="end">
-							<span class="text-sm select-none">Absolute</span>
+							<span class="text-sm select-none" class:opacity-50={!absolute}>Absolute</span>
 						</SwitchLabel>
 					</Switch>
 				</div>
@@ -137,7 +137,7 @@
 							aria-hidden="true"
 						/>
 						<SwitchLabel slot="end">
-							<span class="text-sm select-none">Handles</span>
+							<span class="text-sm select-none" class:opacity-50={!showHandles}>Handles</span>
 						</SwitchLabel>
 					</Switch>
 				</div>

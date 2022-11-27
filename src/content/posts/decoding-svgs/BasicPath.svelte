@@ -9,7 +9,6 @@
 		Switch,
 		SwitchLabel
 	} from 'neutral-ui';
-	type PointPositionType = 'relative' | 'absolute';
 	type PointsArray = string[][];
 	interface PointsData {
 		[key: string]: PointsArray;
@@ -17,7 +16,7 @@
 
 	const size = 20;
 	const minPoints = 3;
-	const maxPoints = 7;
+	const maxPoints = 8;
 	let points = 5;
 	// let pathMode: PointPositionType = 'absolute';
 	let absolute = true;
@@ -28,14 +27,16 @@
 			['10 2', '18 10', '10 18', '2 10'],
 			['10 2', '18 8', '15 17', '5 17', '2 8'],
 			['10 2', '17 6', '17 14', '10 18', '3 14', '3 6'],
-			['10 2', '16.5 5.5', '18 12.5', '13.5 18', '6.5 18', '2 12.5', '3.5 5.5']
+			['10 2', '16.5 5.5', '18 12.5', '13.5 18', '6.5 18', '2 12.5', '3.5 5.5'],
+			['10 2', '15.5 4.5', '18 10', '15.5 15.5', '10 18', '3.5 15.5', '2 10', '3.5 4.5']
 		],
 		relative: [
 			['10 2', '9 16', '-18 0'],
 			['10 2', '8 8', '-8 8', '-8 -8'],
 			['10 2', '8 6', '-3 9', '-10 0', '-3 -9'],
 			['10 2', '7 4', '0 8', '-7 4', '-7 -4', '0 -8'],
-			['10 2', '6.5 3.5', '1.5 7', '-4.5 5.5', '-7 0', '-4.5 -5.5', '1.5 -7']
+			['10 2', '6.5 3.5', '1.5 7', '-4.5 5.5', '-7 0', '-4.5 -5.5', '1.5 -7'],
+			['10 2', '5.5 2.5', '2.5 5.5', '-2.5 5.5', '-5.5 2.5', '-6.5 -2.5', '-1.5 -5.5', '1.5 -5.5']
 		]
 	};
 
@@ -67,11 +68,25 @@
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
-	<div class="bg-blue-800/20 border border-blue-500/50 p-4 rounded-lg">
-		<p class="font-mono text-center tabular-nums">
+	<div class="bg-gray-900 border border-gray-100/10 p-4 rounded-lg">
+		<!-- <p class="font-mono text-center tabular-nums">
 			<span class="code-blue">&lt;</span>path
 			<span class="code-green">d</span>="<span class="code-yellow">{d}</span>"
 			<span class="code-blue">/&gt;</span>
+		</p> -->
+		<p class="text-lg text-center">
+			<span>d="</span>
+			<span class="inline-flex gap-2">
+				{#each activeShape[points - minPoints] as point, index}
+					{@const pointArray = point.split(' ')}
+					<span style:color={`hsl(${index * (360 / points)}, 80%, 60%)`}>
+						{index === 0 ? 'M' : 'L'}
+						{pointArray[0]}
+						{pointArray[1]}
+					</span>
+				{/each}
+			</span>
+			<span>"</span>
 		</p>
 	</div>
 	<div class="flex flex-col sm:flex-row gap-2">
@@ -116,7 +131,9 @@
 							aria-hidden="true"
 						/>
 						<SwitchLabel slot="end">
-							<span class="text-sm select-none">{absolute ? 'Absolute' : 'Relative'}</span>
+							<span class="text-sm select-none" class:opacity-50={!absolute}>
+								Absolute Positioning
+							</span>
 						</SwitchLabel>
 					</Switch>
 				</div>
@@ -172,7 +189,7 @@
 	</div>
 </section>
 
-<style>
+<!-- <style>
 	.code-blue {
 		color: rgb(127, 219, 202);
 	}
@@ -182,4 +199,4 @@
 	.code-yellow {
 		color: rgb(236, 196, 141);
 	}
-</style>
+</style> -->
