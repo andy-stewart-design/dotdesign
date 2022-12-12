@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterNavigate, disableScrollHandling } from '$app/navigation';
 	import '@styles/main.css';
+	import 'neutral-ui/base.css';
 	import Nav from '@components/global/Nav';
 	import { fade } from 'svelte/transition';
 

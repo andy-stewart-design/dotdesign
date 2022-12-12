@@ -7,7 +7,6 @@
 	import type { FeedImageData } from '$lib/types/feed';
 	import Image from '@components/global/Image.svelte';
 	import Video from '@components/Video.svelte';
-	import { transition_in } from 'svelte/internal';
 
 	export let images: FeedImageData[];
 	export let isOverlayActive: boolean;

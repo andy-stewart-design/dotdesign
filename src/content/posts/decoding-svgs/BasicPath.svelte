@@ -1,4 +1,5 @@
 <script lang="ts">
+	import BaseSwitch from '@components/global/BaseSwitch.svelte';
 	import {
 		NumberInput,
 		NumberLabel,
@@ -69,11 +70,6 @@
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
 	<div class="bg-gray-900 border border-gray-100/10 p-4 rounded-lg">
-		<!-- <p class="font-mono text-center tabular-nums">
-			<span class="code-blue">&lt;</span>path
-			<span class="code-green">d</span>="<span class="code-yellow">{d}</span>"
-			<span class="code-blue">/&gt;</span>
-		</p> -->
 		<p class="text-lg text-center">
 			<span>d="</span>
 			<span class="inline-flex gap-2">
@@ -120,22 +116,8 @@
 		</div>
 		<div class="flex flex-col sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg">
 			<div class="flex gap-6 py-3 px-4 border-b border-gray-100/10">
-				<div class="flex items-center gap-2">
-					<Switch
-						bind:value={absolute}
-						class="relative flex shrink-0 bg-gray-800 cursor-pointer p-0.5 pr-[1.375rem] rounded-full border border-gray-100/10 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
-					>
-						<div
-							class="w-5 h-5 bg-blue-600 rounded-full transition-transform"
-							class:translate-x-full={absolute}
-							aria-hidden="true"
-						/>
-						<SwitchLabel slot="end">
-							<span class="text-sm select-none" class:opacity-50={!absolute}>
-								Absolute Positioning
-							</span>
-						</SwitchLabel>
-					</Switch>
+				<div class="flex grow items-center gap-2">
+					<BaseSwitch bind:value={absolute} label="Absolute Positioning" grow />
 				</div>
 			</div>
 			<div class="grow flex flex-col gap-6 justify-start p-4 pt-6">

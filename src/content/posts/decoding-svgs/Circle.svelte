@@ -1,15 +1,16 @@
 <script lang="ts">
+	import BaseRangeSlider from './RangeSlider.svelte';
 	import { formatNumber } from './utils';
 
 	const size = 20;
 
 	let cx = 10;
 	let cy = 10;
-	let r = 3;
+	let r = 4;
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
-	<div class="bg-blue-800/20 border border-blue-500/50 p-4 rounded-lg">
+	<div class="bg-gray-900 border border-gray-100/10 p-4 rounded-lg">
 		<p class="font-mono text-center tabular-nums">
 			<span class="code-blue">&lt;</span>circle <span class="code-green">cx</span>
 			="<span class="code-yellow">{formatNumber(cx, true, true)}</span>"
@@ -22,8 +23,8 @@
 			<span class="code-blue">/&gt;</span>
 		</p>
 	</div>
-	<div class="flex flex-col sm:flex-row gap-2">
-		<div class="relative grow border border-gray-100/10 rounded-lg">
+	<div class="flex flex-col sm:flex-row gap-0 border border-gray-100/10 rounded-lg overflow-hidden">
+		<div class="relative grow">
 			<div
 				class="absolute bottom-2 left-2 font-mono text-sm text-gray-100/70 bg-gray-900/50 border border-gray-100/10 py-1 px-2 rounded-sm backdrop-blur-sm"
 			>
@@ -61,45 +62,41 @@
 			</svg>
 		</div>
 		<div
-			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-4"
+			class="flex flex-col gap-2 justify-center sm:w-72 bg-black border-l border-gray-100/10 p-4"
 		>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="position-x">X-Position</label>
-				</div>
-				<input
-					type="range"
-					id="position-x"
-					name="position-x"
-					bind:value={cx}
-					min="0"
-					max={size}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="position-y">Y-Position</label>
-				</div>
-				<input
-					type="range"
-					id="position-y"
-					name="position-y"
-					bind:value={cy}
-					min="0"
-					max={size}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-teal-400" />
-					<label class="font-mono" for="radius">Radius</label>
-				</div>
-				<input type="range" id="radius" name="radius" bind:value={r} min="1" max="6" step="0.5" />
-			</div>
+			<BaseRangeSlider
+				bind:value={cx}
+				min={0}
+				max={size}
+				step={0.5}
+				bigStep={1}
+				label="X-Position"
+				class="bg-yellow-300"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-yellow-300" />
+			</BaseRangeSlider>
+			<BaseRangeSlider
+				bind:value={cy}
+				min={0}
+				max={size}
+				step={0.5}
+				bigStep={1}
+				label="Y-Position"
+				class="bg-red-500"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-red-500" />
+			</BaseRangeSlider>
+			<BaseRangeSlider
+				bind:value={r}
+				min={1}
+				max={7}
+				step={0.5}
+				bigStep={1}
+				label="Radius"
+				class="bg-teal-400"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-teal-400" />
+			</BaseRangeSlider>
 		</div>
 	</div>
 </section>

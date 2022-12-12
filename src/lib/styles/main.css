@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
 	@font-face {
 		font-family: 'Andy Sans';
@@ -21,17 +20,18 @@
 	}
 
 	:root {
-		--gray-50: 205 250 250;
+		--gray-50: 250 250 248;
 		--gray-100: 244 244 245;
-		--gray-200: 228 228 231;
-		--gray-300: 212 212 216;
-		--gray-400: 161 161 170;
-		--gray-500: 113 113 122;
+		--gray-200: 227 229 231; /* 225 223 221 */
+		--gray-300: 203 209 219; /* 205 206 207 */ /* 212 212 216 */
+		--gray-400: 182 190 199; /* rgb(187, 187, 187) */
+		--gray-500: 155 165 175;
 		--gray-600: 82 82 91;
 		--gray-700: 63 63 70;
-		--gray-800: 39 39 42;
-		--gray-900: 22 24 26;
-		--black: 17 17 17;
+		--gray-800: 30 33 38; /* 39 39 42 */
+		--gray-900: 22 27 34;
+		--black: 10 14 18;
+		--white: 255 255 255;
 		--neon-yellow: 231 253 86;
 	}
 
@@ -40,22 +40,34 @@
 	}
 }
 
-body {
-	background-color: rgb(244, 244, 245);
-	text: #16181a;
+[data-theme='light'] {
+	--brand: var(--gray-900);
+	--foreground-1: var(--black);
+	--foreground-2: var(--gray-900);
+	--foreground-3: var(--gray-800);
+	--surface-1: var(--white);
+	--surface-2: var(--gray-100);
+	--surface-3: var(--gray-200);
+
+	@apply text-gray-800;
 }
 
-@media (prefers-color-scheme: dark) {
-	body {
-		background-color: rgb(var(--black));
-		color: rgb(var(--gray-100));
-	}
+[data-theme='dark'] {
+	--brand: var(--gray-100);
+	--foreground-1: var(--white);
+	--foreground-2: var(--gray-100);
+	--foreground-3: var(--gray-200);
+	--surface-1: var(--gray-800);
+	--surface-2: var(--gray-900);
+	--surface-3: var(--black);
+
+	@apply text-gray-200;
 }
 
-[data-theme='light'] body {
-	@apply bg-gray-100 text-gray-800;
+html[data-theme='light'] {
+	@apply bg-gray-300 text-gray-800;
 }
 
-[data-theme='dark'] body {
+html[data-theme='dark'] {
 	@apply bg-black text-gray-100;
 }

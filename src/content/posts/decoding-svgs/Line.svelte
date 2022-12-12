@@ -1,4 +1,5 @@
 <script lang="ts">
+	import RangeSlider from './RangeSlider.svelte';
 	import { formatNumber } from './utils';
 
 	const size = 20;
@@ -10,7 +11,7 @@
 </script>
 
 <section class="blog:col-popout flex flex-col gap-2 my-5">
-	<div class="bg-blue-800/20 border border-blue-500/50 p-4 rounded-lg">
+	<div class="bg-gray-900 border border-gray-100/10 p-4 rounded-lg">
 		<p class="font-mono text-center tabular-nums">
 			<span class="code-blue">&lt;</span>line
 			<span class="code-green">x1</span>="<span class="code-yellow">
@@ -82,52 +83,55 @@
 			</svg>
 		</div>
 		<div
-			class="flex flex-col gap-6 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-4"
+			class="flex flex-col gap-2 justify-center sm:w-72 bg-gray-900 border border-gray-100/10 rounded-lg p-4"
 		>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="start-x">Start X</label>
-				</div>
-				<input
-					type="range"
-					id="start-x"
-					name="start-x"
-					bind:value={x1}
-					min="0"
-					max={size}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-red-500" />
-					<label class="font-mono" for="start-y">Start Y</label>
-				</div>
-				<input
-					type="range"
-					id="start-y"
-					name="start-y"
-					bind:value={y1}
-					min="0"
-					max={size}
-					step="0.5"
-				/>
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="end-x">End X</label>
-				</div>
-				<input type="range" id="end-x" name="end-x" bind:value={x2} min="0" max={size} step="0.5" />
-			</div>
-			<div class="flex flex-col gap-2">
-				<div class="flex gap-x-2 items-center">
-					<div class="w-2 h-2 rounded-full bg-yellow-300" />
-					<label class="font-mono" for="end-y">End Y</label>
-				</div>
-				<input type="range" id="end-y" name="end-y" bind:value={y2} min="0" max={size} step="0.5" />
-			</div>
+			<p class="blog:text-sm blog:text-white uppercase tracking-widest pb-2">Start Point</p>
+			<RangeSlider
+				bind:value={x1}
+				min={0}
+				max={size}
+				step={0.5}
+				bigStep={1}
+				label="X-Position"
+				class="bg-red-500"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-red-500" />
+			</RangeSlider>
+			<RangeSlider
+				bind:value={y1}
+				min={0}
+				max={size}
+				step={0.5}
+				bigStep={1}
+				label="Y-Position"
+				class="bg-red-500"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-red-500" />
+			</RangeSlider>
+			<div class="border-t border-gray-900/20 dark:border-gray-100/20" />
+			<p class="blog:text-sm blog:text-white uppercase tracking-widest pt-3 pb-2">End Point</p>
+			<RangeSlider
+				bind:value={x2}
+				min={0}
+				max={size}
+				step={0.5}
+				bigStep={1}
+				label="X-Position"
+				class="bg-yellow-300"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-yellow-300" />
+			</RangeSlider>
+			<RangeSlider
+				bind:value={y2}
+				min={0}
+				max={size}
+				step={0.5}
+				bigStep={1}
+				label="Y-Position"
+				class="bg-yellow-300"
+			>
+				<div slot="icon" class="w-2 h-2 rounded-full bg-yellow-300" />
+			</RangeSlider>
 		</div>
 	</div>
 </section>

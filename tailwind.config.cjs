@@ -14,7 +14,17 @@ const config = {
 			mono: ['Andy mono', ...defaultTheme.fontFamily.mono]
 		},
 		extend: {
+			borderWidth: {
+				1.5: '1.5px'
+			},
 			colors: {
+				brand: 'rgb(var(--brand) / <alpha-value>)',
+				'foreground-1': 'rgb(var(--foreground-1) / <alpha-value>)',
+				'foreground-2': 'rgb(var(--foreground-2) / <alpha-value>)',
+				'foreground-3': 'rgb(var(--foreground-3) / <alpha-value>)',
+				'surface-1': 'rgb(var(--surface-1) / <alpha-value>)',
+				'surface-2': 'rgb(var(--surface-2) / <alpha-value>)',
+				'surface-3': 'rgb(var(--surface-3) / <alpha-value>)',
 				black: 'rgb(var(--black) / <alpha-value>)',
 				gray: {
 					50: 'rgb(var(--gray-50) / <alpha-value>)',
@@ -84,6 +94,7 @@ const config = {
 			addVariant('g-dark', ':global(.dark) &');
 			addVariant('blog', '.content &');
 			addVariant('can-hover', '@media (hover: hover) {body &:hover}');
+			addVariant('active', '.active&');
 		})
 	]
 };
