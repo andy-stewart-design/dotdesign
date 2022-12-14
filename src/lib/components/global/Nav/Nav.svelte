@@ -5,7 +5,7 @@
 	import ThemeToggle from './ThemeToggle.svelte';
 	import NavTrigger from './NavTrigger.svelte';
 	import Container from '@components/global/Container.svelte';
-	import { inView, type ObserverEventDetails } from '@actions/inview';
+	// import { inView, type ObserverEventDetails } from '@actions/inview';
 	import type { NavLinks } from '$lib/types/nav';
 
 	let innerWidth: number;
@@ -22,13 +22,30 @@
 	$: if ($navigating) isNavActive = false;
 	const triggerNav = () => (isNavActive = !isNavActive);
 
-	let ioDetails: ObserverEventDetails = { intersectionRatio: 1 };
-	const onChange = ({ detail }: { detail: ObserverEventDetails }) => {
-		ioDetails = detail;
-	};
+	// let ioDetails: ObserverEventDetails = { intersectionRatio: 1 };
+	// const onChange = ({ detail }: { detail: ObserverEventDetails }) => {
+	// 	ioDetails = detail;
+	// };
 </script>
 
-<svelte:window bind:innerWidth />
+<nav
+	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-surface-2/80 border border-foreground-2/10 backdrop-blur-md rounded-full z-40 shadow-lg shadow-foreground-3/5"
+>
+	<ul class="flex">
+		{#each links as link}
+			<li>
+				<a
+					class="block font-medium select-none py-3 px-5 sm:px-6 border border-foreground-2/0 rounded-full transition-colors active:bg-surface-1 dark:active:bg-surface-3 active:pointer-events-none active:border-foreground-2/10"
+					class:active={$page.url.pathname === link.href}
+					href={link.href}
+					data-sveltekit-preload-data="hover">{link.text}</a
+				>
+			</li>
+		{/each}
+	</ul>
+</nav>
+
+<!-- <svelte:window bind:innerWidth />
 
 <div
 	class="absolute top-0 left-0 w-screen h-96 -z-50 invisible"
@@ -103,4 +120,4 @@
 			to: translateY(0px);
 		}
 	}
-</style>
+</style> -->

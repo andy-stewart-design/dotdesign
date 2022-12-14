@@ -23,7 +23,7 @@
 	let absolute = true;
 </script>
 
-<Container pt="lg">
+<Container pt="xl">
 	<div>
 		<h1
 			class="font-[450] text-5xl leading-[1.2] max-w-4xl mx-auto text-gray-400 text-foreground-2/70"
