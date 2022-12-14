@@ -8,6 +8,11 @@
 	import Image from '@components/global/Image.svelte';
 	import Video from '@components/Video.svelte';
 
+	import BaseButton from '@components/global/BaseButton.svelte';
+	import ArrowLeft from '$lib/icons/ArrowLeft.svelte';
+	import ArrowRight from '$lib/icons/ArrowRight.svelte';
+	import Close from '$lib/icons/Close.svelte';
+
 	export let images: FeedImageData[];
 	export let isOverlayActive: boolean;
 	export let activeImage: number;
@@ -27,7 +32,7 @@
 	<div
 		in:fade={{ duration: 400, easing: cubicOut }}
 		out:fade={{ duration: 400, easing: cubicOut, delay: 300 }}
-		class="fixed top-0 left-0 flex flex-col w-screen h-screen bg-white/60 dark:bg-black/60 backdrop-blur z-50"
+		class="fixed top-0 left-0 flex flex-col w-screen h-screen bg-white/60 dark:bg-black/60 backdrop-blur-lg z-50"
 		use:focusTrap={{
 			escapeCallback: closeOverlay,
 			arrowLeftCallback: incActiveImage,
@@ -36,10 +41,18 @@
 	>
 		<Container class="flex justify-between">
 			<div class="flex gap-x-2">
-				<IconButton icon="arrow-left" on:click={decActiveImage} alt="Previous image" />
-				<IconButton icon="arrow-right" on:click={incActiveImage} alt="Next image" />
+				<!-- <IconButton icon="arrow-left" on:click={decActiveImage} alt="Previous image" /> -->
+				<!-- <IconButton icon="arrow-right" on:click={incActiveImage} alt="Next image" /> -->
+				<BaseButton on:click={decActiveImage} icon large label="Close">
+					<ArrowLeft size="20" strokeWidth="2" class="stroke-current fill-none w-5 h-5" />
+				</BaseButton>
+				<BaseButton on:click={incActiveImage} icon large label="Close">
+					<ArrowRight size="20" strokeWidth="2" class="stroke-current fill-none w-5 h-5" />
+				</BaseButton>
 			</div>
-			<IconButton icon="close" on:click={closeOverlay} alt="Close menu" />
+			<BaseButton on:click={closeOverlay} icon large label="Close">
+				<Close size="20" strokeWidth="2" class="stroke-current fill-none w-5 h-5" />
+			</BaseButton>
 		</Container>
 		<Container class="relative grow">
 			<div

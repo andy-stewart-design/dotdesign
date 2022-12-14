@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { clsx } from '@utils/clsx';
 	import {
 		RangeSlider,
 		RangeSliderLabel,
@@ -7,6 +6,7 @@
 		RangeSliderTrack,
 		RangeSliderProgress
 	} from 'neutral-ui';
+	import { clsx } from 'neutral-ui/utils';
 
 	type Counter = 'value' | 'decimal' | 'percentage';
 

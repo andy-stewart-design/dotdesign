@@ -1,6 +1,5 @@
 <script lang="ts">
 	import RangeSlider from './RangeSlider.svelte';
-	import { Switch, SwitchLabel } from 'neutral-ui';
 	import { formatNumber } from './utils';
 	import BaseSwitch from '@components/global/BaseSwitch.svelte';
 
