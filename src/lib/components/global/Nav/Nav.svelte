@@ -1,26 +1,21 @@
 <script lang="ts">
 	import { navigating, page } from '$app/stores';
-	import AndyLogo from '@components/svg/AndyLogo.svelte';
-	import NavOverlay from './NavOverlay.svelte';
-	import ThemeToggle from './ThemeToggle.svelte';
-	import NavTrigger from './NavTrigger.svelte';
-	import Container from '@components/global/Container.svelte';
-	// import { inView, type ObserverEventDetails } from '@actions/inview';
 	import type { NavLinks } from '$lib/types/nav';
 
-	let innerWidth: number;
+	// let innerWidth: number;
 	const links: NavLinks[] = [
 		{ href: '/', text: 'Home' },
+		{ href: '/work', text: 'Work' },
 		{ href: '/feed', text: 'Feed' },
 		{ href: '/posts', text: 'Posts' },
 		{ href: '/about', text: 'About' }
 	];
 
-	let navContainer: HTMLElement;
+	// let navContainer: HTMLElement;
 
-	let isNavActive = false;
-	$: if ($navigating) isNavActive = false;
-	const triggerNav = () => (isNavActive = !isNavActive);
+	// let isNavActive = false;
+	// $: if ($navigating) isNavActive = false;
+	// const triggerNav = () => (isNavActive = !isNavActive);
 
 	// let ioDetails: ObserverEventDetails = { intersectionRatio: 1 };
 	// const onChange = ({ detail }: { detail: ObserverEventDetails }) => {
@@ -29,13 +24,18 @@
 </script>
 
 <nav
-	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-surface-2/80 border border-foreground-2/10 backdrop-blur-md rounded-full z-40 shadow-lg shadow-foreground-3/5"
+	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-level-06/70 outline outline-1 outline-level-01/10 backdrop-blur-md rounded-full z-40"
 >
 	<ul class="flex">
 		{#each links as link}
-			<li>
+			<li class="relative">
+				<div
+					class="absolute top-0 left-0 w-full h-full bg-level-05/60 border border-level-01/10 rounded-full opacity-0 transition-opacity active:opacity-100"
+					class:active={$page.url.pathname === link.href}
+					aria-hidden="true"
+				/>
 				<a
-					class="block font-medium select-none py-3 px-5 sm:px-6 border border-foreground-2/0 rounded-full transition-colors active:bg-surface-1 dark:active:bg-surface-3 active:pointer-events-none active:border-foreground-2/10"
+					class="relative block font-medium select-none py-3 px-5 sm:px-6 active:pointer-events-none"
 					class:active={$page.url.pathname === link.href}
 					href={link.href}
 					data-sveltekit-preload-data="hover">{link.text}</a

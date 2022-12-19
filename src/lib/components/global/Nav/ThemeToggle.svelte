@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
-	type Theme = 'LIGHT' | 'DARK';
+	import { appTheme, type ThemeOptions } from '$lib/stores/theme';
 
 	export let disabled = false;
-	let theme: Theme;
+	let theme: ThemeOptions;
 
 	const setTheme = () => {
 		theme === 'DARK' ? (theme = 'LIGHT') : (theme = 'DARK');
@@ -17,15 +16,18 @@
 			document.documentElement.classList.add('light');
 		}
 		localStorage.setItem('theme-preference', theme.toLocaleLowerCase());
+		$appTheme = theme;
 	};
 
 	onMount(() => {
 		const storedThemePreference = localStorage.getItem('theme-preference');
 		if (storedThemePreference === null) {
 			theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'DARK' : 'LIGHT';
+			$appTheme = theme;
 		} else {
-			const themePreference: Theme = storedThemePreference === 'dark' ? 'DARK' : 'LIGHT';
+			const themePreference: ThemeOptions = storedThemePreference === 'dark' ? 'DARK' : 'LIGHT';
 			theme = themePreference;
+			$appTheme = theme;
 		}
 	});
 </script>

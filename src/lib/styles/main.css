@@ -33,6 +33,9 @@
 		--black: 10 14 18;
 		--white: 255 255 255;
 		--neon-yellow: 231 253 86;
+
+		--test-blue: 23 0 255;
+		--test-green: 29 224 152;
 	}
 
 	html {
@@ -50,6 +53,13 @@
 	--surface-2: var(--gray-100);
 	--surface-3: var(--gray-200);
 
+	--level-01: var(--black);
+	--level-02: var(--gray-900);
+	--level-03: var(--gray-800);
+	--level-04: var(--gray-100);
+	--level-05: var(--gray-200);
+	--level-06: var(--gray-300);
+
 	@apply text-gray-800;
 }
 
@@ -61,6 +71,13 @@
 	--surface-1: var(--gray-800);
 	--surface-2: var(--gray-900);
 	--surface-3: var(--black);
+
+	--level-01: var(--white);
+	--level-02: var(--gray-100);
+	--level-03: var(--gray-200);
+	--level-04: var(--gray-800);
+	--level-05: var(--gray-900);
+	--level-06: var(--black);
 
 	@apply text-gray-200;
 }

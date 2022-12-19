@@ -25,6 +25,12 @@ const config = {
 				'surface-1': 'rgb(var(--surface-1) / <alpha-value>)',
 				'surface-2': 'rgb(var(--surface-2) / <alpha-value>)',
 				'surface-3': 'rgb(var(--surface-3) / <alpha-value>)',
+				'level-01': 'rgb(var(--level-01) / <alpha-value>)',
+				'level-02': 'rgb(var(--level-02) / <alpha-value>)',
+				'level-03': 'rgb(var(--level-03) / <alpha-value>)',
+				'level-04': 'rgb(var(--level-04) / <alpha-value>)',
+				'level-05': 'rgb(var(--level-05) / <alpha-value>)',
+				'level-06': 'rgb(var(--level-06) / <alpha-value>)',
 				black: 'rgb(var(--black) / <alpha-value>)',
 				gray: {
 					50: 'rgb(var(--gray-50) / <alpha-value>)',
