@@ -2,6 +2,7 @@
 	import Counter from '@components/Counter.svelte';
 	import ExperimentalButton from '@components/global/buttons/ExperimentalButton.svelte';
 	import Container from '@components/global/Container.svelte';
+	import NavPageTop from '@components/global/Nav/NavPageTop.svelte';
 	import BaseButton from '@components/global/BaseButton.svelte';
 	import BaseSwitch from '@components/global/BaseSwitch.svelte';
 	import ArrowLeft from '$lib/icons/ArrowLeft.svelte';
@@ -9,6 +10,7 @@
 	import Hamburger from '$lib/icons/Hamburger.svelte';
 	import Close from '$lib/icons/Close.svelte';
 	import Search from '$lib/icons/Search.svelte';
+	import CarbonDirect from '@components/work/cardimages/CarbonDirect.svelte';
 
 	const foo = 'Hello World This is a Long Headline';
 	let count = 0;
@@ -23,6 +25,7 @@
 	let absolute = true;
 </script>
 
+<NavPageTop />
 <Container pt="xl">
 	<div>
 		<h1
@@ -63,6 +66,3 @@
 	<!-- <ExperimentalButton on:click={() => (show = !show)}>{show}</ExperimentalButton>
 	<ExperimentalButton on:click={() => count++}>Test {count}</ExperimentalButton> -->
 </Container>
-
-<div class="w-full h-screen" />
-<div class="w-full h-screen" />

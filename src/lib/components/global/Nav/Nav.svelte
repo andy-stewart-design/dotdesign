@@ -8,7 +8,7 @@
 		{ href: '/work', text: 'Work' },
 		{ href: '/feed', text: 'Feed' },
 		{ href: '/posts', text: 'Posts' },
-		{ href: '/about', text: 'About' }
+		{ href: '/about', text: 'Info' }
 	];
 
 	// let navContainer: HTMLElement;
@@ -24,7 +24,7 @@
 </script>
 
 <nav
-	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-level-06/70 outline outline-1 outline-level-01/10 backdrop-blur-md rounded-full z-40"
+	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-level-05/70 outline outline-1 outline-level-01/10 backdrop-blur-md rounded-full z-40"
 >
 	<ul class="flex">
 		{#each links as link}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Container from '@components/global/Container.svelte';
+	import NavPageTop from '@components/global/Nav/NavPageTop.svelte';
 	import type { PostMetadata } from 'types/posts';
 
 	interface Data {
@@ -10,6 +11,7 @@
 	const { posts } = data;
 </script>
 
+<NavPageTop />
 <Container pt="xl">
 	<h1>My Blog</h1>
 
