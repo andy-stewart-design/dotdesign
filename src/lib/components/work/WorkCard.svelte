@@ -29,7 +29,7 @@
 </script>
 
 <div
-	class="grid md:grid-cols-2 bg-level-05 border border-level-02/10 rounded-2xl overflow-hidden transition-colors duration-500 ease-out-cubic active:bg-opacity-75"
+	class="grid md:grid-cols-2 bg-level-05 border border-level-02/10 rounded-2xl overflow-hidden transition-colors duration-500 ease-out-cubic active:bg-opacity-80 dark:active:bg-opacity-90"
 	class:active
 >
 	<div class="p-4 grid">
