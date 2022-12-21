@@ -11,6 +11,7 @@
 	import Close from '$lib/icons/Close.svelte';
 	import Search from '$lib/icons/Search.svelte';
 	import CarbonDirect from '@components/work/cardimages/CarbonDirect.svelte';
+	import Footer from '@components/global/Footer.svelte';
 
 	const foo = 'Hello World This is a Long Headline';
 	let count = 0;
@@ -26,7 +27,7 @@
 </script>
 
 <NavPageTop />
-<Container pt="xl">
+<Container pt="xl" class="relative bg-level-06 min-h-screen-lg">
 	<div>
 		<h1
 			class="font-[450] text-5xl leading-[1.2] max-w-4xl mx-auto text-gray-400 text-foreground-2/70"
@@ -66,3 +67,4 @@
 	<!-- <ExperimentalButton on:click={() => (show = !show)}>{show}</ExperimentalButton>
 	<ExperimentalButton on:click={() => count++}>Test {count}</ExperimentalButton> -->
 </Container>
+<Footer />

@@ -64,6 +64,14 @@ const config = {
 							 minmax(0, ${theme('spacing[24]')}) [feature-end]
 							 minmax(${theme('spacing[4]')}, 1fr) [full-end];`
 			}),
+			height: {
+				'screen-lg': '100lvh',
+				'screen-1/2': '50vh',
+				'screen-1/2-lg': '50lvh'
+			},
+			minHeight: {
+				'screen-lg': '100lvh'
+			},
 			opacity: {
 				15: '.15'
 			},

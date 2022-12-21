@@ -1,20 +1,14 @@
 <script lang="ts">
-	import { navigating, page } from '$app/stores';
+	import { page } from '$app/stores';
 	import Container from '@components/global/Container.svelte';
 	import AndyLogo from '@components/svg/AndyLogo.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 	import type { NavLinks } from 'types/nav';
 
 	export let subNav: NavLinks[] | undefined = undefined;
-
-	let from: string | null | undefined = undefined;
-	let to: string | null | undefined = undefined;
-
-	$: from = $navigating?.from?.routeId !== undefined ? $navigating?.from?.routeId : from;
-	$: to = $navigating?.to?.routeId !== undefined ? $navigating?.to?.routeId : to;
 </script>
 
-<Container class="absolute top-0 left-0 flex justify-between items-center w-screen">
+<Container class="absolute top-0 left-0 flex justify-between items-center w-screen z-50">
 	<a href="/" class="relative w-10 p-0.5" class:pointer-events-none={$page.url.pathname === '/'}>
 		<AndyLogo />
 	</a>

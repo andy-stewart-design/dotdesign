@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { navigating, page } from '$app/stores';
+	import { page } from '$app/stores';
 	import type { NavLinks } from '$lib/types/nav';
 
 	// let innerWidth: number;
@@ -24,18 +24,18 @@
 </script>
 
 <nav
-	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-level-05/70 outline outline-1 outline-level-01/10 backdrop-blur-md rounded-full z-40"
+	class="fixed bottom-8 left-1/2 -translate-x-1/2 p-2 bg-level-05/70 backdrop-blur-md rounded-full z-40 before:border before:border-1 before:border-level-01/10 before:absolute before:-top-px before:-left-px before:-right-px before:-bottom-px before:rounded-full"
 >
-	<ul class="flex">
+	<ul class="flex gap-1">
 		{#each links as link}
-			<li class="relative">
+			<li class="group relative">
 				<div
-					class="absolute top-0 left-0 w-full h-full bg-level-05/60 border border-level-01/10 rounded-full opacity-0 transition-opacity active:opacity-100"
+					class="absolute top-0 left-0 w-full h-full bg-level-02 border border-level-01/10 rounded-full opacity-0 transition-opacity group-hover:opacity-10 active:opacity-100 group-hover:active:opacity-100"
 					class:active={$page.url.pathname === link.href}
 					aria-hidden="true"
 				/>
 				<a
-					class="relative block font-medium select-none py-3 px-5 sm:px-6 active:pointer-events-none"
+					class="relative block font-medium select-none py-3 px-5 sm:px-6 transition-colors active:text-level-06 active:pointer-events-none"
 					class:active={$page.url.pathname === link.href}
 					href={link.href}
 					data-sveltekit-preload-data="hover">{link.text}</a
