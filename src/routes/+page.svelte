@@ -26,7 +26,6 @@
 	let absolute = true;
 </script>
 
-<NavPageTop />
 <Container pt="xl" class="relative bg-level-06 min-h-screen-lg">
 	<div>
 		<h1

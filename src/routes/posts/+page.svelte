@@ -11,7 +11,6 @@
 	const { posts } = data;
 </script>
 
-<NavPageTop />
 <Container pt="xl">
 	<h1>My Blog</h1>
 

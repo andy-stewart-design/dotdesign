@@ -3,7 +3,6 @@
 	import NavPageTop from '@components/global/Nav/NavPageTop.svelte';
 </script>
 
-<NavPageTop />
 <main class="bg-level-06 min-h-screen-lg">
 	<slot />
 </main>

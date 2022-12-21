@@ -35,7 +35,6 @@
 	};
 </script>
 
-<NavPageTop />
 <Container class="grid gap-12 bg-level-06" py="xl">
 	<h1 class="text-8xl md:text-9xl">Feed</h1>
 	<div class="grid grid-cols-fit-sm xs:grid-cols-fit md:grid-cols-fit-lg lg:grid-cols-fit-xl gap-4">

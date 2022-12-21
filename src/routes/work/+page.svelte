@@ -32,7 +32,7 @@
 			client: 'Carbon Direct',
 			summary: 'A brand identity and digital presence for a science-first carbon management firm.',
 			slug: 'carbon-direct',
-			// component: CarbonDirect,
+			component: CarbonDirect,
 			hover: '#008055',
 			hoverLight: '#39D085',
 			published: false
@@ -43,7 +43,7 @@
 			summary:
 				'A generative design tool made to help you quickly create random, unique SVG waves and squiggles.',
 			slug: 'squiggler-app',
-			// component: Squiggler,
+			component: Squiggler,
 			hover: '#2868f8',
 			published: false
 		},
@@ -53,7 +53,7 @@
 			summary:
 				'A marketing site for an agtech company working to create the cleanest and most sustainable seafood on the planet.',
 			slug: 'wildtype',
-			// component: Wildtype,
+			component: Wildtype,
 			hover: '#f96d60',
 			published: false
 		},
@@ -62,7 +62,7 @@
 			client: 'Vulcan Real Estate',
 			summary: `A new brand and website for one of Seattle's most influential real estate developers.`,
 			slug: 'vulcan-real-estate',
-			// component: Vulcan,
+			component: Vulcan,
 			hover: '#006666',
 			hoverLight: '#16D8D8',
 			ext: 'svg',
@@ -71,7 +71,6 @@
 	];
 </script>
 
-<NavPageTop />
 <main class="bg-level-06">
 	<div style:background={pageBG} class="transition-colors duration-500 ease-out-cubic">
 		<Container class="grid gap-12" py="xl">
