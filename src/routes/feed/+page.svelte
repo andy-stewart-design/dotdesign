@@ -5,6 +5,7 @@
 	import FeedCard from './FeedCard.svelte';
 	import type { ImageDataArray } from '$lib/types/feed';
 	import type { NavLinks } from 'types/nav';
+	import Footer from '@components/global/Footer.svelte';
 
 	const subNav: NavLinks[] = [
 		{
@@ -35,7 +36,7 @@
 </script>
 
 <NavPageTop />
-<Container class="grid gap-12" pt="xl">
+<Container class="grid gap-12 bg-level-06" py="xl">
 	<h1 class="text-8xl md:text-9xl">Feed</h1>
 	<div class="grid grid-cols-fit-sm xs:grid-cols-fit md:grid-cols-fit-lg lg:grid-cols-fit-xl gap-4">
 		{#each images as image, index}
@@ -43,5 +44,6 @@
 		{/each}
 	</div>
 </Container>
+<Footer />
 
 <FeedOverlay {images} {isOverlayActive} {activeImage} {closeOverlay} />

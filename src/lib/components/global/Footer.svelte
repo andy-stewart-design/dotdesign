@@ -13,7 +13,7 @@
 			<p class="grow text-5xl text-center">Thanks for stopping by</p>
 		</div>
 		<div class="flex justify-between pb-3">
-			<p>©{new Date().getFullYear()}</p>
+			<p>©{year}</p>
 			<p>Contact</p>
 		</div>
 	</Container>
