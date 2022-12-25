@@ -21,6 +21,14 @@
 	// const onChange = ({ detail }: { detail: ObserverEventDetails }) => {
 	// 	ioDetails = detail;
 	// };
+
+	function getActivePath(path: string) {
+		const slug = path.split('/').slice(0, 2).join('/');
+		if (slug) return slug;
+		else console.error('Could not derive th active pathname');
+	}
+
+	$: activePath = getActivePath($page.url.pathname);
 </script>
 
 <nav
@@ -31,12 +39,13 @@
 			<li class="group relative">
 				<div
 					class="absolute top-0 left-0 w-full h-full bg-level-02 border border-level-01/10 rounded-full opacity-0 transition-opacity group-hover:opacity-10 active:opacity-100 group-hover:active:opacity-100"
-					class:active={$page.url.pathname === link.href}
+					class:active={activePath === link.href}
 					aria-hidden="true"
 				/>
 				<a
-					class="relative block font-medium select-none py-3 px-5 sm:px-6 transition-colors active:text-level-06 active:pointer-events-none"
-					class:active={$page.url.pathname === link.href}
+					class="relative block font-medium select-none py-3 px-5 sm:px-6 transition-colors active:text-level-06"
+					class:active={activePath === link.href}
+					class:pointer-events-none={$page.url.pathname === link.href}
 					href={link.href}
 					data-sveltekit-preload-data="hover">{link.text}</a
 				>

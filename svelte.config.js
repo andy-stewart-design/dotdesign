@@ -34,6 +34,7 @@ const config = {
 			'@styles': './src/lib/styles',
 			types: './src/lib/types',
 			'@utils': './src/lib/utils',
+			'@content': './src/content',
 			'@posts': './src/content/posts'
 		}
 	}

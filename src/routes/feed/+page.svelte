@@ -1,22 +1,9 @@
 <script lang="ts">
 	import Container from '@components/global/Container.svelte';
-	import NavPageTop from '@components/global/Nav/NavPageTop.svelte';
 	import FeedOverlay from './FeedOverlay.svelte';
 	import FeedCard from './FeedCard.svelte';
 	import type { ImageDataArray } from '$lib/types/feed';
-	import type { NavLinks } from 'types/nav';
 	import Footer from '@components/global/Footer.svelte';
-
-	const subNav: NavLinks[] = [
-		{
-			text: 'Projects',
-			href: '/work'
-		},
-		{
-			text: 'Feed',
-			href: '/feed'
-		}
-	];
 
 	export let data: ImageDataArray;
 	const { images } = data;
