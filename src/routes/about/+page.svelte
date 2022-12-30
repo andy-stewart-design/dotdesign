@@ -30,7 +30,8 @@
 					by my love for aesthetics, intuitive experiences, and solving challenging business
 					problems.
 				</p>
-				<a href="/about/uses" data-sveltekit-preload-data="hover">uses</a>
+				<a href="/about/uses" data-sveltekit-preload-data="hover">Uses</a>
+				<a href="/about/playlist" data-sveltekit-preload-data="hover">Playlist</a>
 			</div>
 		</div>
 	</div>

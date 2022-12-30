@@ -1,5 +1,17 @@
 export const albums = [
 	{
+		artist: 'Alex Banks',
+		title: 'Projections',
+		year: 2022,
+		tags: ['Electronic', 'Techno']
+	},
+	{
+		artist: 'Four Tet',
+		title: 'Sixteen Oceans',
+		year: 2020,
+		tags: ['Electronic', 'Techno']
+	},
+	{
 		artist: 'Gold Panda',
 		title: 'The Work',
 		year: 2022,
