@@ -3,28 +3,32 @@
 
 	export let src: string;
 	export let width = '1920';
-	export let height = '1920';
+	export let height = '1080';
+	export let autoplay = false;
+	export let muted = false;
+	export let loop = false;
+	export let playsinline = false;
 
 	let ref: HTMLVideoElement;
 
-	const onLoad = () => {
-		ref.style.opacity = '1';
-		ref.removeEventListener('canplay', onLoad);
-	};
+	// const onLoad = () => {
+	// 	ref.style.opacity = '1';
+	// 	ref.removeEventListener('canplay', onLoad);
+	// };
 
-	onMount(() => {
-		ref.style.opacity = '0';
-		ref.addEventListener('canplay', onLoad);
-	});
+	// onMount(() => {
+	// 	ref.style.opacity = '0';
+	// 	ref.addEventListener('canplay', onLoad);
+	// });
 </script>
 
 <video
 	bind:this={ref}
 	class={`transition-opacity duration-500 ease-out-cubic ${$$props.class}`}
-	autoPlay
-	muted
-	loop
-	playsInline
+	{autoplay}
+	{muted}
+	{loop}
+	{playsinline}
 	{width}
 	{height}
 >

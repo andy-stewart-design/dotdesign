@@ -34,8 +34,7 @@
 			slug: 'carbon-direct',
 			component: CarbonDirect,
 			hover: '#008055',
-			hoverLight: '#39D085',
-			published: false
+			hoverLight: '#39D085'
 		},
 		{
 			categories: ['Digital', 'Animation'],
@@ -71,23 +70,20 @@
 	];
 </script>
 
-<main class="bg-level-06">
-	<div style:background={pageBG} class="transition-colors duration-500 ease-out-cubic">
-		<Container class="grid gap-12" py="xl">
-			<h1 class="text-8xl md:text-9xl">Projects</h1>
-			<section class="grid gap-8">
-				<!-- Carbon Direct -->
-				{#each projects as project}
-					<WorkCard {...project} bind:pageBG />
-				{/each}
-			</section>
-		</Container>
-		<Container pb="xl">
-			<div class="flex flex-col items-center gap-6">
-				<h3 class="text-7xl text-center">Want More Pixels?</h3>
-				<a href="/feed" class="medium">Check the feed →</a>
-			</div>
-		</Container>
-	</div>
-</main>
-<Footer />
+<div style:background={pageBG} class="transition-colors duration-500 ease-out-cubic">
+	<Container class="grid gap-12" py="xl">
+		<h1 class="text-8xl md:text-9xl">Projects</h1>
+		<section class="grid gap-8">
+			<!-- Carbon Direct -->
+			{#each projects as project}
+				<WorkCard {...project} bind:pageBG />
+			{/each}
+		</section>
+	</Container>
+	<Container pb="xl">
+		<div class="flex flex-col items-center gap-6">
+			<h3 class="text-7xl text-center">Want More Pixels?</h3>
+			<a href="/feed" class="medium">Check the feed →</a>
+		</div>
+	</Container>
+</div>

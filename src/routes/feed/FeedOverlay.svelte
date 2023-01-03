@@ -79,6 +79,10 @@
 								src={images[activeImage].slug}
 								width="1080"
 								height="1080"
+								autoplay
+								muted
+								loop
+								playsinline
 							/>
 						{/if}
 					</div>

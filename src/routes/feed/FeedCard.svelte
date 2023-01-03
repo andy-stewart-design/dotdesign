@@ -21,6 +21,15 @@
 			alt={image.alt}
 		/>
 	{:else}
-		<Video class="aspect-square" src={image.slug} width="1080" height="1080" />
+		<Video
+			class="aspect-square"
+			src={image.slug}
+			width="1080"
+			height="1080"
+			autoplay
+			muted
+			loop
+			playsinline
+		/>
 	{/if}
 </button>
