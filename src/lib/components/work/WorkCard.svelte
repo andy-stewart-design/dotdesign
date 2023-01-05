@@ -52,7 +52,6 @@
 		{:else}
 			<div
 				class="group flex justify-center items-start gap-5 cursor-default"
-				href={url}
 				on:mouseover={setBackground}
 				on:focus={setBackground}
 				on:mouseout={resetBackground}

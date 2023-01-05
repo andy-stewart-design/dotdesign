@@ -64,7 +64,6 @@
 			component: Vulcan,
 			hover: '#006666',
 			hoverLight: '#16D8D8',
-			ext: 'svg',
 			published: false
 		}
 	];

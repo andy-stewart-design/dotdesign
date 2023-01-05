@@ -20,24 +20,26 @@
 	if (poster) props = { poster, ...props };
 
 	onMount(() => {
-		let observer = new IntersectionObserver(
-			(entries, observer) => {
-				for (const entry of entries) {
-					const videoEntry = entry.target as HTMLVideoElement;
-					if (entry.isIntersecting) {
-						for (const source of videoEntry.children) {
-							const videoSource = source as HTMLSourceElement;
-							const dataSource = videoSource.dataset.src;
-							if (dataSource) videoSource.src = dataSource;
+		if (lazy) {
+			let observer = new IntersectionObserver(
+				(entries, observer) => {
+					for (const entry of entries) {
+						const videoEntry = entry.target as HTMLVideoElement;
+						if (entry.isIntersecting) {
+							for (const source of videoEntry.children) {
+								const videoSource = source as HTMLSourceElement;
+								const dataSource = videoSource.dataset.src;
+								if (dataSource) videoSource.src = dataSource;
+							}
+							videoEntry.load();
+							observer.unobserve(videoEntry);
 						}
-						videoEntry.load();
-						observer.unobserve(videoEntry);
 					}
-				}
-			},
-			{ rootMargin: '0px 0px 200px 0px' }
-		);
-		observer.observe(video);
+				},
+				{ rootMargin: '0px 0px 200px 0px' }
+			);
+			observer.observe(video);
+		}
 	});
 </script>
 
