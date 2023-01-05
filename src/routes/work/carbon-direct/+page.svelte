@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { setSrc } from '@utils/cloudinary';
+
+	export const csr = false;
 	import { appTheme } from '$lib/stores/theme';
 	import Container from '@components/global/Container.svelte';
 	import Image from '@components/global/Image.svelte';
@@ -12,7 +14,9 @@
 	<Container pt="lg" pb="none" class="relative">
 		<div class="relative w-full rounded-3xl overflow-hidden">
 			<Video
-				src="/work/carbon-direct/CarbonDirect-LogoAnimation-Loop-opt.mp4"
+				cloud
+				src="v1672768017/work/carbon-direct/CarbonDirect-LogoAnimation-Loop_q5cqhj.mp4"
+				class="aspect-square lg:aspect-video object-cover"
 				autoplay
 				muted
 				loop
@@ -55,18 +59,24 @@
 	</Container>
 	<Container py="lg" class="relative">
 		<Video
-			src="/work/carbon-direct/CarbonDirect-LogoAnimation-Loop-opt.mp4"
+			lazy
+			cloud
+			src="v1672768017/work/carbon-direct/CarbonDirect-LogoAnimation-Loop_q5cqhj.mp4"
+			class="aspect-video object-cover"
 			autoplay
 			muted
 			loop
 			playsinline
+			poster={setSrc(
+				'v1672871303/work/carbon-direct/CarbonDirect-LogoAnimation-Poster_hbuxgn.jpg',
+				1920
+			)}
 		/>
 	</Container>
-	<!-- https://res.cloudinary.com/andystewartdesign/image/upload/v1672704097/work/carbon-direct/CarbonDirect-BusinessCards-Crop_f5flqi.jpg -->
 	<Container pt="none" pb="lg" class="relative grid grid-cols-2 gap-12 items-center">
 		<Image
-			src="v1672704097/work/carbon-direct/CarbonDirect-BusinessCards-Crop_f5flqi.jpg"
 			cloud
+			src="v1672704097/work/carbon-direct/CarbonDirect-BusinessCards-Crop_f5flqi.jpg"
 			sizes={[480, 800, 1000, 1400]}
 			alt="Carbon Direct business cards"
 			loading="lazy"
@@ -74,8 +84,8 @@
 			height="1000px"
 		/>
 		<Image
-			src="v1672704096/work/carbon-direct/CarbonDirect-Shirt-Crop_wskeos.jpg"
 			cloud
+			src="v1672704096/work/carbon-direct/CarbonDirect-Shirt-Crop_wskeos.jpg"
 			sizes={[480, 800, 1000, 1400]}
 			alt="A shirt design for Carbon Direct that says 'Reduce, Remove, Reuse'"
 			loading="lazy"
@@ -85,9 +95,9 @@
 	</Container>
 	<Container pt="none" pb="lg" class="relative">
 		<Image
-			src="v1672759179/work/carbon-direct/CarbonDirect-Icons_vhgjvx.svg"
 			cloud
-			svg
+			src="v1672768790/work/carbon-direct/CarbonDirect-Social_bsta7e.jpg"
+			sizes={[480, 800, 1200, 1920]}
 			alt="Carbon Direct icon set"
 			loading="lazy"
 			width="2000px"
@@ -96,8 +106,8 @@
 	</Container>
 	<Container pt="none" pb="lg" class="relative grid grid-cols-2 gap-12 items-center">
 		<Image
-			src="v1672758579/work/carbon-direct/CarbonDirect-Colors_selpnw.svg"
 			cloud
+			src="v1672758579/work/carbon-direct/CarbonDirect-Colors_selpnw.svg"
 			svg
 			alt="Carbon Direct color palette"
 			loading="lazy"
@@ -105,8 +115,8 @@
 			height="1000px"
 		/>
 		<Image
-			src="v1672693111/work/carbon-direct/aerial-rice-fields_q9shh8.jpg"
 			cloud
+			src="v1672693111/work/carbon-direct/aerial-rice-fields_q9shh8.jpg"
 			sizes={[480, 640]}
 			alt="Aerial view of a rice field"
 			loading="lazy"
@@ -116,8 +126,8 @@
 	</Container>
 	<Container pt="none" pb="lg" class="relative grid grid-cols-2 gap-12 items-center">
 		<Image
-			src="v1672692945/work/carbon-direct/armand-khoury-BFlD8qNL2UI-unsplash-crop_m8qcfs.jpg"
 			cloud
+			src="v1672692945/work/carbon-direct/armand-khoury-BFlD8qNL2UI-unsplash-crop_m8qcfs.jpg"
 			sizes={[480, 640]}
 			alt="Aerial view of a rice field"
 			loading="lazy"
@@ -131,12 +141,30 @@
 		/>
 	</Container>
 	<Container pt="none" pb="lg" class="relative">
+		<Image
+			cloud
+			svg
+			src="v1672759179/work/carbon-direct/CarbonDirect-Icons_vhgjvx.svg"
+			alt="Carbon Direct icon set"
+			loading="lazy"
+			width="2000px"
+			height="1000px"
+		/>
+	</Container>
+	<Container pt="none" pb="lg" class="relative">
 		<Video
-			src="https://res.cloudinary.com/andystewartdesign/video/upload/f_auto,q_auto/v1672759670/work/carbon-direct/CarbonDirect-Home-Scroll_xjra7n.mp4"
+			lazy
+			cloud
+			src="v1672759670/work/carbon-direct/CarbonDirect-Home-Scroll_xjra7n.mp4"
+			class="aspect-video object-cover"
 			autoplay
 			muted
 			loop
 			playsinline
+			poster={setSrc(
+				'v1672871303/work/carbon-direct/CarbonDirect-Home-Scroll-Poster_sg7h8q.jpg',
+				1920
+			)}
 		/>
 	</Container>
 </section>

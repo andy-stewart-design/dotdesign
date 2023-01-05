@@ -71,6 +71,16 @@
 		raf = requestAnimationFrame(animate);
 	}
 
+	function canvas2Image() {
+		let image = canvas.toDataURL('image/jpeg');
+		var link = document.createElement('a');
+		link.href = image;
+		link.download = 'test.jpg';
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	}
+
 	onMount(() => {
 		setCanvas();
 		ctx = canvas.getContext('2d');
@@ -85,6 +95,14 @@
 <Container pt="xl" class="relative bg-level-06 min-h-screen-lg">
 	<canvas bind:this={canvas} class="absolute top-0 left-0" />
 	<div class="absolute top-0 bottom-0 left-0 right-0 backdrop-blur" />
+	<div
+		class="absolute top-0 left-0 w-full h-full mix-blend-overlay hidden invisible dark:block dark:visible"
+		style:background-image="url('misc/grain-dark.png')"
+	/>
+	<div
+		class="absolute top-0 left-0 w-full h-full mix-blend-overlay opacity-75 dark:hidden dark:invisible"
+		style:background-image="url('misc/grain.png')"
+	/>
 	<div class="relative">
 		<h1
 			class="font-[450] text-5xl leading-[1.2] max-w-4xl mx-auto text-gray-400 text-foreground-2/60"

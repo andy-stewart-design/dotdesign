@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { setSrc } from '@utils/cloudinary';
 
 	type ImageLoading = 'eager' | 'lazy';
 
@@ -13,48 +13,13 @@
 	export let loading: ImageLoading = 'eager';
 	export { classname as class };
 
-	let classname: string;
+	let classname: string = '';
 
 	let defaultSize: number;
 	if (typeof sizes !== 'number' && sizes.length) defaultSize = sizes.slice(-1)[0];
 
 	let svgSrc: string;
 	if (svg) svgSrc = `https://res.cloudinary.com/andystewartdesign/image/upload/f_svg/${src}`;
-
-	function setSrc(slug: string, sizes: number | number[]) {
-		console.log(sizes);
-
-		const baseURL = 'https://res.cloudinary.com/andystewartdesign/image/upload';
-		if (typeof sizes !== 'number') {
-			const URLs = sizes.map((width) => `${baseURL}/w_${width}/f_auto,q_auto/${slug} ${width}w`);
-			return URLs.join(', ');
-		} else {
-			return `${baseURL}/w_${sizes}/f_auto,q_auto/${slug}`;
-		}
-	}
-
-	// let img: HTMLImageElement;
-	// let hasEventListener = false;
-
-	// function unloadImage() {
-	// 	if (hasEventListener) img.removeEventListener('load', loadImage);
-	// }
-
-	// function loadImage() {
-	// 	img.style.opacity = '1';
-	// 	unloadImage();
-	// }
-
-	// onMount(() => {
-	// 	img.style.opacity = '0';
-	// 	if (img.complete) {
-	// 		loadImage();
-	// 	} else {
-	// 		hasEventListener = true;
-	// 		img.addEventListener('load', loadImage);
-	// 	}
-	// 	return () => unloadImage();
-	// });
 </script>
 
 {#if cloud}
