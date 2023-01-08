@@ -80,8 +80,8 @@
 			sizes={[480, 800, 1000, 1400]}
 			alt="Carbon Direct business cards"
 			loading="lazy"
-			width="1000px"
-			height="1000px"
+			width="1000"
+			height="1000"
 		/>
 		<Image
 			cloud
@@ -89,8 +89,8 @@
 			sizes={[480, 800, 1000, 1400]}
 			alt="A shirt design for Carbon Direct that says 'Reduce, Remove, Reuse'"
 			loading="lazy"
-			width="1000px"
-			height="1000px"
+			width="1000"
+			height="1000"
 		/>
 	</Container>
 	<Container pt="none" pb="lg" class="relative">
@@ -100,8 +100,8 @@
 			sizes={[480, 800, 1200, 1920]}
 			alt="Carbon Direct icon set"
 			loading="lazy"
-			width="2000px"
-			height="1000px"
+			width="1920"
+			height="1080"
 		/>
 	</Container>
 	<Container pt="none" pb="lg" class="relative grid grid-cols-2 gap-12 items-center">
@@ -111,8 +111,8 @@
 			svg
 			alt="Carbon Direct color palette"
 			loading="lazy"
-			width="1000px"
-			height="1000px"
+			width="1000"
+			height="1000"
 		/>
 		<Image
 			cloud
@@ -120,8 +120,8 @@
 			sizes={[480, 640]}
 			alt="Aerial view of a rice field"
 			loading="lazy"
-			width="1000px"
-			height="1400px"
+			width="1000"
+			height="1400"
 		/>
 	</Container>
 	<Container pt="none" pb="lg" class="relative grid grid-cols-2 gap-12 items-center">
@@ -131,8 +131,8 @@
 			sizes={[480, 640]}
 			alt="Aerial view of a rice field"
 			loading="lazy"
-			width="1000px"
-			height="1400px"
+			width="1000"
+			height="1400"
 		/>
 		<img
 			src={`/work/carbon-direct/CarbonDirect-Type-${$appTheme}.png`}
@@ -147,8 +147,8 @@
 			src="v1672759179/work/carbon-direct/CarbonDirect-Icons_vhgjvx.svg"
 			alt="Carbon Direct icon set"
 			loading="lazy"
-			width="2000px"
-			height="1000px"
+			width="2000"
+			height="1000"
 		/>
 	</Container>
 	<Container pt="none" pb="lg" class="relative">
@@ -165,6 +165,102 @@
 				'v1672871303/work/carbon-direct/CarbonDirect-Home-Scroll-Poster_sg7h8q.jpg',
 				1920
 			)}
+		/>
+	</Container>
+	<Container pt="none" pb="lg" class="relative">
+		<div class="relative">
+			<div
+				class="relative w-1/2 bg-[#8C9EAD]/50 p-[1%] rounded-[8px] sm:rounded-[12px] md:rounded-[8px] lg:rounded-[12px] backdrop-blur-sm shadow-lg mb-12 ml-6 md:ml-12 z-10"
+			>
+				<div
+					class="w-full h-full bg-black rounded-[4px] sm:rounded-[6px] md:rounded-[4px] lg:rounded-[6px] overflow-hidden"
+				>
+					<Image
+						cloud
+						src="v1672931036/work/carbon-direct/CarbonDirect-About-Crop_hgebi3.jpg"
+						sizes={[600, 1200]}
+						alt="Carbon Direct about page"
+						loading="lazy"
+						width="1400"
+						height="1860"
+					/>
+				</div>
+			</div>
+			<div
+				class="absolute top-12 right-6 md:right-12 w-1/2 bg-[#8C9EAD]/50 p-[1%] rounded-[8px] sm:rounded-[12px] md:rounded-[8px] lg:rounded-[12px] backdrop-blur-sm shadow-lg"
+			>
+				<div
+					class="w-full h-full bg-black rounded-[4px] sm:rounded-[6px] md:rounded-[4px] lg:rounded-[6px] overflow-hidden"
+				>
+					<Image
+						cloud
+						src="v1672931036/work/carbon-direct/CarbonDirect-ClientAdvisory-Crop_ua5ikx.jpg"
+						sizes={[600, 1200]}
+						alt="Carbon Direct about page"
+						loading="lazy"
+						width="1400"
+						height="1860"
+					/>
+				</div>
+			</div>
+		</div>
+	</Container>
+	<Container pt="none" pb="lg" class="relative">
+		<Image
+			cloud
+			src="v1672928823/work/carbon-direct/CrabonDirect-DesktopScreens_wckacf.jpg"
+			sizes={[480, 800, 1200, 1920]}
+			alt="Carbon Direct icon set"
+			loading="lazy"
+			width="1920"
+			height="1080"
+		/>
+	</Container>
+	<Container pt="none" pb="lg" class="relative">
+		<Video
+			lazy
+			cloud
+			src="v1672929480/work/carbon-direct/CarbonDirect-Mobile-opt_k2xm74.mp4"
+			class="aspect-video object-cover"
+			autoplay
+			muted
+			loop
+			playsinline
+			poster={setSrc(
+				'v1672929825/work/carbon-direct/CarbonDirect-MobileScreens-Poster_pinmda.jpg',
+				1920
+			)}
+		/>
+	</Container>
+	<Container pt="none" pb="lg" class="relative grid grid-cols-2 gap-12 items-center">
+		<Image
+			cloud
+			src="v1672959508/work/carbon-direct/CarbonDirect-Mobile-01_dq9v7a.jpg"
+			sizes={[480, 800, 1200]}
+			alt="Aerial view of a rice field"
+			loading="lazy"
+			width="1000"
+			height="1400"
+		/>
+		<Image
+			cloud
+			src="v1672943172/work/carbon-direct/CarbonDirect-Investments_xgksob.jpg"
+			sizes={[480, 800, 1200]}
+			alt="Aerial view of a rice field"
+			loading="lazy"
+			width="1000"
+			height="1400"
+		/>
+	</Container>
+	<Container pt="none" pb="lg" class="relative">
+		<Image
+			cloud
+			src="v1672928898/work/carbon-direct/CrabonDirect-MobileScreens_g2fjos.jpg"
+			sizes={[480, 800, 1200, 1920]}
+			alt="Carbon Direct icon set"
+			loading="lazy"
+			width="1920"
+			height="1080"
 		/>
 	</Container>
 </section>

@@ -4,8 +4,8 @@
 	export let cloud = false;
 	export let lazy = false;
 	export let src: string;
-	export let width = '1920';
-	export let height = '1080';
+	export let width: string | number = '1920';
+	export let height: string | number = '1080';
 	export let autoplay = false;
 	export let muted = false;
 	export let loop = false;
@@ -16,7 +16,7 @@
 	let video: HTMLVideoElement;
 	let classname: string = '';
 	let cloudSrc = `https://res.cloudinary.com/andystewartdesign/video/upload/f_auto,q_auto/${src}`;
-	let props: any = { width, height, autoplay, loop, playsinline };
+	let props: { [key: string]: any } = { width, height, autoplay, loop, playsinline };
 	if (poster) props = { poster, ...props };
 
 	onMount(() => {
