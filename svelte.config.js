@@ -31,11 +31,12 @@ const config = {
 		alias: {
 			'@actions': './src/lib/actions',
 			'@components': './src/lib/components',
+			'@content': './src/content',
+			'@icons': './src/lib/icons',
+			'@posts': './src/content/posts',
 			'@styles': './src/lib/styles',
 			types: './src/lib/types',
-			'@utils': './src/lib/utils',
-			'@content': './src/content',
-			'@posts': './src/content/posts'
+			'@utils': './src/lib/utils'
 		}
 	}
 };

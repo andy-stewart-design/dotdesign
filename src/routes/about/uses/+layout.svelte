@@ -2,6 +2,6 @@
 	import Container from '@components/global/Container.svelte';
 </script>
 
-<Container pt="xl">
+<Container py="xl">
 	<slot />
 </Container>
