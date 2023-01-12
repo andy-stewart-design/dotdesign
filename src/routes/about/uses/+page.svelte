@@ -10,178 +10,360 @@
 
 	interface Tool {
 		name: string;
-		logo: string;
 		descr: string;
 		category: string;
 		link?: string;
-		inlineLogo?: boolean;
-		tools?: [];
 	}
 
 	interface ToolSet {
 		brand: string;
+		logo: string;
+		inlineLogo?: boolean;
+		link?: string;
 		tools: Tool[];
 	}
 
-	const data: { [key: string]: Tool[] } = {
+	const data: { [key: string]: ToolSet[] } = {
 		design: [
 			{
-				name: 'Figma',
+				brand: 'Figma',
 				logo: 'figma.svg',
-				category: 'Digital',
-				descr:
-					'Like a lot of the industry, Figma has become my most used, and loved, tool for day-to-day design work—so much so that I’ve spent the better part of the past two years helping our team adopt it as our primary digital design program.',
 				link: 'https://www.figma.com/',
-				tools: []
+				tools: [
+					{
+						name: 'Figma',
+						category: 'Digital Design',
+						descr:
+							'Like a lot of the industry, Figma has become my most used, and loved, tool for day-to-day design work—so much so that I’ve spent the better part of the past two years helping our team adopt it as our primary digital design program.'
+					}
+				]
 			},
 			{
-				name: 'Adobe Creative Cloud',
+				brand: 'Adobe',
 				logo: 'adobecc.svg',
-				category: 'Multitool',
-				descr:
-					"I've been entrenched in Adobe’s ecosystem—primarily Illustrator, Photoshop, and After Effects with a dash of Indesign—for over a decade, but am increasingly keen to explore alternatives like <a href='https://affinity.serif.com/en-us/'>Affinity’s</a> suite of apps and the browser-based motion tool <a href='https://www.fable.app/'>Fable</a>."
+				link: 'https://www.adobe.com/creativecloud.html',
+				tools: [
+					{
+						name: 'Adobe Creative Cloud',
+						category: 'App Suite',
+						descr: `I've been entrenched in Adobe’s ecosystem—primarily Illustrator, Photoshop, and After Effects with a dash of Indesign—for over a decade, but am increasingly keen to explore alternatives like <a href='https://affinity.serif.com/en-us/'>Affinity’s</a> suite of apps and the browser-based motion tool <a href='https://www.fable.app/'>Fable</a>.`
+					},
+					{
+						name: 'Illustrator',
+						category: 'Vector Drawing',
+						descr: 'lorem ipsum'
+					},
+					{
+						name: 'Photoshop',
+						category: 'Photo Editing',
+						descr: 'lorem ipsum'
+					},
+					{
+						name: 'After Effects',
+						category: 'Motion Design',
+						descr: 'lorem ipsum'
+					}
+				]
 			},
 			{
-				name: 'Pika',
+				brand: 'Pika',
 				logo: 'pika.svg',
-				category: 'Productivity',
-				descr:
-					'A simple, system-wide color picker that I use for accessibility testing and color sampling.'
+				link: 'https://superhighfives.com/pika',
+				tools: [
+					{
+						name: 'Pika',
+						category: 'Productivity',
+						descr:
+							'A simple, system-wide color picker that I use for accessibility testing and color sampling.'
+					}
+				]
 			},
 			{
-				name: 'Cleanshot X',
+				brand: 'CleanShot',
 				logo: 'cleanshot.png',
-				category: 'Productivity',
-				descr:
-					'The only tool that I ever want to use for taking screenshots and and screen recordings.'
+				link: 'https://cleanshot.com/',
+				tools: [
+					{
+						name: 'CleanShot X',
+						category: 'Productivity',
+						descr:
+							'The only tool that I ever want to use for taking screenshots and and screen recordings.'
+					}
+				]
 			}
 		],
 		development: [
 			{
-				name: 'VS Code',
+				brand: 'VS Code',
 				logo: 'vscode.svg',
-				category: 'Editor',
-				descr:
-					'No surprise here. Even though I technically used Atom when learning development, the overwhelming majority of my time building websites has been spent inside of VS Code. I use Night Owl by Sarah Drasner for my theme and Jetbrains Mono for my font.'
+				tools: [
+					{
+						name: 'VS Code',
+						category: 'Editor',
+						descr:
+							'No surprise here. Even though I technically used Atom when learning development, the overwhelming majority of my time building websites has been spent inside of VS Code. I use Night Owl by Sarah Drasner for my theme and Jetbrains Mono for my font.'
+					}
+				]
 			},
 			{
-				name: 'Svelte',
+				brand: 'Svelte',
 				logo: 'svelte.svg',
-				category: 'Frontend',
-				descr:
-					'I feel competent working with Vue and React, but I feel happy and productive working with Svelte (and Sveltekit). More than almost anything else, it has changed the way I think about and approach development.'
+				tools: [
+					{
+						name: 'Svelte',
+						category: 'Frontend Framework',
+						descr:
+							'I feel competent working with Vue and React, but I feel happy and productive working with Svelte (and Sveltekit). More than almost anything else, it has changed the way I think about and approach development.'
+					},
+					{
+						name: 'Sveltekit',
+						category: 'Fullstack Framework',
+						descr:
+							'I feel competent working with Vue and React, but I feel happy and productive working with Svelte (and Sveltekit). More than almost anything else, it has changed the way I think about and approach development.'
+					}
+				]
 			},
 			{
-				name: 'Tailwind',
+				brand: 'Tailwind',
 				logo: 'tailwindcss.svg',
-				category: 'CSS',
-				descr:
-					'The speed and flexibility of working with Tailwind makes it an invaluable part of my toolkit. I also appreciate how closely it’s syntax maps to CSS. Whenever I do need to write vanilla CSS, I don’t feel like my skills have atrophied.'
+				tools: [
+					{
+						name: 'Tailwind',
+						category: 'CSS Framework',
+						descr:
+							'The speed and flexibility of working with Tailwind makes it an invaluable part of my toolkit. I also appreciate how closely it’s syntax maps to CSS. Whenever I do need to write vanilla CSS, I don’t feel like my skills have atrophied.'
+					}
+				]
 			},
 			{
-				name: 'Typescript',
+				brand: 'Typescript',
 				logo: 'typescript.svg',
-				category: 'Javascript+',
-				descr:
-					'I was hesitant about switching to Typescript, and I have lost hours of my life troubleshooting issues, but its myriad benefits more than make up for the occasional headache. As a side effect, it has also deepened my understanding of Javascript.'
+				tools: [
+					{
+						name: 'Typescript',
+						category: 'Javascript Superset',
+						descr:
+							'I was hesitant about switching to Typescript, and I have lost hours of my life troubleshooting issues, but its myriad benefits more than make up for the occasional headache. As a side effect, it has also deepened my understanding of Javascript.'
+					}
+				]
 			},
 			{
-				name: 'Vercel',
+				brand: 'Vercel',
 				logo: vercelLogo,
-				category: 'Serverless Hosting',
-				descr:
-					'I use Vercel to host most of my personal projects (including this site). Netlify is also a great option for serverless hosting, but the fact that Vercel actively funds the development of Svelte and Sveltekit has swayed me to their side.',
-				inlineLogo: true
+				inlineLogo: true,
+				tools: [
+					{
+						name: 'Vercel',
+						category: 'Serverless Hosting',
+						descr:
+							'I use Vercel to host most of my personal projects (including this site). Netlify is also a great option for serverless hosting, but the fact that Vercel actively funds the development of Svelte and Sveltekit has swayed me to their side.'
+					}
+				]
 			},
 			{
-				name: 'Arc',
+				brand: 'Arc',
 				logo: 'arc.svg',
-				category: 'Browser',
-				descr:
-					'I’ve avoided void using Chrome proper for several years now. I first switched to Firefox, then Brave, and have more recently landed on Arc. Despite it’s beta status, the team at the Browser Company have put a lot of love and attention into it, and I’ve found it mostly a joy to use.'
+				tools: [
+					{
+						name: 'Arc',
+						category: 'Browser',
+						descr:
+							'I’ve avoided void using Chrome proper for several years now. I first switched to Firefox, then Brave, and have more recently landed on Arc. Despite it’s beta status, the team at the Browser Company have put a lot of love and attention into it, and I’ve found it mostly a joy to use.'
+					}
+				]
 			},
 			{
-				name: 'Github Desktop',
+				brand: 'Github',
 				logo: githubIcon,
-				category: 'Git Interface',
-				descr:
-					'I’m a designer first and foremost, so I’m wont to reach for a GUI rather than interfacing with the command line directly. I switched to Github Desktop after a long period of trying and failing to integrate git into my workflow and I never looked back.',
-				inlineLogo: true
+				inlineLogo: true,
+				tools: [
+					{
+						name: 'Github Desktop',
+						category: 'Git Interface',
+						descr:
+							'I’m a designer first and foremost, so I’m wont to reach for a GUI rather than interfacing with the command line directly. I switched to Github Desktop after a long period of trying and failing to integrate git into my workflow and I never looked back.'
+					}
+				]
 			},
 			{
-				name: 'Warp',
+				brand: 'Warp',
 				logo: 'warp.svg',
-				category: 'Terminal',
-				descr:
-					'Despite my stated bias for visual interfaces, I do still use the command line. Warp provides a surprisingly smooth user experience with quality of life features like autocomplete and multi-cursor editing. It feels like what the terminal should have always been.'
+				tools: [
+					{
+						name: 'Warp',
+						category: 'Terminal',
+						descr:
+							'Despite my stated bias for visual interfaces, I do still use the command line. Warp provides a surprisingly smooth user experience with quality of life features like autocomplete and multi-cursor editing. It feels like what the terminal should have always been.'
+					}
+				]
 			}
 		],
 		hardware: [
 			{
-				name: 'Macbook Pro + iPad Pro + iPhone',
+				brand: 'Apple',
 				logo: appleIcon,
-				category: 'Computer',
-				descr:
-					'I tend to hang on to hardware for as long as possible. I’m currently using a 2015 Macbook Pro (which still runs well!), but I’m looking to upgrade. In 2022, I replaced my iPhone 6s with a 14 Pro. I also use an iPad pro for sketching and reading.',
+				inlineLogo: true,
 				link: 'https://www.apple.com/',
-				inlineLogo: true
+				tools: [
+					{
+						name: 'Apple Macbook Pro (2015)',
+						category: 'Computer',
+						descr:
+							'I tend to hang on to hardware for as long as possible. I’m currently using a 2015 Macbook Pro (which still runs well!), but I’m looking to upgrade this year. The laptop that I use for my agency work is a 2019 Macbook Pro.'
+					},
+					{
+						name: 'iPhone 14 Pro',
+						category: 'Smart Phone',
+						descr:
+							'In 2022, I replaced my iPhone 6s with a 14 Pro. I also use an iPad pro for sketching and reading.'
+					},
+					{
+						name: 'iPad Pro',
+						category: 'Smart Phone',
+						descr: 'lorem ipsum'
+					},
+					{
+						name: 'Airpods Pro',
+						category: 'Wireless Earbuds',
+						descr:
+							'I skipped the first generation of AirPods, but I use the Pros every. single. day. The sound quality is immense for such small in-ear devices. Admittedly, I’ve had an issue with "squealing" but Apple quickly replaced them for me.'
+					}
+				]
 			},
 			{
-				name: 'Sonos Move + Five',
+				brand: 'Sonos',
 				logo: sonosLogo,
-				category: 'Speaker System',
-				descr:
-					'I have nothing but good things to say about my Sonos speakers. The sound is excellent, the setup is easy, and the portability of the Move makes the system especially flexible. My home office is much better for having them.',
-				inlineLogo: true
+				inlineLogo: true,
+				link: 'https://www.sonos.com/en-us/home',
+				tools: [
+					{
+						name: 'Sonos Move + Five',
+						category: 'Speaker System',
+						descr:
+							'I have nothing but good things to say about my Sonos speakers. The sound is excellent, the setup is easy, and the portability of the Move makes the system especially flexible. My home office is much better for having them.'
+					}
+				]
 			},
 			{
-				name: 'Sony WH-1000XM3',
+				brand: 'Sony',
 				logo: sonyLogo,
-				category: 'Headphones',
-				descr:
-					'These are my get-shit-done headphones. The sound quality is great, especially for bluetooth headphones, and their ability to almost completely neutralize surrounding noise is essential to focusing in an open office.',
-				inlineLogo: true
+				inlineLogo: true,
+				link: 'https://www.sony.com/ug/homepage',
+				tools: [
+					{
+						name: 'Sony WH-1000XM3',
+						category: 'Headphones',
+						descr:
+							'These are my get-shit-done headphones. The sound quality is great, especially for bluetooth headphones, and their ability to almost completely neutralize surrounding noise is essential to focusing in an open office.'
+					}
+				]
 			}
 		],
 		['music making']: [
 			{
-				name: 'OP-1 + OB-4',
+				brand: 'Teenage Engineering',
 				logo: teLogo,
-				category: 'Instrument',
-				descr: 'lorem ipsum',
-				inlineLogo: true
+				inlineLogo: true,
+				link: 'https://teenage.engineering/',
+				tools: [
+					{
+						name: 'Teenage Engineering OP-1',
+
+						category: 'Synthesizer',
+						descr: 'lorem ipsum'
+					},
+					{
+						name: 'OB-4',
+						category: 'Speaker',
+						descr: 'lorem ipsum'
+					}
+				]
 			},
 			{
-				name: 'Ableton Live',
+				brand: 'Ableton',
 				logo: abletonLogo,
-				category: 'DAW',
-				descr: 'The web browser reimagined',
-				inlineLogo: true
+				inlineLogo: true,
+				link: 'https://www.ableton.com/',
+				tools: [
+					{
+						name: 'Ableton Live',
+						category: 'DAW',
+						descr: 'The web browser reimagined'
+					}
+				]
 			},
 			{
-				name: 'Beyerdynamic DT 700 Pro X',
+				brand: 'Beyerdynamic',
 				logo: beyerdynamicIcon,
-				category: 'Headphones',
-				descr: 'The web browser reimagined',
-				inlineLogo: true
+				inlineLogo: true,
+				link: 'https://global.beyerdynamic.com/',
+				tools: [
+					{
+						name: 'Beyerdynamic DT 700 Pro X',
+						category: 'Headphones',
+						descr: 'The web browser reimagined'
+					}
+				]
 			}
 		]
 	};
 
-	// const sortedTools = data.reduce((acc: { [key: string | number]: any[] }, tool: any) => {
-	// 	const key = tool.category;
-	// 	if (!acc[key]) {
-	// 		acc[key] = [];
-	// 	}
-	// 	acc[key].push(tool);
-	// 	return acc;
-	// }, {});
-
 	const categories = Object.keys(data);
-	const tools: Tool[][] = Object.values(data);
+	const tools: ToolSet[][] = Object.values(data);
 </script>
 
 <section class="flex flex-col gap-12">
+	<div class="flex flex-col gap-4 w-full max-w-3xl mx-auto border-b border-level-01/10 pb-10">
+		<h3 class="font-medium text-xs">Uses</h3>
+		<h2 class="text-lg">
+			Curious about how I do my work? This list is a living document of the hardware, software, and
+			services I use every day. I’ll keep it updated as my workflow and equipment changes.
+		</h2>
+	</div>
+	{#each tools as brand, index}
+		<div class="flex flex-col gap-6 w-full max-w-3xl mx-auto">
+			<div class="flex gap-6 font-medium text-xs slashed-zero">
+				<div class="shrink-0 w-16 text-level-01 opacity-40" aria-hidden="true">0{index + 1}</div>
+				<h3 class="capitalize">{categories[index]}</h3>
+			</div>
+			{#each brand as toolset}
+				<div class="flex gap-6 items-start">
+					<a class="group shrink-0 w-16 text-level-01" href={toolset.link}>
+						<div
+							class="relative bg-level-05 p-3 rounded-xl border-b-1.5 border-level-03/20 dark:border-level-01/10 overflow-hidden transition-transform duration-500 ease-out-cubic group-hover:-translate-y-1"
+						>
+							{#if toolset.inlineLogo}
+								{@html toolset.logo}
+							{:else}
+								<img src={`/uses/${toolset.logo}`} alt={`${toolset.brand} logo`} />
+							{/if}
+							<div
+								class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white dark:from-level-01 to-transparent opacity-30 dark:opacity-10 mix-blend-overlay dark:mix-blend-normal transition-opacity duration-500 ease-out-cubic group-hover:opacity-90 dark:group-hover:opacity-25"
+							/>
+						</div>
+					</a>
+					<div class="grow flex flex-col gap-6 pt-1">
+						{#each toolset.tools as tool}
+							<div class="flex flex-col gap-2 border-b border-level-01/10 pb-6">
+								<div class="flex items-center gap-3">
+									<h2 class="font-medium text-xl">{tool.name}</h2>
+									<span
+										class="font-medium text-xs text-level-01/50 border border-level-01/20 py-0.5 px-1 rounded"
+									>
+										{tool.category}
+									</span>
+								</div>
+								<p class="opacity-75">{@html tool.descr}</p>
+							</div>
+						{/each}
+					</div>
+				</div>
+			{/each}
+		</div>
+	{/each}
+</section>
+
+<!-- <section class="flex flex-col gap-12">
 	<div class="flex flex-col gap-4 w-full max-w-3xl mx-auto border-b border-level-01/10 pb-10">
 		<h3 class="font-medium text-xs">Uses</h3>
 		<h2 class="text-lg">
@@ -227,4 +409,4 @@
 			{/each}
 		</div>
 	{/each}
-</section>
+</section> -->
