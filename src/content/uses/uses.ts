@@ -98,6 +98,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 		{
 			brand: 'VS Code',
 			logo: 'vscode.svg',
+			link: 'https://code.visualstudio.com/',
 			tools: [
 				{
 					name: 'VS Code',
@@ -110,6 +111,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 		{
 			brand: 'Svelte',
 			logo: 'svelte.svg',
+			link: 'https://svelte.dev/',
 			tools: [
 				{
 					name: 'Svelte',
@@ -128,6 +130,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 		{
 			brand: 'Tailwind',
 			logo: 'tailwindcss.svg',
+			link: 'https://tailwindcss.com/',
 			tools: [
 				{
 					name: 'Tailwind',
@@ -140,6 +143,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 		{
 			brand: 'Typescript',
 			logo: 'typescript.svg',
+			link: 'https://www.typescriptlang.org/',
 			tools: [
 				{
 					name: 'Typescript',
@@ -153,6 +157,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 			brand: 'Vercel',
 			logo: vercelLogo,
 			inlineLogo: true,
+			link: 'https://vercel.com/',
 			tools: [
 				{
 					name: 'Vercel',
@@ -163,8 +168,9 @@ export const toolData: { [key: string]: ToolSet[] } = {
 			]
 		},
 		{
-			brand: 'Arc',
+			brand: 'The Browser Company',
 			logo: 'arc.svg',
+			link: 'https://arc.net/',
 			tools: [
 				{
 					name: 'Arc',
@@ -178,6 +184,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 			brand: 'Github',
 			logo: githubIcon,
 			inlineLogo: true,
+			link: 'https://github.com/',
 			tools: [
 				{
 					name: 'Github Desktop',
@@ -190,6 +197,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 		{
 			brand: 'Warp',
 			logo: 'warp.svg',
+			link: 'https://www.warp.dev/',
 			tools: [
 				{
 					name: 'Warp',

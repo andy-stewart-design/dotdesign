@@ -1,5 +1,8 @@
+import { toolData, type ToolSet } from '@content/uses/uses';
 import type { PageServerLoadEvent } from './$types';
 
-export const load = async ({ fetch }: PageServerLoadEvent) => {
-	return { msg: 'Hello from the server!' };
+export const load = async ({}: PageServerLoadEvent) => {
+	const categories = Object.keys(toolData);
+	const tools: ToolSet[][] = Object.values(toolData);
+	return { categories, tools };
 };
