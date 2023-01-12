@@ -45,7 +45,7 @@
 	<slot />
 </div>
 
-<style>
+<style lang="postcss">
 	.pad-x {
 		@apply px-2 md:px-8;
 	}

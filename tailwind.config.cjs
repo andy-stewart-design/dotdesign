@@ -76,6 +76,7 @@ const config = {
 				15: '.15'
 			},
 			screens: {
+				xs: '480px',
 				'supports-hover': { raw: '(hover: hover)' }
 			},
 			spacing: {
