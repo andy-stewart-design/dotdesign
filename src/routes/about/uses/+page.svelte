@@ -1,14 +1,9 @@
 <script lang="ts">
 	import Container from '@components/global/Container.svelte';
-	import { toolData, type ToolSet } from '@content/uses/uses';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
 	const { categories, tools } = data;
-
-	// const categories = Object.keys(toolData);
-	// const tools: ToolSet[][] = Object.values(toolData);
 </script>
 
 <Container py="xl">

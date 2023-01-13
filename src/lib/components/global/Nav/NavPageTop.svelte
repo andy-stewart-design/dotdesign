@@ -9,7 +9,7 @@
 </script>
 
 <Container class="absolute top-0 left-0 flex justify-between items-center w-screen z-50">
-	<a href="/" class="relative w-10 p-0.5" class:pointer-events-none={$page.url.pathname === '/'}>
+	<a href="/" class="relative w-10 p-1" class:pointer-events-none={$page.url.pathname === '/'}>
 		<AndyLogo />
 	</a>
 	{#if subNav}
