@@ -1,5 +1,29 @@
 <script lang="ts">
 	import Container from '@components/global/Container.svelte';
+
+	const skills = [
+		'Digital Strategy',
+		'Identity Design',
+		'Web Design',
+		'Prototyping',
+		'Front End Development',
+		'Creative Coding',
+		'Motion Design',
+		'Information Architecture',
+		'Project Leadership',
+		'QA + Testing'
+	];
+
+	const tools = [
+		'Figma',
+		'Illustrator',
+		'Photoshop',
+		'After Effects',
+		'Svelte',
+		'Tailwind',
+		'Typescript',
+		'Asana'
+	];
 </script>
 
 <Container pt="xl" pb="md" class="grid grid-cols-2 gap-10">
@@ -17,9 +41,9 @@
 <Container pt="none" pb="xl">
 	<div class="grid grid-cols-2 gap-10">
 		<div>
-			<div class="sticky top-8 grid gap-2">
+			<div class="sticky top-8 flex flex-col gap-2 h-[calc(100vh-4rem)]">
 				<img
-					class="rounded-2xl opacity-80"
+					class="grow rounded-2xl opacity-80 object-cover"
 					src="/about/andy-stewart-portrait.webp"
 					alt="The designer Andy Stewart throwing playing cards into the air"
 				/>
@@ -48,32 +72,23 @@
 				</p>
 				<div class="grid gap-5 border-t border-level-01/20 mt-3 pt-8">
 					<h4 class="text-xs tracking-wide">Skills + Services</h4>
-					<h3>People rely on me for a variety of jobs, including:</h3>
 					<ul class="grid grid-cols-2 gap-y-2">
-						<li class="before:content-['↘'] before:mr-2">Digital Strategy</li>
-						<li class="before:content-['↘'] before:mr-2">Identity Design</li>
-						<li class="before:content-['↘'] before:mr-2">Website Design</li>
-						<li class="before:content-['↘'] before:mr-2">Information Architecture</li>
-						<li class="before:content-['↘'] before:mr-2">Music Recommendations</li>
-						<li class="before:content-['↘'] before:mr-2">Website Design</li>
-						<li class="before:content-['↘'] before:mr-2">Website Design</li>
-						<li class="before:content-['↘'] before:mr-2">Brand Identity</li>
+						{#each skills as skill}
+							<li class="before:content-['↘'] before:mr-2">{skill}</li>
+						{/each}
 					</ul>
 				</div>
-				<div class="grid gap-5 border-t border-level-01/20 mt-3 pt-8">
+				<div class="flex flex-col gap-5 border-t border-level-01/20 mt-3 pt-8">
 					<h4 class="text-xs tracking-wide">Tools</h4>
 					<ul class="grid grid-cols-2 gap-y-2">
-						<li class="before:content-['↘'] before:mr-2">Figma</li>
-						<li class="before:content-['↘'] before:mr-2">Identity Design</li>
-						<li class="before:content-['↘'] before:mr-2">Website Design</li>
-						<li class="before:content-['↘'] before:mr-2">Information Architecture</li>
-						<li class="before:content-['↘'] before:mr-2">Music Recommendations</li>
-						<li class="before:content-['↘'] before:mr-2">Website Design</li>
-						<li class="before:content-['↘'] before:mr-2">Website Design</li>
-						<li class="before:content-['↘'] before:mr-2">Brand Identity</li>
+						{#each tools as tool}
+							<li class="before:content-['↘'] before:mr-2">{tool}</li>
+						{/each}
 					</ul>
-					<a href="/about/uses" class="text-base" data-sveltekit-preload-data="hover"
-						>Learn More About What I Use</a
+					<a
+						href="/about/uses"
+						class="self-start text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded"
+						data-sveltekit-preload-data="hover">Full List</a
 					>
 				</div>
 			</div>
