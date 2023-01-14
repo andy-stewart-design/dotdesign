@@ -1,14 +1,16 @@
 <script lang="ts">
 	import Container from '@components/global/Container.svelte';
 
+	const introText = ['Experience', 'Expertise', 'Tools', 'Interests'];
+
 	const skills = [
 		'Digital Strategy',
 		'Identity Design',
 		'Web Design',
 		'Prototyping',
-		'Front End Development',
-		'Creative Coding',
 		'Motion Design',
+		'Creative Coding',
+		'Front End Development',
 		'Information Architecture',
 		'Project Leadership',
 		'QA + Testing'
@@ -26,24 +28,29 @@
 	];
 </script>
 
-<Container pt="xl" pb="md" class="grid grid-cols-2 gap-10">
-	<h1 class="text-8xl md:text-9xl mb-12">About</h1>
-	<div class="flex flex-row-reverse justify-between">
-		<h1 class="text-8xl md:text-9xl mb-12">Me</h1>
-		<div class="pt-4">
-			<h3>↓ Experience</h3>
-			<h3>↓ Expertise</h3>
-			<h3>↓ Tools</h3>
-			<h3>↓ Interests</h3>
+<Container pt="xl" pb="md" class="grid lg:grid-cols-2 lg:gap-10">
+	<h1 class="text-8xl md:text-9xl">About</h1>
+	<div class="flex flex-row-reverse justify-end lg:justify-between">
+		<h1 class="text-8xl md:text-9xl">Me</h1>
+		<div class="pt-3 md:pt-5 pr-6">
+			{#each introText as text}
+				<div class="flex items-center gap-1.5">
+					<svg width="12" height="12" viewBox="0 0 12 12">
+						<path d="M1 6L5 10L9 6" stroke="currentColor" stroke-width="1.5" />
+						<path d="M11 2H5V9.5" stroke="currentColor" stroke-width="1.5" />
+					</svg>
+					<h3 class="text-sm leading-[1.35] md:text-base md:leading-normal">{text}</h3>
+				</div>
+			{/each}
 		</div>
 	</div>
 </Container>
 <Container pt="none" pb="xl">
-	<div class="grid grid-cols-2 gap-10">
+	<div class="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10">
 		<div>
-			<div class="sticky top-8 flex flex-col gap-2 h-[calc(100vh-4rem)]">
+			<div class="sticky top-8 flex flex-col gap-2 lg:h-[calc(100vh-8rem)]">
 				<img
-					class="grow rounded-2xl opacity-80 object-cover"
+					class="aspect-[3/2] object-cover object-top rounded-2xl opacity-90 lg:aspect-[none] lg:grow"
 					src="/about/andy-stewart-portrait.webp"
 					alt="The designer Andy Stewart throwing playing cards into the air"
 				/>
@@ -71,25 +78,35 @@
 					recognizing and resolving challenging business problems.
 				</p>
 				<div class="grid gap-5 border-t border-level-01/20 mt-3 pt-8">
-					<h4 class="text-xs tracking-wide">Skills + Services</h4>
+					<h4 class="font-medium text-xs tracking-wide">Skills + Services</h4>
 					<ul class="grid grid-cols-2 gap-y-2">
 						{#each skills as skill}
-							<li class="before:content-['↘'] before:mr-2">{skill}</li>
+							<li
+								class="relative text-level-01 pl-5 before:absolute before:top-0 before:left-0 before:content-['↘'] before:text-level-01/75"
+							>
+								{skill}
+							</li>
 						{/each}
 					</ul>
 				</div>
 				<div class="flex flex-col gap-5 border-t border-level-01/20 mt-3 pt-8">
-					<h4 class="text-xs tracking-wide">Tools</h4>
+					<h4 class="font-medium text-xs tracking-wide">Tools</h4>
 					<ul class="grid grid-cols-2 gap-y-2">
 						{#each tools as tool}
-							<li class="before:content-['↘'] before:mr-2">{tool}</li>
+							<li
+								class="relative text-level-01 pl-5 before:absolute before:top-0 before:left-0 before:content-['↘'] before:text-level-01/75"
+							>
+								{tool}
+							</li>
 						{/each}
 					</ul>
-					<a
-						href="/about/uses"
-						class="self-start text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded"
-						data-sveltekit-preload-data="hover">Full List</a
-					>
+					<div class="pt-1">
+						<a
+							href="/about/uses"
+							class="self-start text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded"
+							data-sveltekit-preload-data="hover"><span class="pb-px">Full List</span></a
+						>
+					</div>
 				</div>
 			</div>
 		</div>
