@@ -1,0 +1,163 @@
+---
+title: How to Set Up a Multi-page Vite App
+date: '2022-12-14'
+summary: Because I cannot be bothered to use Webpack
+image: /img/posts/simple-beauty-generative-design/featured.png
+tags:
+  - Dev Tools
+---
+
+<script>import Callout from '@components/posts/Callout.svelte';</script>
+
+I recently began working my way through Bruno Simon's [Three.js Journey](https://threejs-journey.com/). In one of the first lessons of the course, he walks students through the tech stack for the materials that he provides for each lesson. To my dismay, he uses Webpack as his build tool. When I decided to pick back up with coding a couple of years ago I made a commitment to myself to never learn to use Webpack, and I'm not about to break that commitment now.
+
+To be fair, Bruno has done and a great job developing the course and, as far as I can tell, the class materials do not require any additional Webpack configuration on the student's end. However, in addition to relying on Webpack, each Three.js Journey lesson is packaged as a standalone application. The upshot of this approach is that once you complete the course, you potentially have dozens of discrete Webpack apps, each with their own copy of Three.js—not to mention the myriad other dependencies required by the stack—on your computer. I'm guessing this approach was taken to make the class as broadly accessible as possible but, for me, it seemed overkill.
+
+Alternatively, I decided to generate [my own project setup](https://github.com/andy-stewart-design/three) for the class which, thanks to Evan You's build tool Vite, was mostly painless. The one issue that I ran into was setting Vite up as a multi-page app in a way that was scalable, maintainable, and deployable. In this tutorial, I'll walk through the modifications I made to Vite's default project scaffolding and some of the footguns I ran into along the way.
+
+If you would prefer to skip my explication and parse the code yourself, you can find it on Github here.
+
+## What does Vite provide out of the box?
+
+Let's begin by spinning up a vanilla Vite project using `npm create vite@latest`. I'll be using Typescript in this tutorial, but the process will be more-or-less the same if you're using plain ol' Javascript.
+
+The first thing you may notice is that, out of the box, Vite presents as a zero-config bundler. That is, you can run `npm create vite@latest` and get to work without even needing a vite-specific config file in the root of your codebase. If you're used to working with Webpack, this alone may seem like some sort of voodoo black magic.
+
+For our purposes, the elements in the top level of your project that are worth paying attention to are the `index.html` file and the `src` and `public` folder.
+
+The root `index.html` file is the entry point for your application. The exact location of this particular file will be very important in the updates we're about to make. By default, most of the other files—and more specifically, any files that you want Vite to process (minify, optimize, etc.) at build time—should be located in the `src` directory. The `public` directory, on the other hand, is the place to put static assets (i.e., anything that you want Vite to bundle without modification).
+
+## Multi-page by default (kind of)
+
+It's not exactly obvious, but you can create [multi-page sites using Vite](https://vitejs.dev/guide/build.html#multi-page-app) without actually modifying anything, at least in development—deploying your site is a different beast, but we'll get to that later.
+
+Like I mentioned, Vite treats the root `index.html` file as the entry point for your application, so it will look for other `html` files relative to its location in your project. All you have to do is create a new folder with an `index.html` file inside of it at the same level in your project folder as your entry point, and Vite will automatically recognize it as a new route while in dev mode.
+
+<Callout>
+	By default, Vite only serves `index.html` files. So, for example, it will recognize
+	`about/index.html` as a page, but not `about.html`.
+</Callout>
+
+One of Vite's quirks, at least in its current form, is that it [requires that all internal links have a trailing slash](https://github.com/vitejs/vite/issues/6596) when working in development (but not, for whatever reason, production). If you attempt to navigate to another page using `/your-page` instead of `/your-page/`, it will not work—Vite will serve the root index page instead. If you accidentally end up back at your entry point while attempting to navigate your site, try adding a forward slash to the end of your url.
+
+## Reorganizing Our Project
+
+While it is true that you technically can create a multi-page site using Vite out of the box, most projects will benefit from modifying Vite's default file structure to make it more scalable and maintainable.
+
+First, let's move our root `index.html` file into the `src` folder. For a bigger project, it may be worthwhile to go one step further and create an `app` (or `routes`, or whatever name you prefer) folder inside of `src`, but for the purpose of this example, we're going to keep it simple.
+
+Great work—your app is now broken. To fix it, we need to create a `vite.config.ts` (or `.js`) file. A Vite config, in its most basic form, is a javascript or typescript file with an object as its default export. However, we're going to use Vite's `defineConfig` helper function, which provides intellisence and type safety. To begin with, your config file should look something like this:
+
+```typescript title="vite.config.js"
+import { defineConfig } from 'vite';
+
+export default defineConfig({});
+```
+
+To tell Vite where we moved our entry point, we'll use Node's path module, which provides a set of utilities for working with file and directory paths. Germane to our pruposes is the `__dirname` variable that returns the path of the current file—which will be different depending on whether you're running the site on your computer or on a production server—and the resolve function, which constructs an absolute path from a series of discrete path segments. The following code will give us the absolute path to our `src` folder, regardless of where the code is running:
+
+```typescript
+const root = resolve(__dirname, 'src');
+```
+
+And because Vite defaults to looking for things relative to your entry point, we also now need to redefine the location of our public folder. At the end of these modifications, your Vite config should look like this:
+
+```typescript title="vite.config.js"
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+const root = resolve(__dirname, 'src');
+const publicDir = resolve(__dirname, 'public');
+
+export default defineConfig({
+	root,
+	publicDir
+});
+```
+
+## Building for Production
+
+Vite uses [Rollup](https://rollupjs.org/guide/en/) under the hood when bundling your site for production, and unfortunately, unlike when working in development, it doesn't assume that all of the `index.html` in your `src` folder are intended to be pages. Instead, we have to tell it explicitly, via our config file, which files to include as routes in our app.
+
+To do this, we need to add a `build.rollupOptions.input` object to our config. The most straightforward way to do this—and the one that is [mentioned explicitly in the Vite docs](https://vitejs.dev/guide/build.html#multi-page-app)—is to, one by one, specify each page that you want to included in your site as an item in the input object, like so:
+
+```typescript title="vite.config.js" {7-9}
+// ...
+export default defineConfig({
+	// ...
+	build: {
+		rollupOptions: {
+			input: {
+				main: resolve(__dirname, 'index.html'),
+				nested: resolve(__dirname, 'nested/index.html'),
+				etc: resolve(__dirname, 'etc/index.html')
+			}
+		}
+	}
+});
+```
+
+If you're like me, though, you're lazy and don't want to open your config file every time you want to add a new page. Thankfully, we can automate the process with the help of a Isaac Schlueter's [Node Glob](https://github.com/isaacs/node-glob#readme) library, which grabs all of the files that match a specified pattern and returns them as an array. It's worth noting explicitly that this is is not Vite's built-in `import.meta.glob` function, which unfortunately will not work in this situation, but it does provide a similar service.
+
+Install the library using `npm i glob`. Because we're using Typescript, we'll also need to install type definitions for the library using `npm i --save-dev @types/glob`. From here, all we need to do is import it into our config file and use it to get all of the `index.html` files in our `src` folder, like so:
+
+```typescript title="vite.config.js" {4,8-10}
+// ...
+export default defineConfig({
+	// ...
+  const input = glob.sync(resolve(root, '**/index.html'));
+	// ...
+	build: {
+		outDir,
+		emptyOutDir: true,
+		rollupOptions: {
+			input
+		}
+	}
+});
+```
+
+The last thing we need to do to complete our setup is define the location of our build directory. Vite names this folder `dist` by default, and for the lack of a compelling reason to change it, we will as well. In addition to telling Vite where to toss our bundled site, we also should give it permission to empty the output directory before rebuilding the site to avoid conflicts between versions. At the end of all of this, your vite config should look like this:
+
+```typescript title="vite.config.js"
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
+import glob from 'glob';
+
+const root = resolve(__dirname, 'src');
+const publicDir = resolve(__dirname, 'public');
+const outDir = resolve(__dirname, 'dist');
+const input = glob.sync(resolve(root, '**/index.html'));
+
+export default defineConfig({
+	root,
+	publicDir,
+	build: {
+		outDir,
+		emptyOutDir: true,
+		rollupOptions: {
+			input
+		}
+	}
+});
+```
+
+Now, every time you add a new folder with an `index.html` file in it to your `src` folder, Vite will automatically bundle it as a route in your app, whether for development and production. Just run `npm run build`, push it to a Guthub repo, connect that to Vercel, and you've got yourself a website. Not bad for 20 lines of code!
+
+## Bonus: setting up path aliases
+
+If you're planning to build a site using the approach outlined above, you'll almost certainly want to take advantage of Vite's path aliases, which allow you to reference folders in your codebase through a keyword rather than an absolute or relative path. The process for this should look familiar by now:
+
+```typescript title="vite.config.js" {6-7}
+// ...
+export default defineConfig({
+	root,
+	resolve: {
+		alias: {
+			'@': root,
+			'@styles': resolve(root, 'lib/styles')
+		}
+	}
+	// ...
+});
+```

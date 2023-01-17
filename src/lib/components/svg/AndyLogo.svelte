@@ -5,7 +5,7 @@
 	/>
 </svg> -->
 
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 	<path
 		d="M24 3C12.4 3 3 12.4 3 24C3 35.6 11.87 44.42 23 44.95V45H27L36 36H13C12.45 36 12 35.55 12 35V13C12 12.45 12.45 12 13 12H35C35.55 12 36 12.45 36 13V36L45 45V24C45 12.4 35.6 3 24 3Z"
 		fill="currentColor"

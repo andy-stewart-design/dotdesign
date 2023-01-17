@@ -22,11 +22,11 @@
 
 .prose :where(p a):not(:where([class~='not-prose'] *)),
 .prose :where(li a):not(:where([class~='not-prose'] *)) {
-	@apply underline decoration-gray-100/30 underline-offset-[3px];
+	@apply text-level-01 underline decoration-gray-100/30 underline-offset-[3px];
 }
 
 .prose :where(p code):not(:where([class~='not-prose'] *)) {
-	@apply font-mono text-[15px] bg-gray-800 dark:bg-gray-800/60 border border-gray-100/5 py-0.5 px-1 pb-1 rounded;
+	@apply font-mono text-[15px] text-level-01 bg-level-05/30 dark:bg-level-05 border border-level-01/10 py-0.5 px-1 pb-1 rounded;
 }
 
 .prose :where(ul):not(:where([class~='not-prose'] *)) {

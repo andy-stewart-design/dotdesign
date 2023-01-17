@@ -4,13 +4,13 @@
 	import Container from '@components/global/Container.svelte';
 </script>
 
-<Container pxNone py="lg">
+<Container pxNone py="xl">
 	<article class="content prose">
 		<slot />
 	</article>
 </Container>
 
-<style global>
+<style global lang="postcss">
 	.content {
 		@apply grid grid-cols-article gap-y-5;
 	}

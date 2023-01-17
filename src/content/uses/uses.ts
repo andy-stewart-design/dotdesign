@@ -63,7 +63,7 @@ export const toolData: { [key: string]: ToolSet[] } = {
 					name: 'After Effects',
 					category: 'Motion Design',
 					descr:
-						'This is the area where Adobe seems to still have a firm grip on the market. If you’re interested in learning motion desing in the context of After Effects, I highly suggest the <a href="">Motion 4</a> plugin, which smooths out some of the apps sharper edges.'
+						'Motion design is one area where Adobe still seems to have a firm grip on the market, despite the obvious cruft that AE has developed after so many years on the market. If you’re interested in learning motion desing in the context of After Effects, I highly suggest the <a href="">Motion 4</a> plugin, which smooths out some of the apps sharper edges.'
 				}
 			]
 		},

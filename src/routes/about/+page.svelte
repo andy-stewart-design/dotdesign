@@ -35,7 +35,7 @@
 		<div class="pt-3 md:pt-5 pr-6">
 			{#each introText as text}
 				<div class="flex items-center gap-1.5">
-					<svg width="12" height="12" viewBox="0 0 12 12">
+					<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
 						<path d="M1 6L5 10L9 6" stroke="currentColor" stroke-width="1.5" />
 						<path d="M11 2H5V9.5" stroke="currentColor" stroke-width="1.5" />
 					</svg>
@@ -54,7 +54,13 @@
 					src="/about/andy-stewart-portrait.webp"
 					alt="The designer Andy Stewart throwing playing cards into the air"
 				/>
-				<div class="text-level-01/75">* Not a Magician</div>
+				<div class="flex items-center gap-2 text-level-01/75">
+					<svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 6L5 2L9 6" stroke="currentColor" />
+						<path d="M11 10H5V2.5" stroke="currentColor" />
+					</svg>
+					<p>Not a Magician</p>
+				</div>
 			</div>
 		</div>
 		<div>
@@ -77,8 +83,20 @@
 					by a love of aesthetics, technology, and delightful experiences, and an eye for
 					recognizing and resolving challenging business problems.
 				</p>
+				<div class="flex gap-4 pt-1">
+					<a href="/about/uses" data-sveltekit-preload-data="hover">
+						<div class="text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded">
+							<span class="block pb-px">Full Resume</span>
+						</div>
+					</a>
+					<a href="/about/uses" data-sveltekit-preload-data="hover">
+						<div class="text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded">
+							<span class="block pb-px">What I’m Up to Now</span>
+						</div>
+					</a>
+				</div>
 				<div class="grid gap-5 border-t border-level-01/20 mt-3 pt-8">
-					<h4 class="font-medium text-xs tracking-wide">Skills + Services</h4>
+					<h4 class="font-medium text-xs tracking-wide">Select Skills + Services</h4>
 					<ul class="grid grid-cols-2 gap-y-2">
 						{#each skills as skill}
 							<li
@@ -90,7 +108,7 @@
 					</ul>
 				</div>
 				<div class="flex flex-col gap-5 border-t border-level-01/20 mt-3 pt-8">
-					<h4 class="font-medium text-xs tracking-wide">Tools</h4>
+					<h4 class="font-medium text-xs tracking-wide">Select Tools</h4>
 					<ul class="grid grid-cols-2 gap-y-2">
 						{#each tools as tool}
 							<li
@@ -101,11 +119,13 @@
 						{/each}
 					</ul>
 					<div class="pt-1">
-						<a
-							href="/about/uses"
-							class="self-start text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded"
-							data-sveltekit-preload-data="hover"><span class="pb-px">Full List</span></a
-						>
+						<a href="/about/uses" data-sveltekit-preload-data="hover">
+							<div
+								class="inline-block text-base text-level-01 border border-level-01/20 py-1 px-2.5 rounded"
+							>
+								<span class="block pb-px">Complete List</span>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
