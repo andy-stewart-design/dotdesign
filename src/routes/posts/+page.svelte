@@ -1,13 +1,8 @@
 <script lang="ts">
 	import Container from '@components/global/Container.svelte';
-	import NavPageTop from '@components/global/Nav/NavPageTop.svelte';
-	import type { PostMetadata } from 'types/posts';
+	import type { PageData } from './$types';
 
-	interface Data {
-		posts: PostMetadata[];
-	}
-
-	export let data: Data;
+	export let data: PageData;
 	const { posts } = data;
 </script>
 

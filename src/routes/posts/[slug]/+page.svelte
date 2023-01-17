@@ -1,20 +1,16 @@
 <script lang="ts">
-	import type { RawPostData } from 'types/posts';
-	interface Data {
-		post: RawPostData;
-	}
+	import type { PageData } from '../$types';
 
-	export let data: Data;
-	const { post } = data;
-	const { metadata: frontmatter, default: content } = post;
+	export let data: PageData;
+	const { metadata, content } = data.post;
 </script>
 
-<h1>{frontmatter.title}</h1>
-<p>{frontmatter.summary}</p>
-<p>Published: {frontmatter.date}</p>
-<svelte:component this={content} />
+<h1>{metadata.title}</h1>
+<p>{metadata.summary}</p>
+<p>Published: {metadata.date}</p>
+{@html content}
 <ul>
-	{#each frontmatter.tags as tag}
+	{#each metadata.tags as tag}
 		<li>{tag}</li>
 	{/each}
 </ul>
