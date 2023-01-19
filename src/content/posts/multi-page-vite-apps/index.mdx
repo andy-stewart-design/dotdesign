@@ -1,8 +1,8 @@
 ---
 title: How to Set Up a Multi-page Vite App
 date: '2022-12-14'
-summary: Because I cannot be bothered to use Webpack
-image: /img/posts/simple-beauty-generative-design/featured.png
+summary: Because I want to learn Three.js but cannot be bothered to use Webpack
+image: v1674053705/posts/Screen_Shot_2023-01-18_at_6.49.47_AM_bm802z.png
 tags:
   - Dev Tools
 ---
@@ -15,7 +15,10 @@ To be fair, Bruno has done and a great job developing the course and, as far as 
 
 Alternatively, I decided to generate [my own project setup](https://github.com/andy-stewart-design/three) for the class which, thanks to Evan You's build tool Vite, was mostly painless. The one issue that I ran into was setting Vite up as a multi-page app in a way that was scalable, maintainable, and deployable. In this tutorial, I'll walk through the modifications I made to Vite's default project scaffolding and some of the footguns I ran into along the way.
 
-If you would prefer to skip my explication and parse the code yourself, you can find it on Github here.
+<Callout subhead="TLDR">
+	If you would prefer to skip my explination and parse the code yourself, you can find it on Github
+	here.
+</Callout>
 
 ## What does Vite provide out of the box?
 
@@ -34,8 +37,8 @@ It's not exactly obvious, but you can create [multi-page sites using Vite](https
 Like I mentioned, Vite treats the root `index.html` file as the entry point for your application, so it will look for other `html` files relative to its location in your project. All you have to do is create a new folder with an `index.html` file inside of it at the same level in your project folder as your entry point, and Vite will automatically recognize it as a new route while in dev mode.
 
 <Callout>
-	By default, Vite only serves `index.html` files. So, for example, it will recognize
-	`about/index.html` as a page, but not `about.html`.
+	By default, Vite only serves index.html files. So, for example, it will recognize about/index.html
+	as a page, but not about.html.
 </Callout>
 
 One of Vite's quirks, at least in its current form, is that it [requires that all internal links have a trailing slash](https://github.com/vitejs/vite/issues/6596) when working in development (but not, for whatever reason, production). If you attempt to navigate to another page using `/your-page` instead of `/your-page/`, it will not work—Vite will serve the root index page instead. If you accidentally end up back at your entry point while attempting to navigate your site, try adding a forward slash to the end of your url.

@@ -53,7 +53,7 @@
 	</svg>
 </button>
 
-<style scoped>
+<style scoped lang="postcss">
 	.loaded {
 		@apply opacity-100;
 	}

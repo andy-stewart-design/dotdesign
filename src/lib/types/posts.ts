@@ -1,4 +1,4 @@
-import type { SvelteComponent } from 'svelte/internal';
+import type { SvelteComponent } from 'svelte';
 
 export interface Frontmatter {
 	title: string;

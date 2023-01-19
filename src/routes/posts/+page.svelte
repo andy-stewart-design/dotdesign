@@ -6,19 +6,18 @@
 	const { posts } = data;
 </script>
 
-<Container pt="xl">
-	<h1>My Blog</h1>
-
-	<ul class="grid gap-4 md:grid-cols-2">
+<Container py="xl">
+	<secion class="grid gap-8 max-w-3xl mx-auto">
 		{#each posts as post}
-			<li>
-				<a href={`/posts/${post.slug}`} data-sveltekit-preload-data="hover">
-					<h2>
+			<article>
+				<a class="grid gap-3" href={`/posts/${post.slug}`} data-sveltekit-preload-data="hover">
+					<h2 class="font-semibold text-3xl">
 						{post.frontmatter.title}
 					</h2>
-					Published {post.frontmatter.date}
+					<p class="">{post.frontmatter.summary}</p>
+					<p class="font-medium text-sm">Published {post.frontmatter.date}</p>
 				</a>
-			</li>
+			</article>
 		{/each}
-	</ul>
+	</secion>
 </Container>
